@@ -42,23 +42,55 @@ void read_flex_sensors() {
     float Ring_Average = 0;
     float Pinky_Average = 0;
 
-    for (int i = 0; i < 5; i++) {
-        sensor_readings[i][count] = Thumb;
-        sensor_readings[i][count] = Index;
-        sensor_readings[i][count] = Middle;
-        sensor_readings[i][count] = Ring;
-        sensor_readings[i][count] = Pinky;
+    if (flexValue1 && flexValue2 && flexValue3 && flexValue4 && flexValue5) {
+        //Find sensor voltage Average value for every 20 readings
+        if (count == 20) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < count; j++){
+                    switch (i) {
+                        case 0:
+                            Thumb_Average += sensor_readings[i][j];
+                            break;
+                        case 1:
+                            Index_Average += sensor_readings[i][j];
+                            break;
+                        case 2:
+                            Middle_Average += sensor_readings[i][j];
+                            break;
+                        case 3:
+                            Ring_Average += sensor_readings[i][j];
+                            break;
+                        case 4:
+                            Pinky_Average += sensor_readings[i][j];
+                            break;
+                    }
+                }
+                Thumb_Average = Thumb_Average / count;
+                Index_Average = Index_Average / count;
+                Middle_Average = Middle_Average / count;
+                Ring_Average = Ring_Average / count;
+                Pinky_Average = Pinky_Average / count;
+            }
+            
+        }
 
-    }
-    count++;
+        for (int i = 0; i < 5; i++) {
+            sensor_readings[i][count] = Thumb;
+            sensor_readings[i][count] = Index;
+            sensor_readings[i][count] = Middle;
+            sensor_readings[i][count] = Ring;
+            sensor_readings[i][count] = Pinky;
 
-    printf("Flex Sensor Readings:\n");
-    printf("Thumb Voltage = %.3f V\n", Thumb);
-    printf("Index Voltage = %.3f V\n", Index);
-    printf("Middle Voltage = %.3f V\n", Middle);
-    printf("Ring Voltage = %.3f V\n", Ring);
-    printf("Pinky Voltage = %.3f V\n", Pinky);
-    printf("------------------------\n");
+        }
+        count++;
+
+        printf("Flex Sensor Readings:\n");
+        printf("Thumb Voltage = %.3f V\n", Thumb);
+        printf("Index Voltage = %.3f V\n", Index);
+        printf("Middle Voltage = %.3f V\n", Middle);
+        printf("Ring Voltage = %.3f V\n", Ring);
+        printf("Pinky Voltage = %.3f V\n", Pinky);
+        printf("------------------------\n");
     }
     else {
         printf("Error reading flex sensors\n");
