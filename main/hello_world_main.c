@@ -27,18 +27,48 @@ void read_flex_sensors() {
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
 
-    float voltage1 = flexValue1 * (3.3 / 4095.0);
-    float voltage2 = flexValue2 * (3.3 / 4095.0);
-    float voltage3 = flexValue3 * (3.3 / 4095.0);
-    float voltage4 = flexValue4 * (3.3 / 4095.0);
-    float voltage5 = flexValue5 * (3.3 / 4095.0);
+    //Voltage calculation
+    float Thumb = flexValue1 * (3.3 / 4095.0);
+    float Index = flexValue2 * (3.3 / 4095.0);
+    float Middle = flexValue3 * (3.3 / 4095.0);
+    float Ring = flexValue4 * (3.3 / 4095.0);
+    float Pinky = flexValue5 * (3.3 / 4095.0);
 
+    int count = 0;
+    float sensor_readings[5][20] = {};
+    float Thumb_Average = 0;
+    float Index_Average = 0;
+    float Middle_Average = 0;
+    float Ring_Average = 0;
+    float Pinky_Average = 0;
+
+    for (int i = 0; i < 5; i++) {
+        sensor_readings[i][count] = Thumb;
+        sensor_readings[i][count] = Index;
+        sensor_readings[i][count] = Middle;
+        sensor_readings[i][count] = Ring;
+        sensor_readings[i][count] = Pinky;
+
+    }
+    count++;
+
+    printf("Flex Sensor Readings:\n");
+    printf("Thumb Voltage = %.3f V\n", Thumb);
+    printf("Index Voltage = %.3f V\n", Index);
+    printf("Middle Voltage = %.3f V\n", Middle);
+    printf("Ring Voltage = %.3f V\n", Ring);
+    printf("Pinky Voltage = %.3f V\n", Pinky);
+    printf("------------------------\n");
+    }
+    else {
+        printf("Error reading flex sensors\n");
+    }
     printf("\nFlex Sensor Readings:\n");
-    printf("Thumb Voltage = %.3f V\n", voltage1);
-    printf("Index Voltage = %.3f V\n", voltage2);
-    printf("Middle Voltage = %.3f V\n", voltage3);
-    printf("Ring Voltage = %.3f V\n", voltage4);
-    printf("Pinky Voltage = %.3f V\n", voltage5);
+    printf("Thumb Voltage = %.3f V\n", Thumb);
+    printf("Index Voltage = %.3f V\n", Index);
+    printf("Middle Voltage = %.3f V\n", Middle);
+    printf("Ring Voltage = %.3f V\n", Ring);
+    printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("------------------------\n");
 }
 
