@@ -8,6 +8,7 @@
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "esp_system.h"
+#include "math.h"
 
 //ADC channel assignments
 #define FLEX_PIN_1 ADC1_CHANNEL_0   // GPIO36, Thumb
@@ -19,6 +20,7 @@
 // UART Configuration
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
+
 
 void read_flex_sensors() {
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
@@ -34,13 +36,14 @@ void read_flex_sensors() {
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    int count = 0;
-    float sensor_readings[5][20] = {};
-    float Thumb_Average = 0;
-    float Index_Average = 0;
-    float Middle_Average = 0;
-    float Ring_Average = 0;
-    float Pinky_Average = 0;
+    static int count = 0;
+    static float sensor_readings[5][20] = {};
+    static float Thumb_Average = 0;
+    static float Index_Average = 0;
+    static float Middle_Average = 0;
+    static float Ring_Average = 0;
+    static float Pinky_Average = 0;
+    
 
     if (flexValue1 && flexValue2 && flexValue3 && flexValue4 && flexValue5) {
         //Find sensor voltage Average value for every 20 readings
@@ -65,43 +68,48 @@ void read_flex_sensors() {
                             break;
                     }
                 }
-                Thumb_Average = Thumb_Average / count;
-                Index_Average = Index_Average / count;
-                Middle_Average = Middle_Average / count;
-                Ring_Average = Ring_Average / count;
-                Pinky_Average = Pinky_Average / count;
             }
+            Thumb_Average = Thumb_Average / count;
+            Index_Average = Index_Average / count;
+            Middle_Average = Middle_Average / count;
+            Ring_Average = Ring_Average / count;
+            Pinky_Average = Pinky_Average / count;
             
+            printf("Flex Sensor Readings:\n");
+            printf("Thumb Voltage = %.3f V\n", Thumb_Average);
+            printf("Index Voltage = %.3f V\n", Index_Average);
+            printf("Middle Voltage = %.3f V\n", Middle_Average);
+            printf("Ring Voltage = %.3f V\n", Ring_Average);
+            printf("Pinky Voltage = %.3f V\n", Pinky_Average);
+            printf("------------------------\n");
+
+            // Reset averages and count after processing
+            Thumb_Average = 0;
+            Index_Average = 0;
+            Middle_Average = 0;
+            Ring_Average = 0;
+            Pinky_Average = 0;
+            count = 0;
         }
-
-        for (int i = 0; i < 5; i++) {
-            sensor_readings[i][count] = Thumb;
-            sensor_readings[i][count] = Index;
-            sensor_readings[i][count] = Middle;
-            sensor_readings[i][count] = Ring;
-            sensor_readings[i][count] = Pinky;
-
+        else{
+            sensor_readings[0][count] = Thumb;
+            sensor_readings[1][count] = Index;
+            sensor_readings[2][count] = Middle;
+            sensor_readings[3][count] = Ring;
+            sensor_readings[4][count] = Pinky;
+            count++;
         }
-        count++;
-
-        printf("Flex Sensor Readings:\n");
-        printf("Thumb Voltage = %.3f V\n", Thumb);
-        printf("Index Voltage = %.3f V\n", Index);
-        printf("Middle Voltage = %.3f V\n", Middle);
-        printf("Ring Voltage = %.3f V\n", Ring);
-        printf("Pinky Voltage = %.3f V\n", Pinky);
-        printf("------------------------\n");
     }
     else {
         printf("Error reading flex sensors\n");
     }
-    printf("\nFlex Sensor Readings:\n");
-    printf("Thumb Voltage = %.3f V\n", Thumb);
-    printf("Index Voltage = %.3f V\n", Index);
-    printf("Middle Voltage = %.3f V\n", Middle);
-    printf("Ring Voltage = %.3f V\n", Ring);
-    printf("Pinky Voltage = %.3f V\n", Pinky);
-    printf("------------------------\n");
+    // printf("\nFlex Sensor Readings:\n");
+    // printf("Thumb Voltage = %.3f V\n", Thumb);
+    // printf("Index Voltage = %.3f V\n", Index);
+    // printf("Middle Voltage = %.3f V\n", Middle);
+    // printf("Ring Voltage = %.3f V\n", Ring);
+    // printf("Pinky Voltage = %.3f V\n", Pinky);
+    // printf("------------------------\n");
 }
 
 void app_main() {
@@ -124,13 +132,10 @@ void app_main() {
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
-    uint8_t data;
     while (1) {
         // Read UART input
-        int len = uart_read_bytes(UART_NUM, &data, 1, 10 / portTICK_PERIOD_MS);
-        if (len > 0 && data == ' ') {
-            read_flex_sensors();
-        }
+        read_flex_sensors();
+        
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
