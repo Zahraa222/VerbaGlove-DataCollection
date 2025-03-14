@@ -8,6 +8,7 @@
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "esp_system.h"
+#include "esp_spiffs.h"
 #include "math.h"
 
 //ADC channel assignments
@@ -103,13 +104,14 @@ void read_flex_sensors() {
     else {
         printf("Error reading flex sensors\n");
     }
-    // printf("\nFlex Sensor Readings:\n");
-    // printf("Thumb Voltage = %.3f V\n", Thumb);
-    // printf("Index Voltage = %.3f V\n", Index);
-    // printf("Middle Voltage = %.3f V\n", Middle);
-    // printf("Ring Voltage = %.3f V\n", Ring);
-    // printf("Pinky Voltage = %.3f V\n", Pinky);
-    // printf("------------------------\n");
+
+    printf("\nFlex Sensor Readings:\n");
+    printf("Thumb Voltage = %.3f V\n", Thumb);
+    printf("Index Voltage = %.3f V\n", Index);
+    printf("Middle Voltage = %.3f V\n", Middle);
+    printf("Ring Voltage = %.3f V\n", Ring);
+    printf("Pinky Voltage = %.3f V\n", Pinky);
+    printf("------------------------\n");
 }
 
 void app_main() {
@@ -132,10 +134,35 @@ void app_main() {
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
+
+     // Initialize SPIFFS
+    esp_vfs_spiffs_conf_t conf = {
+      .base_path = "/spiffs",
+      .partition_label = NULL,
+      .max_files = 5,
+      .format_if_mount_failed = true
+    };
+
+    esp_err_t ret = esp_vfs_spiffs_register(&conf);
+
+    if (ret != ESP_OK) {
+        if (ret == ESP_FAIL) {
+            printf("Failed to mount or format filesystem\n");
+        } else if (ret == ESP_ERR_NOT_FOUND) {
+            printf("Failed to find SPIFFS partition\n");
+        } else {
+            printf("Failed to initialize SPIFFS (%s)\n", esp_err_to_name(ret));
+        }
+        return;
+    }
+
+    uint8_t data;
     while (1) {
         // Read UART input
-        read_flex_sensors();
-        
+        int len = uart_read_bytes(UART_NUM, &data, 1, 10 / portTICK_PERIOD_MS);
+        if (len > 0 && data == ' ') {
+            read_flex_sensors();
+        }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
