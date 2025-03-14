@@ -23,7 +23,7 @@
 #define BUF_SIZE 1024
 
 void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pinky) {
-    FILE* f = fopen("/spiffs/A.csv", "a");
+    FILE* f = fopen("/spiffs/B.csv", "a");
     if (f == NULL) {
         printf("Failed to open file for writing\n");
         return;
@@ -31,7 +31,7 @@ void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pink
     fprintf(f, "%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
     fclose(f);
     //print content to manually add to csv file
-    f=fopen("/spiffs/A.csv", "r");
+    f=fopen("/spiffs/B.csv", "r");
     char line[128];  
     printf("Contents of A.csv:\n");
     while (fgets(line, sizeof(line), f)) {
@@ -184,9 +184,9 @@ void app_main() {
 
 
     // Check if file exists, if not create it and write the header
-    FILE* f = fopen("/spiffs/A.csv", "r");
+    FILE* f = fopen("/spiffs/B.csv", "r");
     if (f == NULL) {
-        f = fopen("/spiffs/A.csv", "w");
+        f = fopen("/spiffs/B.csv", "w");
         if (f != NULL) {
             fprintf(f, "Thumb,Index,Middle,Ring,Pinky\n");
             fclose(f);
