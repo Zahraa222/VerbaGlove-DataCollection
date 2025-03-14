@@ -30,6 +30,14 @@ void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pink
     }
     fprintf(f, "%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
     fclose(f);
+    //print content to manually add to csv file
+    f=fopen("/spiffs/A.csv", "r");
+    char line[128];  
+    printf("Contents of A.csv:\n");
+    while (fgets(line, sizeof(line), f)) {
+        printf("%s", line);
+    }
+    fclose(f);
 }
 
 void read_flex_sensors() {
