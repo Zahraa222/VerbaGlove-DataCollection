@@ -22,6 +22,15 @@
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
 
+void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pinky) {
+    FILE* f = fopen("/spiffs/A.csv", "a");
+    if (f == NULL) {
+        printf("Failed to open file for writing\n");
+        return;
+    }
+    fprintf(f, "%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
+    fclose(f);
+}
 
 void read_flex_sensors() {
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
@@ -76,13 +85,13 @@ void read_flex_sensors() {
             Ring_Average = Ring_Average / count;
             Pinky_Average = Pinky_Average / count;
             
-            printf("Flex Sensor Readings:\n");
-            printf("Thumb Voltage = %.3f V\n", Thumb_Average);
-            printf("Index Voltage = %.3f V\n", Index_Average);
-            printf("Middle Voltage = %.3f V\n", Middle_Average);
-            printf("Ring Voltage = %.3f V\n", Ring_Average);
-            printf("Pinky Voltage = %.3f V\n", Pinky_Average);
-            printf("------------------------\n");
+            // printf("Flex Sensor Readings:\n");
+            // printf("Thumb Voltage = %.3f V\n", Thumb_Average);
+            // printf("Index Voltage = %.3f V\n", Index_Average);
+            // printf("Middle Voltage = %.3f V\n", Middle_Average);
+            // printf("Ring Voltage = %.3f V\n", Ring_Average);
+            // printf("Pinky Voltage = %.3f V\n", Pinky_Average);
+            // printf("------------------------\n");
 
             // Reset averages and count after processing
             Thumb_Average = 0;
@@ -105,6 +114,8 @@ void read_flex_sensors() {
         printf("Error reading flex sensors\n");
     }
 
+    // Write readings to CSV file
+    write_to_csv(Thumb, Index, Middle, Ring, Pinky);
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
     printf("Index Voltage = %.3f V\n", Index);
@@ -134,13 +145,12 @@ void app_main() {
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
-
-     // Initialize SPIFFS
+    // Initialize SPIFFS
     esp_vfs_spiffs_conf_t conf = {
-      .base_path = "/spiffs",
-      .partition_label = NULL,
-      .max_files = 5,
-      .format_if_mount_failed = true
+        .base_path = "/spiffs",
+        .partition_label = NULL,
+        .max_files = 5,
+        .format_if_mount_failed = true
     };
 
     esp_err_t ret = esp_vfs_spiffs_register(&conf);
@@ -154,6 +164,27 @@ void app_main() {
             printf("Failed to initialize SPIFFS (%s)\n", esp_err_to_name(ret));
         }
         return;
+    }
+
+    size_t total = 0, used = 0;
+    ret = esp_spiffs_info(NULL, &total, &used);
+    if (ret != ESP_OK) {
+        printf("Failed to get SPIFFS partition information (%s)\n", esp_err_to_name(ret));
+    } else {
+        printf("Partition size: total: %d, used: %d\n", total, used);
+    }
+
+
+    // Check if file exists, if not create it and write the header
+    FILE* f = fopen("/spiffs/A.csv", "r");
+    if (f == NULL) {
+        f = fopen("/spiffs/A.csv", "w");
+        if (f != NULL) {
+            fprintf(f, "Thumb,Index,Middle,Ring,Pinky\n");
+            fclose(f);
+        }
+    } else {
+        fclose(f);
     }
 
     uint8_t data;

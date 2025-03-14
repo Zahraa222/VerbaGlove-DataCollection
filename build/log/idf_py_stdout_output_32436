@@ -3,8 +3,7 @@
 -- Building ESP-IDF components for target esp32
 -- Project sdkconfig file C:/Users/zzmmk/VerbaGlove-DataCollection/sdkconfig
 -- Compiler supported targets: xtensa-esp-elf
--- Found Python3: C:/Espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter 
--- App "VerbaGlove-DataCollection" version: 15abc907-dirty
+-- App "VerbaGlove-DataCollection" version: 6db7d8a5-dirty
 -- Adding linker script C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/esp_system/ld/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32/ld/esp32.rom.ld
