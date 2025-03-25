@@ -122,7 +122,9 @@ void read_flex_sensors() {
     }
 
     // Write readings to CSV file
-    write_to_csv(Thumb, Index, Middle, Ring, Pinky);
+    //write_to_csv(Thumb, Index, Middle, Ring, Pinky);
+
+
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
     printf("Index Voltage = %.3f V\n", Index);
