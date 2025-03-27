@@ -1,0 +1,36 @@
+[1/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from C:/Users/zzmmk/VerbaGlove-DataCollection/main/main.c:4:
+C:/Espressif/frameworks/esp-idf-v5.3.1/components/driver/deprecated/driver/adc.h:19:2: warning: #warning "legacy adc driver is deprecated, please migrate to use esp_adc/adc_oneshot.h and esp_adc/adc_continuous.h for oneshot mode and continuous mode drivers respectively" [-Wcpp]
+   19 | #warning "legacy adc driver is deprecated, please migrate to use esp_adc/adc_oneshot.h and esp_adc/adc_continuous.h for oneshot mode and continuous mode drivers respectively"
+      |  ^~~~~~~
+[2/9] Linking C static library esp-idf\main\libmain.a
+[3/9] Performing build step for 'bootloader'
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file C:/Users/zzmmk/VerbaGlove-DataCollection/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/soc/esp32/ld/esp32.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject/main/ld/esp32/bootloader.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject/main/ld/esp32/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_bootloader_format esp_common esp_hw_support esp_rom esp_system esptool_py freertos hal log main micro-ecc newlib partition_table soc spi_flash xtensa
+-- Component paths: C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader_support C:/Espressif/frameworks/esp-idf-v5.3.1/components/efuse C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_app_format C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_bootloader_format C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_common C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_hw_support C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_system C:/Espressif/frameworks/esp-idf-v5.3.1/components/esptool_py C:/Espressif/frameworks/esp-idf-v5.3.1/components/freertos C:/Espressif/frameworks/esp-idf-v5.3.1/components/hal C:/Espressif/frameworks/esp-idf-v5.3.1/components/log C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject/main C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject/components/micro-ecc C:/Espressif/frameworks/esp-idf-v5.3.1/components/newlib C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table C:/Espressif/frameworks/esp-idf-v5.3.1/components/soc C:/Espressif/frameworks/esp-idf-v5.3.1/components/spi_flash C:/Espressif/frameworks/esp-idf-v5.3.1/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader
+[0/1] Re-running CMake...
+[1/1] cmd.exe /C "cd /D C:\Users\zzmmk\VerbaGlove-DataCollection\build\bootloader\esp-idf\esptool_py && c:\Espressif\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable VerbaGlove-DataCollection.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated C:/Users/zzmmk/VerbaGlove-DataCollection/build/VerbaGlove-DataCollection.bin
+[7/7] cmd.exe /C "cd /D C:\Users\zzmmk\VerbaGlove-DataCollection\build\esp-idf\esptool_py && c:\Espressif\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/zzmmk/VerbaGlove-DataCollection/build/partition_table/partition-table.bin C:/Users/zzmmk/VerbaGlove-DataCollection/build/VerbaGlove-DataCollection.bin"
+VerbaGlove-DataCollection.bin binary size 0x39e10 bytes. Smallest app partition is 0x200000 bytes. 0x1c61f0 bytes (89%) free.

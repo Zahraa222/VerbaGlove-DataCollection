@@ -8,8 +8,8 @@
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "esp_system.h"
-#include "esp_spiffs.h"
 #include "math.h"
+#include "esp_littlefs.h"
 
 //ADC channel assignments
 #define FLEX_PIN_1 ADC1_CHANNEL_0   // GPIO36, Thumb
@@ -23,15 +23,15 @@
 #define BUF_SIZE 1024
 
 void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pinky) {
-    FILE* f = fopen("/spiffs/K.csv", "a");
+    FILE* f = fopen("/spiffs/p.csv", "a");
     if (f == NULL) {
         printf("Failed to open file for writing\n");
         return;
     }
-    fprintf(f, "K,%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
+    fprintf(f, "p,%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
     fclose(f);
     //print content to manually add to csv file
-    f=fopen("/spiffs/K.csv", "r");
+    f=fopen("/spiffs/p.csv", "r");
     char line[128];  
     while (fgets(line, sizeof(line), f)) {
         printf("%s", line);
@@ -134,6 +134,15 @@ void read_flex_sensors() {
     printf("------------------------\n");
 }
 
+
+
+
+
+
+
+
+
+
 void app_main() {
     // Configure ADC for each channel
     adc1_config_width(ADC_WIDTH_BIT_12);
@@ -154,46 +163,44 @@ void app_main() {
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
-    // Initialize SPIFFS
-    esp_vfs_spiffs_conf_t conf = {
-        .base_path = "/spiffs",
-        .partition_label = NULL,
-        .max_files = 5,
-        .format_if_mount_failed = true
+    //Initialize littleFS
+    esp_vfs_littlefs_conf_t conf = {
+        .base_path = "/littlefs",
+        .partition_label = "littlefs",
+        .format_if_mount_failed = true,
+        .dont_mount = false,
     };
 
-    esp_err_t ret = esp_vfs_spiffs_register(&conf);
+    esp_err_t err = esp_vfs_littlefs_register(&conf);
 
-    if (ret != ESP_OK) {
-        if (ret == ESP_FAIL) {
+    if (err != ESP_OK) {
+        if (err == ESP_FAIL) {
             printf("Failed to mount or format filesystem\n");
-        } else if (ret == ESP_ERR_NOT_FOUND) {
-            printf("Failed to find SPIFFS partition\n");
+        } else if (err == ESP_ERR_NOT_FOUND) {
+            printf("Failed to find LittleFS partition\n");
         } else {
-            printf("Failed to initialize SPIFFS (%s)\n", esp_err_to_name(ret));
+            printf("Failed to initialize LittleFS (%s)\n", esp_err_to_name(err));
         }
         return;
     }
-
     size_t total = 0, used = 0;
-    ret = esp_spiffs_info(NULL, &total, &used);
-    if (ret != ESP_OK) {
-        printf("Failed to get SPIFFS partition information (%s)\n", esp_err_to_name(ret));
+    err = esp_littlefs_info("littlefs", &total, &used);
+    if (err != ESP_OK) {
+        printf("Failed to get LittleFS partition information (%s)\n", esp_err_to_name(err));
     } else {
         printf("Partition size: total: %d, used: %d\n", total, used);
     }
 
-
-    // Check if file exists, if not create it and write the header
-    FILE* f = fopen("/spiffs/K.csv", "r");
-    if (f == NULL) {
-        f = fopen("/spiffs/K.csv", "w");
-        if (f != NULL) {
-            fprintf(f, "Letter,Thumb,Index,Middle,Ring,Pinky\n");
-            fclose(f);
+    //Check to reading eligibility of flashed file
+    FILE* f = fopen("/littlefs/scaler_std.csv", "r");
+    if (f) {
+        char line[100];
+        while (fgets(line, sizeof(line), f)) {
+            printf("Line: %s\n", line);
         }
-    } else {
         fclose(f);
+    } else {
+        printf("Failed to open scaler_std.csv\n");
     }
 
     uint8_t data;

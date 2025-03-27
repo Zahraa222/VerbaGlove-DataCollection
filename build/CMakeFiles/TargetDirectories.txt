@@ -810,6 +810,13 @@ C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/wifi_provisioning/CMakeFi
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/wifi_provisioning/CMakeFiles/install.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/wifi_provisioning/CMakeFiles/install/local.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/wifi_provisioning/CMakeFiles/install/strip.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/__idf_joltwallet__littlefs.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/edit_cache.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/rebuild_cache.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/list_install_components.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/local.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/strip.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/__idf_main.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/edit_cache.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

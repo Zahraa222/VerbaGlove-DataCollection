@@ -1,0 +1,6 @@
+CMake Error at CMakeLists.txt:7 (include):
+  include could not find requested file:
+
+    C:/Users/zzmmk/VerbaGlove-DataCollection/tools/cmake/spiffs/spiffs.cmake
+
+
