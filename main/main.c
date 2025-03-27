@@ -22,21 +22,82 @@
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
 
-void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pinky) {
-    FILE* f = fopen("/spiffs/p.csv", "a");
-    if (f == NULL) {
-        printf("Failed to open file for writing\n");
+//Machine Learning Model constants
+#define NUM_MODELS 9
+#define NUM_FEATURES 5
+#define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
+float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
+float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
+
+//Model parameters
+float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
+float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
+float intercept[NUM_MODELS];
+num_sv[NUM_MODELS]; //number of support vectors for each model
+
+
+//load a row from csv file and fill an array
+void load_csv_row(const char *path, float *arr, int len) {
+    FILE* f = fopen(path, "r");
+    if (!f) {
+        printf("Failed to open %s\n", path);
         return;
     }
-    fprintf(f, "p,%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
-    fclose(f);
-    //print content to manually add to csv file
-    f=fopen("/spiffs/p.csv", "r");
-    char line[128];  
-    while (fgets(line, sizeof(line), f)) {
-        printf("%s", line);
+    for (int i = 0; i < len; i++) {
+        fscanf(f, "%f,", &arr[i]);
     }
     fclose(f);
+}
+
+
+//TODO: maybe extract this manually rather than using the csv file??
+void load_scalers(){
+    load_csv_row("/littlefs/scaler_mean.csv", scaler_mean, NUM_FEATURES);
+    load_csv_row("/littlefs/scaler_std.csv", scaler_std, NUM_FEATURES);
+}
+
+
+
+//normalize input features(data)
+//Equation: x' = (x - mean) / std, x=input, x'=normalized input
+void scale_input(float *input){
+    for(int i = 0; i < NUM_FEATURES; i++){
+        input[i] = (input[i] - scaler_mean[i]) / scaler_std[i];
+    }
+}
+
+//Dot product of two feature vectors
+//used in SVM's linear kernel to measure alignment of input with support vector
+float dot_product(float *a, float *b, int len){
+    float sum = 0;
+    for(int i = 0; i < len; i++){
+        sum += a[i] * b[i];
+    }
+    return sum;
+}
+
+
+
+//CLASSIFICATION: one-vs-rest strategy
+//Returns index of class with the highest decision score
+int predict(float *x){
+    float max_score = -INFINITY;
+    int best_class = -1;
+    //iterate over each binary classifier
+    for (int i = 0; i < NUM_MODELS; i++) {
+        float decision = 0.0;
+        for (int j = 0; j < num_sv[i]; j++) {
+            //Linear SVM = sum_i(alpha_i * dot_product(support_vector_i, x)) + intercept
+            decision += dual_coef[i][j] * dot_product(support_vectors[i][j], x, NUM_FEATURES);
+        }
+        decision += intercept[i];
+        if (decision > max_score) {
+            max_score = decision;
+            best_class = i;
+        }
+    }
+    return best_class;
+
 }
 
 void read_flex_sensors() {
@@ -191,17 +252,17 @@ void app_main() {
         printf("Partition size: total: %d, used: %d\n", total, used);
     }
 
-    //Check to reading eligibility of flashed file
-    FILE* f = fopen("/littlefs/scaler_std.csv", "r");
-    if (f) {
-        char line[100];
-        while (fgets(line, sizeof(line), f)) {
-            printf("Line: %s\n", line);
-        }
-        fclose(f);
-    } else {
-        printf("Failed to open scaler_std.csv\n");
-    }
+    // //Check to reading eligibility of flashed file
+    // FILE* f = fopen("/littlefs/scaler_std.csv", "r");
+    // if (f) {
+    //     char line[100];
+    //     while (fgets(line, sizeof(line), f)) {
+    //         printf("Line: %s\n", line);
+    //     }
+    //     fclose(f);
+    // } else {
+    //     printf("Failed to open scaler_std.csv\n");
+    // }
 
     uint8_t data;
     while (1) {
