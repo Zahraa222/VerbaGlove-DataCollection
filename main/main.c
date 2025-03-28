@@ -100,91 +100,22 @@ int predict(float *x){
 
 }
 
-void read_flex_sensors() {
+float *read_flex_sensors() {
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
 
-    //Voltage calculation
+    //ADC to Voltage calculation
     float Thumb = flexValue1 * (3.3 / 4095.0);
     float Index = flexValue2 * (3.3 / 4095.0);
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    static int count = 0;
-    static float sensor_readings[5][20] = {};
-    static float Thumb_Average = 0;
-    static float Index_Average = 0;
-    static float Middle_Average = 0;
-    static float Ring_Average = 0;
-    static float Pinky_Average = 0;
     
-
-    if (flexValue1 && flexValue2 && flexValue3 && flexValue4 && flexValue5) {
-        //Find sensor voltage Average value for every 20 readings
-        if (count == 20) {
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < count; j++){
-                    switch (i) {
-                        case 0:
-                            Thumb_Average += sensor_readings[i][j];
-                            break;
-                        case 1:
-                            Index_Average += sensor_readings[i][j];
-                            break;
-                        case 2:
-                            Middle_Average += sensor_readings[i][j];
-                            break;
-                        case 3:
-                            Ring_Average += sensor_readings[i][j];
-                            break;
-                        case 4:
-                            Pinky_Average += sensor_readings[i][j];
-                            break;
-                    }
-                }
-            }
-            Thumb_Average = Thumb_Average / count;
-            Index_Average = Index_Average / count;
-            Middle_Average = Middle_Average / count;
-            Ring_Average = Ring_Average / count;
-            Pinky_Average = Pinky_Average / count;
-            
-            // printf("Flex Sensor Readings:\n");
-            // printf("Thumb Voltage = %.3f V\n", Thumb_Average);
-            // printf("Index Voltage = %.3f V\n", Index_Average);
-            // printf("Middle Voltage = %.3f V\n", Middle_Average);
-            // printf("Ring Voltage = %.3f V\n", Ring_Average);
-            // printf("Pinky Voltage = %.3f V\n", Pinky_Average);
-            // printf("------------------------\n");
-
-            // Reset averages and count after processing
-            Thumb_Average = 0;
-            Index_Average = 0;
-            Middle_Average = 0;
-            Ring_Average = 0;
-            Pinky_Average = 0;
-            count = 0;
-        }
-        else{
-            sensor_readings[0][count] = Thumb;
-            sensor_readings[1][count] = Index;
-            sensor_readings[2][count] = Middle;
-            sensor_readings[3][count] = Ring;
-            sensor_readings[4][count] = Pinky;
-            count++;
-        }
-    }
-    else {
-        printf("Error reading flex sensors\n");
-    }
-
-    // Write readings to CSV file
-    //write_to_csv(Thumb, Index, Middle, Ring, Pinky);
-
+    int reading[NUM_FEATURES] = {Thumb, Index, Middle, Ring, Pinky};
 
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
@@ -194,15 +125,6 @@ void read_flex_sensors() {
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("------------------------\n");
 }
-
-
-
-
-
-
-
-
-
 
 void app_main() {
     // Configure ADC for each channel
@@ -252,24 +174,19 @@ void app_main() {
         printf("Partition size: total: %d, used: %d\n", total, used);
     }
 
-    // //Check to reading eligibility of flashed file
-    // FILE* f = fopen("/littlefs/scaler_std.csv", "r");
-    // if (f) {
-    //     char line[100];
-    //     while (fgets(line, sizeof(line), f)) {
-    //         printf("Line: %s\n", line);
-    //     }
-    //     fclose(f);
-    // } else {
-    //     printf("Failed to open scaler_std.csv\n");
-    // }
+    //load normalization parameters
+    load_scalers();
+    printf("System ready. Press space to read flex sensors and classify a gesture\n");
 
-    uint8_t data;
+    uint8_t keypress;
     while (1) {
         // Read UART input
-        int len = uart_read_bytes(UART_NUM, &data, 1, 10 / portTICK_PERIOD_MS);
-        if (len > 0 && data == ' ') {
-            read_flex_sensors();
+        int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
+        if (len > 0 && keypress == ' ') {
+            float *x= read_flex_sensors();
+            scale_input(x);
+            int gesture = predict(x);
+            printf("Predicted gesture: %d\n", gesture);
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
