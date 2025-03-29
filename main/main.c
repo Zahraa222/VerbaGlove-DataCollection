@@ -23,8 +23,8 @@
 #define BUF_SIZE 1024
 
 //Machine Learning Model constants
-#define NUM_MODELS 9
-#define NUM_FEATURES 5
+#define NUM_MODELS 9 //Number of letters
+#define NUM_FEATURES 5 //Number of inputs
 #define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
 float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
 float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
@@ -34,6 +34,7 @@ float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
+#define GAMMA 0.2f //RBF kernel parameter
 
 
 //load a row from csv file and fill an array
@@ -49,9 +50,8 @@ void load_csv_row(const char *path, float *arr, int len) {
     fclose(f);
 }
 
-
 void load_model_parameters() {
-    char path[64];
+    char path[100];
 
     for (int i = 0; i < NUM_MODELS; i++) {
         // Load support vectors for model i
@@ -83,8 +83,7 @@ void load_model_parameters() {
             fscanf(f_coef, "%f,", &dual_coef[i][j]);
         }
         fclose(f_coef);
-
-
+        
         // Load intercepts
         snprintf(path, sizeof(path), "/littlefs/intercept_%d.csv", i);
         FILE* f_int = fopen(path, "r");
@@ -94,20 +93,14 @@ void load_model_parameters() {
         } else {
             printf("Failed to open %s\n", path);
         }
-
     }
-
 }
 
-
-
-//TODO: maybe extract this manually rather than using the csv file??
+//TODO: maybe extract this manually rather than using the csv file?? saves memory on the ESP32
 void load_scalers(){
     load_csv_row("/littlefs/scaler_mean.csv", scaler_mean, NUM_FEATURES);
     load_csv_row("/littlefs/scaler_std.csv", scaler_std, NUM_FEATURES);
 }
-
-
 
 //normalize input features(data)
 //Equation: x' = (x - mean) / std, x=input, x'=normalized input
@@ -117,17 +110,16 @@ void scale_input(float *input){
     }
 }
 
-//Dot product of two feature vectors
-//used in SVM's linear kernel to measure alignment of input with support vector
-float dot_product(float *a, float *b, int len){
-    float sum = 0;
-    for(int i = 0; i < len; i++){
-        sum += a[i] * b[i];
+//RBF kernel function
+float rbf_kernel(float *x1, float *x2, int len, float gamma){
+    float euclidean_distance = 0;
+    for (int i = 0; i < len; i++){
+        float diff = x1[i] - x2[i];
+        euclidean_distance += diff * diff;
     }
-    return sum;
+    //RBF kernel equation: K(x1, x2) = exp(-gamma * ||x1 - x2||^2)
+    return exp(-gamma * euclidean_distance);
 }
-
-
 
 //CLASSIFICATION: one-vs-rest strategy
 //Returns index of class with the highest decision score
@@ -138,8 +130,9 @@ int predict(float *x){
     for (int i = 0; i < NUM_MODELS; i++) {
         float decision = 0.0;
         for (int j = 0; j < num_sv[i]; j++) {
-            //Linear SVM = sum_i(alpha_i * dot_product(support_vector_i, x)) + intercept
-            decision += dual_coef[i][j] * dot_product(support_vectors[i][j], x, NUM_FEATURES);
+            //RBF SVM decision function: f(x) = sum(alpha_i * K(x_i, x)) + b
+            //alpha_i = duall coreffiecients, K(x_i, x) = RBF kernel function, b = intercept
+            decision += dual_coef[i][j] * rbf_kernel(support_vectors[i][j], x, NUM_FEATURES, GAMMA);
         }
         decision += intercept[i];
         if (decision > max_score) {
@@ -148,7 +141,6 @@ int predict(float *x){
         }
     }
     return best_class;
-
 }
 
 float *read_flex_sensors() {
@@ -243,7 +235,7 @@ void app_main() {
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
             float *x= read_flex_sensors();
-            // scale_input(x);
+            scale_input(x);
             int gesture = predict(x);
             printf("Predicted gesture: %c\n", 'A' + gesture);
             printf("Predicted gesture: %d\n", gesture); //for debugging
