@@ -33,7 +33,7 @@ float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
 float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
-num_sv[NUM_MODELS]; //number of support vectors for each model
+int num_sv[NUM_MODELS]; //number of support vectors for each model
 
 
 //load a row from csv file and fill an array
@@ -48,6 +48,57 @@ void load_csv_row(const char *path, float *arr, int len) {
     }
     fclose(f);
 }
+
+
+void load_model_parameters() {
+    char path[64];
+
+    for (int i = 0; i < NUM_MODELS; i++) {
+        // Load support vectors for model i
+        snprintf(path, sizeof(path), "/littlefs/support_vectors_%d.csv", i);
+        FILE* f_sv = fopen(path, "r");
+        if (!f_sv) {
+            printf("Failed to open %s\n", path);
+            continue;
+        }
+
+        int sv_count = 0;
+        while (!feof(f_sv) && sv_count < NUM_SUPPORT_VECTORS) {
+            for (int j = 0; j < NUM_FEATURES; j++) {
+                fscanf(f_sv, "%f,", &support_vectors[i][sv_count][j]);
+            }
+            sv_count++;
+        }
+        fclose(f_sv);
+        num_sv[i] = sv_count;
+
+        // Load dual coefficients for model i
+        snprintf(path, sizeof(path), "/littlefs/dual_coef_%d.csv", i);
+        FILE* f_coef = fopen(path, "r");
+        if (!f_coef) {
+            printf("Failed to open %s\n", path);
+            continue;
+        }
+        for (int j = 0; j < sv_count; j++) {
+            fscanf(f_coef, "%f,", &dual_coef[i][j]);
+        }
+        fclose(f_coef);
+
+
+        // Load intercepts
+        snprintf(path, sizeof(path), "/littlefs/intercept_%d.csv", i);
+        FILE* f_int = fopen(path, "r");
+        if (f_int) {
+            fscanf(f_int, "%f,", &intercept[i]);
+            fclose(f_int);
+        } else {
+            printf("Failed to open %s\n", path);
+        }
+
+    }
+
+}
+
 
 
 //TODO: maybe extract this manually rather than using the csv file??
@@ -101,6 +152,7 @@ int predict(float *x){
 }
 
 float *read_flex_sensors() {
+    static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
@@ -115,7 +167,11 @@ float *read_flex_sensors() {
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
     
-    int reading[NUM_FEATURES] = {Thumb, Index, Middle, Ring, Pinky};
+    reading[0] = Thumb;
+    reading[1] = Index;
+    reading[2] = Middle;
+    reading[3] = Ring;
+    reading[4] = Pinky;
 
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
@@ -124,6 +180,8 @@ float *read_flex_sensors() {
     printf("Ring Voltage = %.3f V\n", Ring);
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("------------------------\n");
+
+    return reading;
 }
 
 void app_main() {
@@ -176,6 +234,7 @@ void app_main() {
 
     //load normalization parameters
     load_scalers();
+    load_model_parameters();
     printf("System ready. Press space to read flex sensors and classify a gesture\n");
 
     uint8_t keypress;
@@ -184,9 +243,10 @@ void app_main() {
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
             float *x= read_flex_sensors();
-            scale_input(x);
+            // scale_input(x);
             int gesture = predict(x);
-            printf("Predicted gesture: %d\n", gesture);
+            printf("Predicted gesture: %c\n", 'A' + gesture);
+            printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
