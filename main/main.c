@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <stdarg.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/adc.h"
@@ -10,6 +12,10 @@
 #include "esp_system.h"
 #include "math.h"
 #include "esp_littlefs.h"
+#include "ble_server.h"
+
+
+
 
 //ADC channel assignments
 #define FLEX_PIN_1 ADC1_CHANNEL_0   // GPIO36, Thumb
@@ -18,9 +24,11 @@
 #define FLEX_PIN_4 ADC1_CHANNEL_7   // GPIO35, Ring
 #define FLEX_PIN_5 ADC1_CHANNEL_6   // GPIO34, Pinky
 
+
 // UART Configuration
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
+
 
 //Machine Learning Model constants
 #define NUM_MODELS 9 //Number of letters
@@ -29,12 +37,15 @@
 float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
 float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
 
+
 //Model parameters
 float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
 #define GAMMA 0.2f //RBF kernel parameter
+
+
 
 
 //load a row from csv file and fill an array
@@ -50,8 +61,10 @@ void load_csv_row(const char *path, float *arr, int len) {
     fclose(f);
 }
 
+
 void load_model_parameters() {
     char path[100];
+
 
     for (int i = 0; i < NUM_MODELS; i++) {
         // Load support vectors for model i
@@ -62,6 +75,7 @@ void load_model_parameters() {
             continue;
         }
 
+
         int sv_count = 0;
         while (!feof(f_sv) && sv_count < NUM_SUPPORT_VECTORS) {
             for (int j = 0; j < NUM_FEATURES; j++) {
@@ -71,6 +85,7 @@ void load_model_parameters() {
         }
         fclose(f_sv);
         num_sv[i] = sv_count;
+
 
         // Load dual coefficients for model i
         snprintf(path, sizeof(path), "/littlefs/dual_coef_%d.csv", i);
@@ -83,7 +98,7 @@ void load_model_parameters() {
             fscanf(f_coef, "%f,", &dual_coef[i][j]);
         }
         fclose(f_coef);
-        
+       
         // Load intercepts
         snprintf(path, sizeof(path), "/littlefs/intercept_%d.csv", i);
         FILE* f_int = fopen(path, "r");
@@ -96,11 +111,13 @@ void load_model_parameters() {
     }
 }
 
+
 //TODO: maybe extract this manually rather than using the csv file?? saves memory on the ESP32
 void load_scalers(){
     load_csv_row("/littlefs/scaler_mean.csv", scaler_mean, NUM_FEATURES);
     load_csv_row("/littlefs/scaler_std.csv", scaler_std, NUM_FEATURES);
 }
+
 
 //normalize input features(data)
 //Equation: x' = (x - mean) / std, x=input, x'=normalized input
@@ -109,6 +126,7 @@ void scale_input(float *input){
         input[i] = (input[i] - scaler_mean[i]) / scaler_std[i];
     }
 }
+
 
 //RBF kernel function
 float rbf_kernel(float *x1, float *x2, int len, float gamma){
@@ -120,6 +138,7 @@ float rbf_kernel(float *x1, float *x2, int len, float gamma){
     //RBF kernel equation: K(x1, x2) = exp(-gamma * ||x1 - x2||^2)
     return exp(-gamma * euclidean_distance);
 }
+
 
 //CLASSIFICATION: one-vs-rest strategy
 //Returns index of class with the highest decision score
@@ -143,6 +162,7 @@ int predict(float *x){
     return best_class;
 }
 
+
 float *read_flex_sensors() {
     static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
@@ -151,6 +171,7 @@ float *read_flex_sensors() {
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
 
+
     //ADC to Voltage calculation
     float Thumb = flexValue1 * (3.3 / 4095.0);
     float Index = flexValue2 * (3.3 / 4095.0);
@@ -158,12 +179,14 @@ float *read_flex_sensors() {
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    
+
+   
     reading[0] = Thumb;
     reading[1] = Index;
     reading[2] = Middle;
     reading[3] = Ring;
     reading[4] = Pinky;
+
 
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
@@ -173,10 +196,12 @@ float *read_flex_sensors() {
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("------------------------\n");
 
+
     return reading;
 }
 
-void app_main() {
+
+void app_main(){
     // Configure ADC for each channel
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_config_channel_atten(FLEX_PIN_1, ADC_ATTEN_DB_12);
@@ -184,6 +209,7 @@ void app_main() {
     adc1_config_channel_atten(FLEX_PIN_3, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_4, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_5, ADC_ATTEN_DB_12);
+
 
     // Configure UART for reading input
     uart_config_t uart_config = {
@@ -196,6 +222,11 @@ void app_main() {
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
+
+    // Start BLE server
+    ble_server_start();
+
+
     //Initialize littleFS
     esp_vfs_littlefs_conf_t conf = {
         .base_path = "/littlefs",
@@ -204,7 +235,9 @@ void app_main() {
         .dont_mount = false,
     };
 
+
     esp_err_t err = esp_vfs_littlefs_register(&conf);
+
 
     if (err != ESP_OK) {
         if (err == ESP_FAIL) {
@@ -224,21 +257,25 @@ void app_main() {
         printf("Partition size: total: %d, used: %d\n", total, used);
     }
 
-    //load normalization parameters
+
+    //load parameters
     load_scalers();
     load_model_parameters();
     printf("System ready. Press space to read flex sensors and classify a gesture\n");
+
 
     uint8_t keypress;
     while (1) {
         // Read UART input
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
-            float *x= read_flex_sensors();
-            scale_input(x);
-            int gesture = predict(x);
-            printf("Predicted gesture: %c\n", 'A' + gesture);
-            printf("Predicted gesture: %d\n", gesture); //for debugging
+            //float *x= read_flex_sensors();
+            //scale_input(x);
+            //int gesture = predict(x);
+           // send_gesture((char[]){'A' + gesture, '\0'}); //send gesture to BLE server
+            send_gesture((char[]){'A'});
+            // printf("Predicted gesture: %c\n", 'A' + gesture);
+            // printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
