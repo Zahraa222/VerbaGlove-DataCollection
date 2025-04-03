@@ -22,108 +22,148 @@
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
 
-void write_to_csv(float Thumb, float Index, float Middle, float Ring, float Pinky) {
-    FILE* f = fopen("/spiffs/p.csv", "a");
-    if (f == NULL) {
-        printf("Failed to open file for writing\n");
+//Machine Learning Model constants
+#define NUM_MODELS 9 //Number of letters
+#define NUM_FEATURES 5 //Number of inputs
+#define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
+float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
+float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
+
+//Model parameters
+float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
+float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
+float intercept[NUM_MODELS];
+int num_sv[NUM_MODELS]; //number of support vectors for each model
+#define GAMMA 0.2f //RBF kernel parameter
+
+
+//load a row from csv file and fill an array
+void load_csv_row(const char *path, float *arr, int len) {
+    FILE* f = fopen(path, "r");
+    if (!f) {
+        printf("Failed to open %s\n", path);
         return;
     }
-    fprintf(f, "p,%.3f,%.3f,%.3f,%.3f,%.3f\n", Thumb, Index, Middle, Ring, Pinky);
-    fclose(f);
-    //print content to manually add to csv file
-    f=fopen("/spiffs/p.csv", "r");
-    char line[128];  
-    while (fgets(line, sizeof(line), f)) {
-        printf("%s", line);
+    for (int i = 0; i < len; i++) {
+        fscanf(f, "%f,", &arr[i]);
     }
     fclose(f);
 }
 
-void read_flex_sensors() {
+void load_model_parameters() {
+    char path[100];
+
+    for (int i = 0; i < NUM_MODELS; i++) {
+        // Load support vectors for model i
+        snprintf(path, sizeof(path), "/littlefs/support_vectors_%d.csv", i);
+        FILE* f_sv = fopen(path, "r");
+        if (!f_sv) {
+            printf("Failed to open %s\n", path);
+            continue;
+        }
+
+        int sv_count = 0;
+        while (!feof(f_sv) && sv_count < NUM_SUPPORT_VECTORS) {
+            for (int j = 0; j < NUM_FEATURES; j++) {
+                fscanf(f_sv, "%f,", &support_vectors[i][sv_count][j]);
+            }
+            sv_count++;
+        }
+        fclose(f_sv);
+        num_sv[i] = sv_count;
+
+        // Load dual coefficients for model i
+        snprintf(path, sizeof(path), "/littlefs/dual_coef_%d.csv", i);
+        FILE* f_coef = fopen(path, "r");
+        if (!f_coef) {
+            printf("Failed to open %s\n", path);
+            continue;
+        }
+        for (int j = 0; j < sv_count; j++) {
+            fscanf(f_coef, "%f,", &dual_coef[i][j]);
+        }
+        fclose(f_coef);
+        
+        // Load intercepts
+        snprintf(path, sizeof(path), "/littlefs/intercept_%d.csv", i);
+        FILE* f_int = fopen(path, "r");
+        if (f_int) {
+            fscanf(f_int, "%f,", &intercept[i]);
+            fclose(f_int);
+        } else {
+            printf("Failed to open %s\n", path);
+        }
+    }
+}
+
+//TODO: maybe extract this manually rather than using the csv file?? saves memory on the ESP32
+void load_scalers(){
+    load_csv_row("/littlefs/scaler_mean.csv", scaler_mean, NUM_FEATURES);
+    load_csv_row("/littlefs/scaler_std.csv", scaler_std, NUM_FEATURES);
+}
+
+//normalize input features(data)
+//Equation: x' = (x - mean) / std, x=input, x'=normalized input
+void scale_input(float *input){
+    for(int i = 0; i < NUM_FEATURES; i++){
+        input[i] = (input[i] - scaler_mean[i]) / scaler_std[i];
+    }
+}
+
+//RBF kernel function
+float rbf_kernel(float *x1, float *x2, int len, float gamma){
+    float euclidean_distance = 0;
+    for (int i = 0; i < len; i++){
+        float diff = x1[i] - x2[i];
+        euclidean_distance += diff * diff;
+    }
+    //RBF kernel equation: K(x1, x2) = exp(-gamma * ||x1 - x2||^2)
+    return exp(-gamma * euclidean_distance);
+}
+
+//CLASSIFICATION: one-vs-rest strategy
+//Returns index of class with the highest decision score
+int predict(float *x){
+    float max_score = -INFINITY;
+    int best_class = -1;
+    //iterate over each binary classifier
+    for (int i = 0; i < NUM_MODELS; i++) {
+        float decision = 0.0;
+        for (int j = 0; j < num_sv[i]; j++) {
+            //RBF SVM decision function: f(x) = sum(alpha_i * K(x_i, x)) + b
+            //alpha_i = duall coreffiecients, K(x_i, x) = RBF kernel function, b = intercept
+            decision += dual_coef[i][j] * rbf_kernel(support_vectors[i][j], x, NUM_FEATURES, GAMMA);
+        }
+        decision += intercept[i];
+        if (decision > max_score) {
+            max_score = decision;
+            best_class = i;
+        }
+    }
+    return best_class;
+}
+
+float *read_flex_sensors() {
+    static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
 
-    //Voltage calculation
+    //ADC to Voltage calculation
     float Thumb = flexValue1 * (3.3 / 4095.0);
     float Index = flexValue2 * (3.3 / 4095.0);
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    static int count = 0;
-    static float sensor_readings[5][20] = {};
-    static float Thumb_Average = 0;
-    static float Index_Average = 0;
-    static float Middle_Average = 0;
-    static float Ring_Average = 0;
-    static float Pinky_Average = 0;
     
-
-    if (flexValue1 && flexValue2 && flexValue3 && flexValue4 && flexValue5) {
-        //Find sensor voltage Average value for every 20 readings
-        if (count == 20) {
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < count; j++){
-                    switch (i) {
-                        case 0:
-                            Thumb_Average += sensor_readings[i][j];
-                            break;
-                        case 1:
-                            Index_Average += sensor_readings[i][j];
-                            break;
-                        case 2:
-                            Middle_Average += sensor_readings[i][j];
-                            break;
-                        case 3:
-                            Ring_Average += sensor_readings[i][j];
-                            break;
-                        case 4:
-                            Pinky_Average += sensor_readings[i][j];
-                            break;
-                    }
-                }
-            }
-            Thumb_Average = Thumb_Average / count;
-            Index_Average = Index_Average / count;
-            Middle_Average = Middle_Average / count;
-            Ring_Average = Ring_Average / count;
-            Pinky_Average = Pinky_Average / count;
-            
-            // printf("Flex Sensor Readings:\n");
-            // printf("Thumb Voltage = %.3f V\n", Thumb_Average);
-            // printf("Index Voltage = %.3f V\n", Index_Average);
-            // printf("Middle Voltage = %.3f V\n", Middle_Average);
-            // printf("Ring Voltage = %.3f V\n", Ring_Average);
-            // printf("Pinky Voltage = %.3f V\n", Pinky_Average);
-            // printf("------------------------\n");
-
-            // Reset averages and count after processing
-            Thumb_Average = 0;
-            Index_Average = 0;
-            Middle_Average = 0;
-            Ring_Average = 0;
-            Pinky_Average = 0;
-            count = 0;
-        }
-        else{
-            sensor_readings[0][count] = Thumb;
-            sensor_readings[1][count] = Index;
-            sensor_readings[2][count] = Middle;
-            sensor_readings[3][count] = Ring;
-            sensor_readings[4][count] = Pinky;
-            count++;
-        }
-    }
-    else {
-        printf("Error reading flex sensors\n");
-    }
-
-    // Write readings to CSV file
-    //write_to_csv(Thumb, Index, Middle, Ring, Pinky);
-
+    reading[0] = Thumb;
+    reading[1] = Index;
+    reading[2] = Middle;
+    reading[3] = Ring;
+    reading[4] = Pinky;
 
     printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
@@ -132,16 +172,9 @@ void read_flex_sensors() {
     printf("Ring Voltage = %.3f V\n", Ring);
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("------------------------\n");
+
+    return reading;
 }
-
-
-
-
-
-
-
-
-
 
 void app_main() {
     // Configure ADC for each channel
@@ -191,24 +224,21 @@ void app_main() {
         printf("Partition size: total: %d, used: %d\n", total, used);
     }
 
-    //Check to reading eligibility of flashed file
-    FILE* f = fopen("/littlefs/scaler_std.csv", "r");
-    if (f) {
-        char line[100];
-        while (fgets(line, sizeof(line), f)) {
-            printf("Line: %s\n", line);
-        }
-        fclose(f);
-    } else {
-        printf("Failed to open scaler_std.csv\n");
-    }
+    //load normalization parameters
+    load_scalers();
+    load_model_parameters();
+    printf("System ready. Press space to read flex sensors and classify a gesture\n");
 
-    uint8_t data;
+    uint8_t keypress;
     while (1) {
         // Read UART input
-        int len = uart_read_bytes(UART_NUM, &data, 1, 10 / portTICK_PERIOD_MS);
-        if (len > 0 && data == ' ') {
-            read_flex_sensors();
+        int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
+        if (len > 0 && keypress == ' ') {
+            float *x= read_flex_sensors();
+            scale_input(x);
+            int gesture = predict(x);
+            printf("Predicted gesture: %c\n", 'A' + gesture);
+            printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
