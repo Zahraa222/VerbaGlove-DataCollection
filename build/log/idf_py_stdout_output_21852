@@ -1,5 +1,0 @@
--- Configuring incomplete, errors occurred!
-See also "C:/Users/zzmmk/VerbaGlove-DataCollection/build/CMakeFiles/CMakeOutput.log".
-[0/1] Re-running CMake...
-FAILED: build.ninja 
-C:\Espressif\tools\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SC:\Users\zzmmk\VerbaGlove-DataCollection -BC:\Users\zzmmk\VerbaGlove-DataCollection\build
