@@ -12,10 +12,9 @@
 #include "esp_system.h"
 #include "math.h"
 #include "esp_littlefs.h"
-#include "ble_server.h"
 
-
-
+extern void ble_server_start(void);
+extern void send_gesture(char letter);
 
 //ADC channel assignments
 #define FLEX_PIN_1 ADC1_CHANNEL_0   // GPIO36, Thumb
@@ -269,13 +268,12 @@ void app_main(){
         // Read UART input
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
-            //float *x= read_flex_sensors();
-            //scale_input(x);
-            //int gesture = predict(x);
-           // send_gesture((char[]){'A' + gesture, '\0'}); //send gesture to BLE server
-            send_gesture((char[]){'A'});
-            // printf("Predicted gesture: %c\n", 'A' + gesture);
-            // printf("Predicted gesture: %d\n", gesture); //for debugging
+            float *x= read_flex_sensors();
+            scale_input(x);
+            int gesture = predict(x);
+            send_gesture('A' + gesture); //send gesture to BLE server
+            printf("Predicted gesture: %c\n", 'A' + gesture);
+            printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }

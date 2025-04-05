@@ -7,13 +7,11 @@
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
 
-
 #define DEVICE_NAME            "VerbaGlove"
 #define GESTURE_SERVICE_UUID   0x00FF
 #define GESTURE_CHAR_UUID      0xFF01
 #define GESTURE_MAX_LEN        20
 #define GATTS_APP_ID           0
-
 
 static uint16_t service_handle = 0;
 static esp_gatt_srvc_id_t service_id;
@@ -22,10 +20,13 @@ static esp_bt_uuid_t char_uuid = {
     .len = ESP_UUID_LEN_16,
     .uuid = {.uuid16 = GESTURE_CHAR_UUID},
 };
+
 static uint8_t gesture_value[GESTURE_MAX_LEN] = "A";
 static uint16_t conn_id = 0;
 static esp_gatt_if_t global_gatts_if = 0;
+static bool is_connected = false;
 
+static const char *TAG = "BLE";
 
 static esp_ble_adv_data_t adv_data = {
     .set_scan_rsp = false,
@@ -35,15 +36,19 @@ static esp_ble_adv_data_t adv_data = {
     .flag = ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT
 };
 
+static esp_ble_adv_data_t scan_rsp_data = {
+    .set_scan_rsp = true,
+    .include_name = true,
+    .service_uuid_len = 2,
+    .p_service_uuid = (uint8_t[]){GESTURE_SERVICE_UUID & 0xFF, (GESTURE_SERVICE_UUID >> 8) & 0xFF},
+    .flag = ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT
+};
 
 static esp_attr_value_t gatts_char_val = {
     .attr_max_len = GESTURE_MAX_LEN,
     .attr_len = 1,
     .attr_value = gesture_value,
 };
-
-
-
 
 static esp_ble_adv_params_t adv_params = {
     .adv_int_min = 0x20,
@@ -54,26 +59,30 @@ static esp_ble_adv_params_t adv_params = {
     .adv_filter_policy = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY
 };
 
-
-
-
 void send_gesture(char letter) {
-    if (global_gatts_if == 0 || conn_id == 0) {
-        ESP_LOGW("BLE", "Not connected. Skipping send.");
+    if (!is_connected) {
+        ESP_LOGW(TAG, "Not connected. Skipping send. gatts_if: %d, conn_id: %d, char_handle: %d",
+                 global_gatts_if, conn_id, char_handle);
         return;
     }
-    gesture_value[0] = letter;
-    esp_ble_gatts_set_attr_value(char_handle, 1, gesture_value);
-    esp_ble_gatts_send_indicate(global_gatts_if, conn_id, char_handle, 1, gesture_value, false);
-}
 
+    gesture_value[0] = letter;
+
+    esp_ble_gatts_set_attr_value(char_handle, 1, gesture_value);
+    esp_err_t err = esp_ble_gatts_send_indicate(global_gatts_if, conn_id, char_handle, 1, gesture_value, false);
+
+    if (err == ESP_OK) {
+        ESP_LOGI(TAG, "Sent gesture: %c", letter);
+    } else {
+        ESP_LOGE(TAG, "Failed to send gesture: %s", esp_err_to_name(err));
+    }
+}
 
 static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param) {
     if (event == ESP_GAP_BLE_ADV_DATA_SET_COMPLETE_EVT) {
         esp_ble_gap_start_advertising(&adv_params);
     }
 }
-
 
 static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if,
                                 esp_ble_gatts_cb_param_t *param) {
@@ -82,17 +91,15 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
             global_gatts_if = gatts_if;
             esp_ble_gap_set_device_name(DEVICE_NAME);
             esp_ble_gap_config_adv_data(&adv_data);
-
+            esp_ble_gap_config_adv_data(&scan_rsp_data);
 
             service_id.is_primary = true;
             service_id.id.inst_id = 0x00;
             service_id.id.uuid.len = ESP_UUID_LEN_16;
             service_id.id.uuid.uuid.uuid16 = GESTURE_SERVICE_UUID;
 
-
             esp_ble_gatts_create_service(gatts_if, &service_id, 4);
             break;
-
 
         case ESP_GATTS_CREATE_EVT:
             service_handle = param->create.service_handle;
@@ -103,26 +110,31 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
                 &gatts_char_val, NULL);
             break;
 
-
         case ESP_GATTS_ADD_CHAR_EVT:
             char_handle = param->add_char.attr_handle;
-            ESP_LOGI("BLE", "Service and characteristic created");
+            ESP_LOGI(TAG, "Service and characteristic created. Handle: %d", char_handle);
             esp_ble_gap_start_advertising(&adv_params);
             break;
-
 
         case ESP_GATTS_CONNECT_EVT:
             conn_id = param->connect.conn_id;
             global_gatts_if = gatts_if;
-            ESP_LOGI("BLE", "Client connected");
+            is_connected = true;
+            ESP_LOGI(TAG, "Client connected. conn_id: %d", conn_id);
             break;
 
+        case ESP_GATTS_DISCONNECT_EVT:
+            ESP_LOGW(TAG, "Client disconnected");
+            is_connected = false;
+            conn_id = 0;
+            global_gatts_if = 0;
+            esp_ble_gap_start_advertising(&adv_params);
+            break;
 
         default:
             break;
     }
 }
-
 
 void ble_server_start() {
     ESP_ERROR_CHECK(nvs_flash_init());
@@ -133,9 +145,9 @@ void ble_server_start() {
     ESP_ERROR_CHECK(esp_bluedroid_init());
     ESP_ERROR_CHECK(esp_bluedroid_enable());
 
-
     ESP_ERROR_CHECK(esp_ble_gatts_register_callback(gatts_event_handler));
     ESP_ERROR_CHECK(esp_ble_gap_register_callback(gap_event_handler));
     ESP_ERROR_CHECK(esp_ble_gatts_app_register(GATTS_APP_ID));
-}
 
+    ESP_LOGI(TAG, "BLE server initialized");
+}
