@@ -22,16 +22,19 @@ extern void send_gesture(char letter);
 #define FLEX_PIN_3 ADC1_CHANNEL_4   // GPIO32, Middle
 #define FLEX_PIN_4 ADC1_CHANNEL_7   // GPIO35, Ring
 #define FLEX_PIN_5 ADC1_CHANNEL_6   // GPIO34, Pinky
-
+#define INDEX_TOUCH_PIN    4 // GPIO4, Index touch sensor
+#define MIDDLE_TOUCH_PIN   27 // GPIO27, Middle touch sensor
+#define THUMB_TOUCH_PIN    33 // GPIO33, Thumb touch sensor
+#define TOUCH_THRESHOLD    25 // Threshold for touch detection
+#define NUM_TOUCH_INPUTS 3
 
 // UART Configuration
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
 
-
 //Machine Learning Model constants
 #define NUM_MODELS 9 //Number of letters
-#define NUM_FEATURES 5 //Number of inputs
+#define NUM_FEATURES (5 + NUM_TOUCH_INPUTS) //Number of inputs
 #define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
 float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
 float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
@@ -162,13 +165,17 @@ int predict(float *x){
 }
 
 
-float *read_flex_sensors() {
+void read_flex_sensors() {
     static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
+
+    int touchValue1 = adc1_get_raw(INDEX_TOUCH_PIN);
+    int touchValue2 = adc1_get_raw(MIDDLE_TOUCH_PIN);
+    int touchValue3 = adc1_get_raw(THUMB_TOUCH_PIN);
 
 
     //ADC to Voltage calculation
@@ -177,14 +184,21 @@ float *read_flex_sensors() {
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
-
-
-   
+    float IndexTouch = touchValue1 * (3.3 / 4095.0);
+    float MiddleTouch = touchValue2 * (3.3 / 4095.0);
+    float ThumbTouch = touchValue3 * (3.3 / 4095.0);
+    
     reading[0] = Thumb;
     reading[1] = Index;
     reading[2] = Middle;
     reading[3] = Ring;
     reading[4] = Pinky;
+
+    // Capacitive touch readings (inverted logic: lower = touched)
+    reading[5] = (IndexTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Index touch sensor
+    reading[6] = (MiddleTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Middle touch sensor
+    reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
+
 
 
     printf("\nFlex Sensor Readings:\n");
@@ -193,10 +207,18 @@ float *read_flex_sensors() {
     printf("Middle Voltage = %.3f V\n", Middle);
     printf("Ring Voltage = %.3f V\n", Ring);
     printf("Pinky Voltage = %.3f V\n", Pinky);
-    printf("------------------------\n");
+    printf("Index Touch Voltage = %.3f V, Touched? %f\n", IndexTouch, reading[5]);
+    printf("Middle Touch Voltage = %.3f V, Touched? %f\n", MiddleTouch, reading[6]);
+    printf("Thumb Touch Voltage = %.3f V, Touched? %f\n", ThumbTouch, reading[7]);
+    printf("------------------------\n\n\n");
+
+    // Debug
+    printf("Flex: T=%.2f I=%.2f M=%.2f R=%.2f P=%.2f | Touch: I=%.0f M=%.0f T=%.0f\n",
+           reading[0], reading[1], reading[2], reading[3], reading[4],
+           reading[5], reading[6], reading[7]);
 
 
-    return reading;
+    //return reading;
 }
 
 
@@ -208,6 +230,9 @@ void app_main(){
     adc1_config_channel_atten(FLEX_PIN_3, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_4, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_5, ADC_ATTEN_DB_12);
+    adc1_config_channel_atten(INDEX_TOUCH_PIN, ADC_ATTEN_DB_12);
+    adc1_config_channel_atten(MIDDLE_TOUCH_PIN, ADC_ATTEN_DB_12);
+    adc1_config_channel_atten(THUMB_TOUCH_PIN, ADC_ATTEN_DB_12);
 
 
     // Configure UART for reading input
@@ -223,7 +248,7 @@ void app_main(){
 
 
     // Start BLE server
-    ble_server_start();
+    //ble_server_start();
 
 
     //Initialize littleFS
@@ -258,9 +283,9 @@ void app_main(){
 
 
     //load parameters
-    load_scalers();
-    load_model_parameters();
-    printf("System ready. Press space to read flex sensors and classify a gesture\n");
+    //load_scalers();
+    //load_model_parameters();
+    //printf("System ready. Press space to read flex sensors and classify a gesture\n");
 
 
     uint8_t keypress;
@@ -268,12 +293,13 @@ void app_main(){
         // Read UART input
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
-            float *x= read_flex_sensors();
-            scale_input(x);
-            int gesture = predict(x);
-            send_gesture('A' + gesture); //send gesture to BLE server
-            printf("Predicted gesture: %c\n", 'A' + gesture);
-            printf("Predicted gesture: %d\n", gesture); //for debugging
+            read_flex_sensors();
+            //float *x= read_flex_sensors();
+            //scale_input(x);
+            //int gesture = predict(x);
+            //send_gesture('A' + gesture); //send gesture to BLE server
+            //printf("Predicted gesture: %c\n", 'A' + gesture);
+            //printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
