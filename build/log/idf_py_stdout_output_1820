@@ -1,5 +1,0 @@
--- Component directory C:/Users/zzmmk/VerbaGlove-DataCollection/components/components does not contain a CMakeLists.txt file. No component will be added
--- ccache will be used for faster recompilation
--- Building ESP-IDF components for target esp32
--- Configuring incomplete, errors occurred!
-See also "C:/Users/zzmmk/VerbaGlove-DataCollection/build/CMakeFiles/CMakeOutput.log".

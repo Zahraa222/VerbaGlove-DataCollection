@@ -1,6 +1,0 @@
-CMake Error at CMakeLists.txt:7 (include):
-  include could not find requested file:
-
-    C:/Espressif/frameworks/esp-idf-v5.3.1//tools/cmake/spiffs/spiffs.cmake
-
-
