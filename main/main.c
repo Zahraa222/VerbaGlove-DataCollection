@@ -12,6 +12,7 @@
 #include "esp_system.h"
 #include "math.h"
 #include "esp_littlefs.h"
+#include "driver/touch_pad.h"
 
 extern void ble_server_start(void);
 extern void send_gesture(char letter);
@@ -22,11 +23,11 @@ extern void send_gesture(char letter);
 #define FLEX_PIN_3 ADC1_CHANNEL_4   // GPIO32, Middle
 #define FLEX_PIN_4 ADC1_CHANNEL_7   // GPIO35, Ring
 #define FLEX_PIN_5 ADC1_CHANNEL_6   // GPIO34, Pinky
-#define INDEX_TOUCH_PIN    4 // GPIO4, Index touch sensor
-#define MIDDLE_TOUCH_PIN   27 // GPIO27, Middle touch sensor
-#define THUMB_TOUCH_PIN    33 // GPIO33, Thumb touch sensor
-#define TOUCH_THRESHOLD    25 // Threshold for touch detection
-#define NUM_TOUCH_INPUTS 3
+#define INDEX_TOUCH_PIN    TOUCH_PAD_NUM0 // GPIO4, Index touch sensor
+#define MIDDLE_TOUCH_PIN   TOUCH_PAD_NUM7 // GPIO27, Middle touch sensor
+#define THUMB_TOUCH_PIN    TOUCH_PAD_NUM8 // GPIO33, Thumb touch sensor
+#define TOUCH_THRESHOLD    150 // Threshold for touch detection
+#define NUM_TOUCH_INPUTS   3
 
 // UART Configuration
 #define UART_NUM UART_NUM_0
@@ -172,10 +173,12 @@ void read_flex_sensors() {
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
+    
+    uint16_t IndexTouch = 0, MiddleTouch = 0, ThumbTouch = 0;
+    touch_pad_read(INDEX_TOUCH_PIN, &IndexTouch);
+    touch_pad_read(MIDDLE_TOUCH_PIN, &MiddleTouch);
+    touch_pad_read(THUMB_TOUCH_PIN, &ThumbTouch);
 
-    int touchValue1 = adc1_get_raw(INDEX_TOUCH_PIN);
-    int touchValue2 = adc1_get_raw(MIDDLE_TOUCH_PIN);
-    int touchValue3 = adc1_get_raw(THUMB_TOUCH_PIN);
 
 
     //ADC to Voltage calculation
@@ -184,9 +187,6 @@ void read_flex_sensors() {
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
-    float IndexTouch = touchValue1 * (3.3 / 4095.0);
-    float MiddleTouch = touchValue2 * (3.3 / 4095.0);
-    float ThumbTouch = touchValue3 * (3.3 / 4095.0);
     
     reading[0] = Thumb;
     reading[1] = Index;
@@ -200,24 +200,14 @@ void read_flex_sensors() {
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
 
 
-
-    printf("\nFlex Sensor Readings:\n");
+  printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
     printf("Index Voltage = %.3f V\n", Index);
     printf("Middle Voltage = %.3f V\n", Middle);
     printf("Ring Voltage = %.3f V\n", Ring);
     printf("Pinky Voltage = %.3f V\n", Pinky);
-    printf("Index Touch Voltage = %.3f V, Touched? %f\n", IndexTouch, reading[5]);
-    printf("Middle Touch Voltage = %.3f V, Touched? %f\n", MiddleTouch, reading[6]);
-    printf("Thumb Touch Voltage = %.3f V, Touched? %f\n", ThumbTouch, reading[7]);
-    printf("------------------------\n\n\n");
-
-    // Debug
-    printf("Flex: T=%.2f I=%.2f M=%.2f R=%.2f P=%.2f | Touch: I=%.0f M=%.0f T=%.0f\n",
-           reading[0], reading[1], reading[2], reading[3], reading[4],
-           reading[5], reading[6], reading[7]);
-
-
+    printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
+    printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
     //return reading;
 }
 
@@ -230,10 +220,12 @@ void app_main(){
     adc1_config_channel_atten(FLEX_PIN_3, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_4, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_5, ADC_ATTEN_DB_12);
-    adc1_config_channel_atten(INDEX_TOUCH_PIN, ADC_ATTEN_DB_12);
-    adc1_config_channel_atten(MIDDLE_TOUCH_PIN, ADC_ATTEN_DB_12);
-    adc1_config_channel_atten(THUMB_TOUCH_PIN, ADC_ATTEN_DB_12);
 
+    //configure touch sensors
+    touch_pad_init();
+    touch_pad_config(INDEX_TOUCH_PIN, 0);
+    touch_pad_config(MIDDLE_TOUCH_PIN, 0);
+    touch_pad_config(THUMB_TOUCH_PIN, 0);
 
     // Configure UART for reading input
     uart_config_t uart_config = {
