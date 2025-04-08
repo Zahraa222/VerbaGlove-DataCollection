@@ -30,6 +30,15 @@ extern void send_gesture(char letter);
 #define TOUCH_THRESHOLD    150 // Threshold for touch detection
 #define NUM_TOUCH_INPUTS   3
 
+#define BUFFER_SIZE 20 //Number of readings to calculate the running average
+// Buffers for running averages
+static float thumb_buffer[BUFFER_SIZE] = {0};
+static float index_buffer[BUFFER_SIZE] = {0};
+static float middle_buffer[BUFFER_SIZE] = {0};
+static float ring_buffer[BUFFER_SIZE] = {0};
+static float pinky_buffer[BUFFER_SIZE] = {0};
+static int buffer_index = 0; // Circular buffer index
+
 // UART Configuration
 #define UART_NUM UART_NUM_0
 #define BUF_SIZE 1024
@@ -68,7 +77,6 @@ void load_csv_row(const char *path, float *arr, int len) {
 
 void load_model_parameters() {
     char path[100];
-
 
     for (int i = 0; i < NUM_MODELS; i++) {
         // Load support vectors for model i
@@ -167,7 +175,17 @@ int predict(float *x){
 }
 
 
+
+float calculate_running_average(float *buffer, int size) {
+    float sum = 0.0;
+    for (int i = 0; i < size; i++) {
+        sum += buffer[i];
+    }
+    return sum / size;
+}
+
 float *read_flex_sensors() {
+    static int buffer_count = 0;
     static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
@@ -189,19 +207,38 @@ float *read_flex_sensors() {
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
+    // Update buffers
+    thumb_buffer[buffer_index] = Thumb;
+    index_buffer[buffer_index] = Index;
+    middle_buffer[buffer_index] = Middle;
+    ring_buffer[buffer_index] = Ring;
+    pinky_buffer[buffer_index] = Pinky;
+
+
     // printf("Raw ADC: Thumb=%d, Index=%d, Middle=%d, Ring=%d, Pinky=%d\n", flexValue1, flexValue2, flexValue3, flexValue4, flexValue5);
 
-    
-    reading[0] = Thumb;
-    reading[1] = Index;
-    reading[2] = Middle;
-    reading[3] = Ring;
-    reading[4] = Pinky;
+    // Update buffer index (circular buffer)
+    buffer_index = (buffer_index + 1) % BUFFER_SIZE;
+
+    buffer_count++;
+
+    // Only calculate and return average every 20 samples
+    if (buffer_count < BUFFER_SIZE) {
+        return NULL;
+    }
+
+    // Calculate running averages
+    reading[0] = calculate_running_average(thumb_buffer, BUFFER_SIZE);
+    reading[1] = calculate_running_average(index_buffer, BUFFER_SIZE);
+    reading[2] = calculate_running_average(middle_buffer, BUFFER_SIZE);
+    reading[3] = calculate_running_average(ring_buffer, BUFFER_SIZE);
+    reading[4] = calculate_running_average(pinky_buffer, BUFFER_SIZE);
 
     // Capacitive touch readings (inverted logic: lower = touched)
     reading[5] = (IndexTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Index touch sensor
     reading[6] = (MiddleTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Middle touch sensor
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
+
 
     // printf("K,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
     printf("\nFlex Sensor Readings:\n");
@@ -212,8 +249,10 @@ float *read_flex_sensors() {
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
     printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
+    vTaskDelay(pdMS_TO_TICKS(500));
     return reading;
 }
+
 
 
 void app_main(){
@@ -287,15 +326,16 @@ void app_main(){
     uint8_t keypress;
     while (1) {
         // Read UART input
-        int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
-        if (len > 0 && keypress == ' ') {
-            float *x= read_flex_sensors();
+        float *x= read_flex_sensors();
+
+        if (x != NULL){
             scale_input(x);
             int gesture = predict(x);
             send_gesture('A' + gesture); //send gesture to BLE server
             printf("Predicted gesture: %c\n", 'A' + gesture);
             printf("Predicted gesture: %d\n", gesture); //for debugging
         }
+        
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }

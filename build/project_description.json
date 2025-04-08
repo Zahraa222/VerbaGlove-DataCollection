@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "VerbaGlove-DataCollection",
-    "project_version":    "2eca44ae-dirty",
+    "project_version":    "e5a8463b-dirty",
     "project_path":       "C:/Users/zzmmk/VerbaGlove-DataCollection",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/Users/zzmmk/VerbaGlove-DataCollection/build",
