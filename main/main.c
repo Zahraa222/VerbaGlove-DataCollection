@@ -17,6 +17,7 @@
 extern void ble_server_start(void);
 extern void send_gesture(char letter);
 
+
 //ADC channel assignments
 #define FLEX_PIN_1 ADC1_CHANNEL_0   // GPIO36, Thumb
 #define FLEX_PIN_2 ADC1_CHANNEL_3   // GPIO39, Index
@@ -46,7 +47,7 @@ float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
-#define GAMMA 0.2f //RBF kernel parameter
+#define GAMMA 0.12499999999999997f //RBF kernel parameter
 
 
 
@@ -153,7 +154,7 @@ int predict(float *x){
         float decision = 0.0;
         for (int j = 0; j < num_sv[i]; j++) {
             //RBF SVM decision function: f(x) = sum(alpha_i * K(x_i, x)) + b
-            //alpha_i = duall coreffiecients, K(x_i, x) = RBF kernel function, b = intercept
+            //alpha_i = dual coefficients, K(x_i, x) = RBF kernel function, b = intercept
             decision += dual_coef[i][j] * rbf_kernel(support_vectors[i][j], x, NUM_FEATURES, GAMMA);
         }
         decision += intercept[i];
@@ -166,7 +167,7 @@ int predict(float *x){
 }
 
 
-void read_flex_sensors() {
+float *read_flex_sensors() {
     static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
     int flexValue2 = adc1_get_raw(FLEX_PIN_2);
@@ -187,6 +188,9 @@ void read_flex_sensors() {
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
+
+    // printf("Raw ADC: Thumb=%d, Index=%d, Middle=%d, Ring=%d, Pinky=%d\n", flexValue1, flexValue2, flexValue3, flexValue4, flexValue5);
+
     
     reading[0] = Thumb;
     reading[1] = Index;
@@ -199,8 +203,8 @@ void read_flex_sensors() {
     reading[6] = (MiddleTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Middle touch sensor
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
 
-
-  printf("\nFlex Sensor Readings:\n");
+    // printf("K,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
+    printf("\nFlex Sensor Readings:\n");
     printf("Thumb Voltage = %.3f V\n", Thumb);
     printf("Index Voltage = %.3f V\n", Index);
     printf("Middle Voltage = %.3f V\n", Middle);
@@ -208,7 +212,7 @@ void read_flex_sensors() {
     printf("Pinky Voltage = %.3f V\n", Pinky);
     printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
     printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
-    //return reading;
+    return reading;
 }
 
 
@@ -240,7 +244,7 @@ void app_main(){
 
 
     // Start BLE server
-    //ble_server_start();
+    ble_server_start();
 
 
     //Initialize littleFS
@@ -275,23 +279,22 @@ void app_main(){
 
 
     //load parameters
-    //load_scalers();
-    //load_model_parameters();
-    //printf("System ready. Press space to read flex sensors and classify a gesture\n");
-
+    load_scalers();
+    load_model_parameters();
+    printf("System ready. Press space to read flex sensors and classify a gesture\n");
+    printf("\nLetter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch\n");
 
     uint8_t keypress;
     while (1) {
         // Read UART input
         int len = uart_read_bytes(UART_NUM, &keypress, 1, 10 / portTICK_PERIOD_MS);
         if (len > 0 && keypress == ' ') {
-            read_flex_sensors();
-            //float *x= read_flex_sensors();
-            //scale_input(x);
-            //int gesture = predict(x);
-            //send_gesture('A' + gesture); //send gesture to BLE server
-            //printf("Predicted gesture: %c\n", 'A' + gesture);
-            //printf("Predicted gesture: %d\n", gesture); //for debugging
+            float *x= read_flex_sensors();
+            scale_input(x);
+            int gesture = predict(x);
+            send_gesture('A' + gesture); //send gesture to BLE server
+            printf("Predicted gesture: %c\n", 'A' + gesture);
+            printf("Predicted gesture: %d\n", gesture); //for debugging
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
