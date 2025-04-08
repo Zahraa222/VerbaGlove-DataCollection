@@ -1,3 +1,14 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void ble_server_start(void);
+void send_gesture(char letter);
+
+#ifdef __cplusplus
+}
+#endif
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdarg.h>

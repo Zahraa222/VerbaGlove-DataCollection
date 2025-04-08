@@ -1,0 +1,11 @@
+warning: default on the choice symbol BT_NIMBLE_ENABLED (defined at C:/Espressif/frameworks/esp-idf-v5.3.1/components/bt/Kconfig:22, C:/Users/zzmmk/VerbaGlove-DataCollection/managed_components/h2zero__esp-nimble-cpp/Kconfig:217) will have no effect, as defaults do not affect choice symbols
+warning: the choice symbol BT_NIMBLE_ENABLED (defined at C:/Espressif/frameworks/esp-idf-v5.3.1/components/bt/Kconfig:22, C:/Users/zzmmk/VerbaGlove-DataCollection/managed_components/h2zero__esp-nimble-cpp/Kconfig:217) is defined with a prompt outside the choice
+info: INFO: Symbol BT_ENABLED defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    C:\Espressif\frameworks\esp-idf-v5.3.1\components\bt\Kconfig:3
+    C:\Users\zzmmk\VerbaGlove-DataCollection\managed_components\h2zero__esp-nimble-cpp\Kconfig:210
+info: INFO: Symbol BT_NIMBLE_ENABLED defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    C:\Espressif\frameworks\esp-idf-v5.3.1\components\bt\Kconfig:22
+    C:\Users\zzmmk\VerbaGlove-DataCollection\managed_components\h2zero__esp-nimble-cpp\Kconfig:217
+info: INFO: Symbol BT_NIMBLE_TRANSPORT_UART defined in multiple locations (see below). Please check if this is a correct behavior or a random name match:
+    C:\Users\zzmmk\VerbaGlove-DataCollection\managed_components\h2zero__esp-nimble-cpp\Kconfig:225
+    C:\Espressif\frameworks\esp-idf-v5.3.1\components\bt\host\nimble\Kconfig.in:946
