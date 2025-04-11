@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/zzmmk/VerbaGlove-DataCollection/main
+# Install script for directory: C:/ECE4982/VerbaGlove-DataCollection/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

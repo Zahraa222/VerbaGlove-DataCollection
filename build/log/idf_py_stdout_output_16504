@@ -1,0 +1,160 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  8 2025 20:26:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot:  3 littlefs         Unknown data     01 83 00210000 00100000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1a928h (108840) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002a950 vaddr=3ffbdb60 size=04c5ch ( 19548) load[0m
+[0;32mI (157) esp_image: segment 2: paddr=0002f5b4 vaddr=40080000 size=00a64h (  2660) load[0m
+[0;32mI (158) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=653e4h (414692) map[0m
+[0;32mI (306) esp_image: segment 4: paddr=0009540c vaddr=40080a64 size=17a14h ( 96788) load[0m
+[0;32mI (356) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (356) boot: Disabling RNG early entropy source...[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (376) cpu_start: Pro cpu start user code[0m
+[0;32mI (376) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (377) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     VerbaGlove-DataCollection[0m
+[0;32mI (386) app_init: App version:      7f5634bd-dirty[0m
+[0;32mI (391) app_init: Compile time:     Apr  8 2025 20:25:33[0m
+[0;32mI (397) app_init: ELF file SHA256:  2eb469e8f...[0m
+[0;32mI (403) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (407) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (412) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (417) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (422) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (429) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 3FFC8438 len 00017BC8 (94 KiB): DRAM[0m
+[0;32mI (454) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (460) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (466) heap_init: At 40098478 len 00007B88 (30 KiB): IRAM[0m
+[0;32mI (474) spi_flash: detected chip: generic[0m
+[0;32mI (477) spi_flash: flash io: dio[0m
+[0;33mW (481) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (490) coexist: coex firmware version: 4482466[0m
+[0;32mI (496) main_task:[0;32mI (516) BTDM_INIT: BT controller compile version [b022216][0m
+[0;32mI (516) BTDM_INIT: Bluetooth MAC: 2c:bc:bb:92:5b:32[0m
+[0;32mI (526) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (886) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (886) NimBLE: disc_mode=2[0m
+[0;32mI (886) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (896) NimBLE: 
+[0m
+[0;32mI (896) BLE: BLE NimBLE server initialized and advertising[0m
+Partition size: total: 1048576, used: 368640
+System ready. Press space to read flex sensors and classify a gesture
+
+Letter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch
+[Timestamp] Gesture Start Time (Reading sensors):        1333 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1445 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1555 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1665 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1775 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1885 ms
+[Timestamp] Gesture Start Time (Reading sensors):        1995 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2105 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2215 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2325 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2435 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2545 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2655 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2765 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2875 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2985 ms
+[Timestamp] Gesture Start Time (Reading sensors):        3095 ms
+[Timestamp] Gesture Start Time (Reading sensors):        3205 ms
+[Timestamp] Gesture Start Time (Reading sensors):        3315 ms
+
+Flex Sensor Readings:
+Thumb Voltage = 0.241 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.504 V
+Ring Voltage = 0.529 V
+Pinky Voltage = 0.439 V
+Touch Raw: Index=307, Middle=524, Thumb=442
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):        3932 ms
+[Timestamp] Gesture Interpreted Time:        3937 ms
+[0;32mI (4406) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:        3938 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.554 V
+Ring Voltage = 0.498 V
+Pinky Voltage = 0.444 V
+Touch Raw: Index=303, Middle=523, Thumb=439
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):        4562 ms
+[Timestamp] Gesture Interpreted Time:        4567 ms
+[0;32mI (5036) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:        4568 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.284 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.528 V
+Ring Voltage = 0.498 V
+Pinky Voltage = 0.411 V
+Touch Raw: Index=304, Middle=523, Thumb=440
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):        5192 ms
+[Timestamp] Gesture Interpreted Time:        5197 ms
+[0;32mI (5666) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:        5198 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.289 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.546 V
+Ring Voltage = 0.503 V
+Pinky Voltage = 0.464 V
+Touch Raw: Index=304, Middle=523, Thumb=442
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):        5822 ms
+[Timestamp] Gesture Interpreted Time:        5827 ms
+[0;32mI (6296) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:        5828 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.305 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.539 V
+Ring Voltage = 0.500 V
+Pinky Voltage = 0.438 V
+Touch Raw: Index=307, Middle=524, Thumb=441
+Touch Interpreted: I=0 M=0 T=0
+�����

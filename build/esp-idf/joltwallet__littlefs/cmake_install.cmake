@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/zzmmk/VerbaGlove-DataCollection/managed_components/joltwallet__littlefs
+# Install script for directory: C:/ECE4982/VerbaGlove-DataCollection/managed_components/joltwallet__littlefs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

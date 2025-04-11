@@ -24,6 +24,7 @@ void send_gesture(char letter);
 #include "math.h"
 #include "esp_littlefs.h"
 #include "driver/touch_pad.h"
+#include "esp_timer.h"
 
 extern void ble_server_start(void);
 extern void send_gesture(char letter);
@@ -203,6 +204,8 @@ float *read_flex_sensors() {
     int flexValue3 = adc1_get_raw(FLEX_PIN_3);
     int flexValue4 = adc1_get_raw(FLEX_PIN_4);
     int flexValue5 = adc1_get_raw(FLEX_PIN_5);
+
+    printf("Raw ADC Index = %d\n", flexValue2); 
     
     uint16_t IndexTouch = 0, MiddleTouch = 0, ThumbTouch = 0;
     touch_pad_read(INDEX_TOUCH_PIN, &IndexTouch);
@@ -333,18 +336,30 @@ void app_main(){
     load_model_parameters();
     printf("System ready. Press space to read flex sensors and classify a gesture\n");
     printf("\nLetter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch\n");
-
+    
     uint8_t keypress;
     while (1) {
         // Read UART input
         float *x= read_flex_sensors();
 
+        int64_t gesture_start_time = esp_timer_get_time(); //us
+        printf("[Timestamp] Gesture Start Time (Reading sensors): %11lld ms\n",gesture_start_time / 1000);
+
         if (x != NULL){
+
             scale_input(x);
             int gesture = predict(x);
+
+            int64_t interpreted_time = esp_timer_get_time();
+            printf("[Timestamp] Gesture Interpreted Time: %11lld ms\n",interpreted_time /1000);
+
             send_gesture('A' + gesture); //send gesture to BLE server
+            int64_t transmission_time = esp_timer_get_time();
+            printf("[Timestamp] BLE Transmission Sent Time: %11lld ms\n", transmission_time/1000);
+
             printf("Predicted gesture: %c\n", 'A' + gesture);
             printf("Predicted gesture: %d\n", gesture); //for debugging
+
         }
         
         vTaskDelay(pdMS_TO_TICKS(100));

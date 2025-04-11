@@ -1,0 +1,4059 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  8 2025 20:26:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot:  3 littlefs         Unknown data     01 83 00210000 00100000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1a928h (108840) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002a950 vaddr=3ffbdb60 size=04c5ch ( 19548) load[0m
+[0;32mI (157) esp_image: segment 2: paddr=0002f5b4 vaddr=40080000 size=00a64h (  2660) load[0m
+[0;32mI (158) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=653e4h (414692) map[0m
+[0;32mI (306) esp_image: segment 4: paddr=0009540c vaddr=40080a64 size=17a14h ( 96788) load[0m
+[0;32mI (356) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (356) boot: Disabling RNG early entropy source...[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (376) cpu_start: Pro cpu start user code[0m
+[0;32mI (376) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (377) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     VerbaGlove-DataCollection[0m
+[0;32mI (386) app_init: App version:      7f5634bd-dirty[0m
+[0;32mI (391) app_init: Compile time:     Apr  8 2025 20:25:33[0m
+[0;32mI (397) app_init: ELF file SHA256:  e27385e50...[0m
+[0;32mI (403) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (407) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (412) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (417) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (422) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (429) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 3FFC8438 len 00017BC8 (94 KiB): DRAM[0m
+[0;32mI (454) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (460) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (466) heap_init: At 40098478 len 00007B88 (30 KiB): IRAM[0m
+[0;32mI (474) spi_flash: detected chip: generic[0m
+[0;32mI (477) spi_flash: flash io: dio[0m
+[0;33mW (481) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (490) coexist: coex firmware version: 4482466[0m
+[0;32mI (496) main_task:[0;32mI (516) BTDM_INIT: BT controller compile version [b022216][0m
+[0;32mI (516) BTDM_INIT: Bluetooth MAC: 2c:bc:bb:92:5b:32[0m
+[0;32mI (526) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (886) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (886) NimBLE: disc_mode=2[0m
+[0;32mI (886) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (896) NimBLE: 
+[0m
+[0;32mI (906) BLE: BLE NimBLE server initialized and advertising[0m
+Partition size: total: 1048576, used: 368640
+System ready. Press space to read flex sensors and classify a gesture
+
+Letter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch
+[Timestamp] Gesture Start Time (Reading sensors):        1337 ms
+[Timestamp] Gesture Start Time (Reading sensors):        2345 ms
+[Timestamp] Gesture Start Time (Reading sensors):        3355 ms
+[Timestamp] Gesture Start Time (Reading sensors):        4365 ms
+[Timestamp] Gesture Start Time (Reading sensors):        5375 ms
+[Timestamp] Gesture Start Time (Reading sensors):        6385 ms
+[Timestamp] Gesture Start Time (Reading sensors):        7395 ms
+[Timestamp] Gesture Start Time (Reading sensors):        8405 ms
+[Timestamp] Gesture Start Time (Reading sensors):        9415 ms
+[Timestamp] Gesture Start Time (Reading sensors):       10425 ms
+[Timestamp] Gesture Start Time (Reading sensors):       11435 ms
+[Timestamp] Gesture Start Time (Reading sensors):       12445 ms
+[Timestamp] Gesture Start Time (Reading sensors):       13455 ms
+[Timestamp] Gesture Start Time (Reading sensors):       14465 ms
+[Timestamp] Gesture Start Time (Reading sensors):       15475 ms
+[Timestamp] Gesture Start Time (Reading sensors):       16485 ms
+[Timestamp] Gesture Start Time (Reading sensors):       17495 ms
+[Timestamp] Gesture Start Time (Reading sensors):       18505 ms
+[Timestamp] Gesture Start Time (Reading sensors):       19515 ms
+
+Flex Sensor Readings:
+Thumb Voltage = 0.318 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.591 V
+Ring Voltage = 0.478 V
+Pinky Voltage = 0.406 V
+Touch Raw: Index=453, Middle=388, Thumb=155
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       21032 ms
+[Timestamp] Gesture Interpreted Time:       21038 ms
+[0;32mI (21506) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       21039 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.566 V
+Ring Voltage = 0.513 V
+Pinky Voltage = 0.450 V
+Touch Raw: Index=452, Middle=381, Thumb=26
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):       22562 ms
+[Timestamp] Gesture Interpreted Time:       22567 ms
+[0;32mI (23036) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       22568 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.268 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.608 V
+Ring Voltage = 0.507 V
+Pinky Voltage = 0.400 V
+Touch Raw: Index=452, Middle=393, Thumb=422
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       24092 ms
+[Timestamp] Gesture Interpreted Time:       24097 ms
+[0;32mI (24566) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       24098 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.284 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.570 V
+Ring Voltage = 0.477 V
+Pinky Voltage = 0.377 V
+Touch Raw: Index=450, Middle=390, Thumb=463
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       25622 ms
+[Timestamp] Gesture Interpreted Time:       25627 ms
+[0;32mI (26096) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       25628 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.318 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.616 V
+Ring Voltage = 0.517 V
+Pinky Voltage = 0.443 V
+Touch Raw: Index=455, Middle=377, Thumb=291
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       27152 ms
+[Timestamp] Gesture Interpreted Time:       27158 ms
+[0;32mI (27626) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       27158 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.455 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.160 V
+Ring Voltage = 0.227 V
+Pinky Voltage = 0.103 V
+Touch Raw: Index=458, Middle=184, Thumb=289
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       28682 ms
+[Timestamp] Gesture Interpreted Time:       28687 ms
+[0;32mI (29156) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       28688 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.477 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.173 V
+Ring Voltage = 0.167 V
+Pinky Voltage = 0.163 V
+Touch Raw: Index=461, Middle=184, Thumb=290
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       30212 ms
+[Timestamp] Gesture Interpreted Time:       30217 ms
+[0;32mI (30686) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       30218 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.464 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.192 V
+Ring Voltage = 0.226 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=463, Middle=185, Thumb=291
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       31742 ms
+[Timestamp] Gesture Interpreted Time:       31747 ms
+[0;32mI (32216) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       31748 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.457 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.202 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.189 V
+Touch Raw: Index=464, Middle=188, Thumb=291
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       33272 ms
+[Timestamp] Gesture Interpreted Time:       33277 ms
+[0;32mI (33746) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       33278 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.457 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.217 V
+Ring Voltage = 0.168 V
+Pinky Voltage = 0.159 V
+Touch Raw: Index=464, Middle=187, Thumb=291
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       34802 ms
+[Timestamp] Gesture Interpreted Time:       34808 ms
+[0;32mI (35276) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       34809 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.438 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.222 V
+Ring Voltage = 0.209 V
+Pinky Voltage = 0.163 V
+Touch Raw: Index=465, Middle=185, Thumb=293
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       36332 ms
+[Timestamp] Gesture Interpreted Time:       36337 ms
+[0;32mI (36806) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       36338 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.463 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.245 V
+Ring Voltage = 0.185 V
+Pinky Voltage = 0.158 V
+Touch Raw: Index=465, Middle=186, Thumb=292
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       37862 ms
+[Timestamp] Gesture Interpreted Time:       37867 ms
+[0;32mI (38336) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:       37868 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.452 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.228 V
+Ring Voltage = 0.235 V
+Pinky Voltage = 0.172 V
+Touch Raw: Index=465, Middle=184, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       39392 ms
+[Timestamp] Gesture Interpreted Time:       39397 ms
+[0;32mI (39866) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       39399 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.211 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.150 V
+Touch Raw: Index=464, Middle=178, Thumb=295
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       40922 ms
+[Timestamp] Gesture Interpreted Time:       40928 ms
+[0;32mI (41396) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       40928 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.437 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.266 V
+Ring Voltage = 0.258 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=465, Middle=178, Thumb=296
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       42452 ms
+[Timestamp] Gesture Interpreted Time:       42457 ms
+[0;32mI (42926) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       42458 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.448 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.243 V
+Ring Voltage = 0.168 V
+Pinky Voltage = 0.186 V
+Touch Raw: Index=466, Middle=177, Thumb=296
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       43982 ms
+[Timestamp] Gesture Interpreted Time:       43987 ms
+[0;32mI (44456) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       43988 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.454 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.239 V
+Ring Voltage = 0.221 V
+Pinky Voltage = 0.180 V
+Touch Raw: Index=466, Middle=180, Thumb=295
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       45512 ms
+[Timestamp] Gesture Interpreted Time:       45517 ms
+[0;32mI (45986) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       45518 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.248 V
+Ring Voltage = 0.233 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=466, Middle=180, Thumb=293
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       47042 ms
+[Timestamp] Gesture Interpreted Time:       47048 ms
+[0;32mI (47516) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       47048 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.439 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.239 V
+Ring Voltage = 0.230 V
+Pinky Voltage = 0.195 V
+Touch Raw: Index=465, Middle=179, Thumb=290
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       48572 ms
+[Timestamp] Gesture Interpreted Time:       48577 ms
+[0;32mI (49046) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       48578 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.459 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.214 V
+Ring Voltage = 0.235 V
+Pinky Voltage = 0.166 V
+Touch Raw: Index=465, Middle=178, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       50102 ms
+[Timestamp] Gesture Interpreted Time:       50107 ms
+[0;32mI (50576) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       50108 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.398 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.264 V
+Ring Voltage = 0.181 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=464, Middle=177, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       51632 ms
+[Timestamp] Gesture Interpreted Time:       51637 ms
+[0;32mI (52106) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       51638 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.389 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.534 V
+Ring Voltage = 0.468 V
+Pinky Voltage = 0.507 V
+Touch Raw: Index=456, Middle=494, Thumb=480
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       53162 ms
+[Timestamp] Gesture Interpreted Time:       53167 ms
+[0;32mI (53636) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       53168 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.483 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.123 V
+Touch Raw: Index=465, Middle=455, Thumb=317
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       54692 ms
+[Timestamp] Gesture Interpreted Time:       54697 ms
+[0;32mI (55166) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       54698 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.459 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.276 V
+Ring Voltage = 0.193 V
+Pinky Voltage = 0.181 V
+Touch Raw: Index=466, Middle=178, Thumb=310
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       56222 ms
+[Timestamp] Gesture Interpreted Time:       56228 ms
+[0;32mI (56696) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       56229 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.400 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.220 V
+Ring Voltage = 0.199 V
+Pinky Voltage = 0.142 V
+Touch Raw: Index=468, Middle=180, Thumb=309
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       57752 ms
+[Timestamp] Gesture Interpreted Time:       57757 ms
+[0;32mI (58226) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       57758 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.276 V
+Ring Voltage = 0.273 V
+Pinky Voltage = 0.145 V
+Touch Raw: Index=467, Middle=179, Thumb=308
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       59282 ms
+[Timestamp] Gesture Interpreted Time:       59287 ms
+[0;32mI (59756) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       59288 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.400 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.216 V
+Ring Voltage = 0.251 V
+Pinky Voltage = 0.162 V
+Touch Raw: Index=467, Middle=180, Thumb=309
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       60812 ms
+[Timestamp] Gesture Interpreted Time:       60817 ms
+[0;32mI (61286) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       60818 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.408 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.248 V
+Ring Voltage = 0.208 V
+Pinky Voltage = 0.147 V
+Touch Raw: Index=466, Middle=180, Thumb=311
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       62342 ms
+[Timestamp] Gesture Interpreted Time:       62347 ms
+[0;32mI (62816) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       62348 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.270 V
+Ring Voltage = 0.230 V
+Pinky Voltage = 0.194 V
+Touch Raw: Index=466, Middle=182, Thumb=312
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       63872 ms
+[Timestamp] Gesture Interpreted Time:       63877 ms
+[0;32mI (64346) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       63878 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.446 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.253 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.171 V
+Touch Raw: Index=467, Middle=178, Thumb=311
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       65402 ms
+[Timestamp] Gesture Interpreted Time:       65407 ms
+[0;32mI (65876) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       65408 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.367 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.504 V
+Ring Voltage = 0.444 V
+Pinky Voltage = 0.400 V
+Touch Raw: Index=457, Middle=491, Thumb=375
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       66932 ms
+[Timestamp] Gesture Interpreted Time:       66937 ms
+[0;32mI (67406) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       66938 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.360 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.438 V
+Ring Voltage = 0.387 V
+Pinky Voltage = 0.299 V
+Touch Raw: Index=459, Middle=491, Thumb=464
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       68462 ms
+[Timestamp] Gesture Interpreted Time:       68467 ms
+[0;32mI (68936) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       68468 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.212 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.200 V
+Ring Voltage = 0.177 V
+Pinky Voltage = 0.121 V
+Touch Raw: Index=467, Middle=190, Thumb=479
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       69992 ms
+[Timestamp] Gesture Interpreted Time:       69997 ms
+[0;32mI (70466) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       69998 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.317 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.184 V
+Ring Voltage = 0.194 V
+Pinky Voltage = 0.142 V
+Touch Raw: Index=466, Middle=181, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       71522 ms
+[Timestamp] Gesture Interpreted Time:       71527 ms
+[0;32mI (71996) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       71528 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.215 V
+Ring Voltage = 0.228 V
+Pinky Voltage = 0.202 V
+Touch Raw: Index=465, Middle=180, Thumb=296
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       73052 ms
+[Timestamp] Gesture Interpreted Time:       73058 ms
+[0;32mI (73526) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       73058 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.355 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.184 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.127 V
+Touch Raw: Index=467, Middle=180, Thumb=477
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       74582 ms
+[Timestamp] Gesture Interpreted Time:       74587 ms
+[0;32mI (75056) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       74588 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.340 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.225 V
+Ring Voltage = 0.225 V
+Pinky Voltage = 0.156 V
+Touch Raw: Index=468, Middle=180, Thumb=323
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       76112 ms
+[Timestamp] Gesture Interpreted Time:       76117 ms
+[0;32mI (76586) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       76118 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.307 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.209 V
+Pinky Voltage = 0.158 V
+Touch Raw: Index=468, Middle=183, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       77642 ms
+[Timestamp] Gesture Interpreted Time:       77647 ms
+[0;32mI (78116) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       77648 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.330 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.195 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=467, Middle=183, Thumb=304
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       79172 ms
+[Timestamp] Gesture Interpreted Time:       79177 ms
+[0;32mI (79646) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       79178 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.264 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.222 V
+Ring Voltage = 0.197 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=468, Middle=181, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       80702 ms
+[Timestamp] Gesture Interpreted Time:       80707 ms
+[0;32mI (81176) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       80708 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.287 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.207 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.127 V
+Touch Raw: Index=467, Middle=181, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       82232 ms
+[Timestamp] Gesture Interpreted Time:       82238 ms
+[0;32mI (82706) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       82238 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.316 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.198 V
+Ring Voltage = 0.207 V
+Pinky Voltage = 0.159 V
+Touch Raw: Index=467, Middle=183, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       83762 ms
+[Timestamp] Gesture Interpreted Time:       83767 ms
+[0;32mI (84236) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       83768 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.355 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.220 V
+Ring Voltage = 0.259 V
+Pinky Voltage = 0.176 V
+Touch Raw: Index=468, Middle=192, Thumb=461
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       85292 ms
+[Timestamp] Gesture Interpreted Time:       85298 ms
+[0;32mI (85766) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       85299 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.391 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.484 V
+Ring Voltage = 0.493 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=457, Middle=489, Thumb=333
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       86822 ms
+[Timestamp] Gesture Interpreted Time:       86827 ms
+[0;32mI (87296) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       86828 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.449 V
+Ring Voltage = 0.423 V
+Pinky Voltage = 0.388 V
+Touch Raw: Index=456, Middle=494, Thumb=331
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       88352 ms
+[Timestamp] Gesture Interpreted Time:       88358 ms
+[0;32mI (88826) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       88358 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.361 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.467 V
+Ring Voltage = 0.459 V
+Pinky Voltage = 0.337 V
+Touch Raw: Index=456, Middle=492, Thumb=326
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       89882 ms
+[Timestamp] Gesture Interpreted Time:       89887 ms
+[0;32mI (90356) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       89888 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.363 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.483 V
+Ring Voltage = 0.513 V
+Pinky Voltage = 0.366 V
+Touch Raw: Index=456, Middle=490, Thumb=334
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       91412 ms
+[Timestamp] Gesture Interpreted Time:       91418 ms
+[0;32mI (91886) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       91419 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.079 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.168 V
+Ring Voltage = 0.185 V
+Pinky Voltage = 0.056 V
+Touch Raw: Index=457, Middle=282, Thumb=481
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       92942 ms
+[Timestamp] Gesture Interpreted Time:       92947 ms
+[0;32mI (93416) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       92948 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.107 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.165 V
+Ring Voltage = 0.202 V
+Pinky Voltage = 0.108 V
+Touch Raw: Index=457, Middle=275, Thumb=280
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       94472 ms
+[Timestamp] Gesture Interpreted Time:       94477 ms
+[0;32mI (94946) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       94478 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.156 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.189 V
+Ring Voltage = 0.165 V
+Pinky Voltage = 0.085 V
+Touch Raw: Index=457, Middle=197, Thumb=280
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       96002 ms
+[Timestamp] Gesture Interpreted Time:       96007 ms
+[0;32mI (96476) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       96008 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.143 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.152 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.087 V
+Touch Raw: Index=457, Middle=204, Thumb=289
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       97532 ms
+[Timestamp] Gesture Interpreted Time:       97537 ms
+[0;32mI (98006) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:       97538 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.116 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.202 V
+Ring Voltage = 0.154 V
+Pinky Voltage = 0.116 V
+Touch Raw: Index=461, Middle=207, Thumb=288
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):       99062 ms
+[Timestamp] Gesture Interpreted Time:       99067 ms
+[0;32mI (99536) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:       99068 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.143 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.180 V
+Ring Voltage = 0.164 V
+Pinky Voltage = 0.110 V
+Touch Raw: Index=460, Middle=206, Thumb=376
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      100592 ms
+[Timestamp] Gesture Interpreted Time:      100597 ms
+[0;32mI (101066) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      100598 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.154 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.173 V
+Ring Voltage = 0.170 V
+Pinky Voltage = 0.086 V
+Touch Raw: Index=459, Middle=209, Thumb=287
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      102122 ms
+[Timestamp] Gesture Interpreted Time:      102127 ms
+[0;32mI (102596) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      102128 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.159 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.193 V
+Ring Voltage = 0.142 V
+Pinky Voltage = 0.098 V
+Touch Raw: Index=460, Middle=212, Thumb=286
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      103652 ms
+[Timestamp] Gesture Interpreted Time:      103657 ms
+[0;32mI (104126) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      103658 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.139 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.171 V
+Ring Voltage = 0.181 V
+Pinky Voltage = 0.085 V
+Touch Raw: Index=460, Middle=211, Thumb=290
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      105182 ms
+[Timestamp] Gesture Interpreted Time:      105188 ms
+[0;32mI (105656) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      105188 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.185 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.203 V
+Ring Voltage = 0.183 V
+Pinky Voltage = 0.103 V
+Touch Raw: Index=460, Middle=209, Thumb=291
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      106712 ms
+[Timestamp] Gesture Interpreted Time:      106717 ms
+[0;32mI (107186) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      106718 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.116 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.142 V
+Ring Voltage = 0.170 V
+Pinky Voltage = 0.090 V
+Touch Raw: Index=459, Middle=208, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      108242 ms
+[Timestamp] Gesture Interpreted Time:      108247 ms
+[0;32mI (108716) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      108248 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.134 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.193 V
+Ring Voltage = 0.173 V
+Pinky Voltage = 0.091 V
+Touch Raw: Index=459, Middle=206, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      109772 ms
+[Timestamp] Gesture Interpreted Time:      109777 ms
+[0;32mI (110246) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      109778 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.136 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.195 V
+Ring Voltage = 0.234 V
+Pinky Voltage = 0.057 V
+Touch Raw: Index=459, Middle=210, Thumb=298
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      111302 ms
+[Timestamp] Gesture Interpreted Time:      111307 ms
+[0;32mI (111776) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      111308 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.143 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.226 V
+Ring Voltage = 0.168 V
+Pinky Voltage = 0.090 V
+Touch Raw: Index=459, Middle=210, Thumb=304
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      112832 ms
+[Timestamp] Gesture Interpreted Time:      112837 ms
+[0;32mI (113306) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      112838 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.115 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.225 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.127 V
+Touch Raw: Index=459, Middle=209, Thumb=300
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      114362 ms
+[Timestamp] Gesture Interpreted Time:      114367 ms
+[0;32mI (114836) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      114368 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.129 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.225 V
+Ring Voltage = 0.185 V
+Pinky Voltage = 0.103 V
+Touch Raw: Index=459, Middle=210, Thumb=298
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      115892 ms
+[Timestamp] Gesture Interpreted Time:      115897 ms
+[0;32mI (116366) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      115898 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.139 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.185 V
+Ring Voltage = 0.166 V
+Pinky Voltage = 0.107 V
+Touch Raw: Index=459, Middle=210, Thumb=298
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      117422 ms
+[Timestamp] Gesture Interpreted Time:      117427 ms
+[0;32mI (117896) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      117428 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.197 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.181 V
+Ring Voltage = 0.213 V
+Pinky Voltage = 0.086 V
+Touch Raw: Index=459, Middle=208, Thumb=295
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      118952 ms
+[Timestamp] Gesture Interpreted Time:      118957 ms
+[0;32mI (119426) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      118958 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.175 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.168 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.059 V
+Touch Raw: Index=461, Middle=206, Thumb=300
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      120482 ms
+[Timestamp] Gesture Interpreted Time:      120487 ms
+[0;32mI (120956) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      120488 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.175 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.199 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.145 V
+Touch Raw: Index=461, Middle=206, Thumb=298
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      122012 ms
+[Timestamp] Gesture Interpreted Time:      122017 ms
+[0;32mI (122486) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      122018 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.186 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.205 V
+Ring Voltage = 0.212 V
+Pinky Voltage = 0.120 V
+Touch Raw: Index=461, Middle=210, Thumb=305
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      123542 ms
+[Timestamp] Gesture Interpreted Time:      123547 ms
+[0;32mI (124016) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      123548 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.160 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.214 V
+Ring Voltage = 0.215 V
+Pinky Voltage = 0.089 V
+Touch Raw: Index=461, Middle=212, Thumb=305
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      125072 ms
+[Timestamp] Gesture Interpreted Time:      125077 ms
+[0;32mI (125546) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      125078 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.172 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.157 V
+Ring Voltage = 0.237 V
+Pinky Voltage = 0.087 V
+Touch Raw: Index=461, Middle=213, Thumb=311
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      126602 ms
+[Timestamp] Gesture Interpreted Time:      126607 ms
+[0;32mI (127076) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      126608 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.152 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.216 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.099 V
+Touch Raw: Index=460, Middle=208, Thumb=314
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      128132 ms
+[Timestamp] Gesture Interpreted Time:      128137 ms
+[0;32mI (128606) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      128138 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.142 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.238 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.066 V
+Touch Raw: Index=461, Middle=210, Thumb=314
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      129662 ms
+[Timestamp] Gesture Interpreted Time:      129667 ms
+[0;32mI (130136) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      129668 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.134 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.210 V
+Ring Voltage = 0.218 V
+Pinky Voltage = 0.070 V
+Touch Raw: Index=460, Middle=209, Thumb=316
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      131192 ms
+[Timestamp] Gesture Interpreted Time:      131197 ms
+[0;32mI (131666) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      131198 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.143 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.169 V
+Ring Voltage = 0.220 V
+Pinky Voltage = 0.112 V
+Touch Raw: Index=460, Middle=208, Thumb=318
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      132722 ms
+[Timestamp] Gesture Interpreted Time:      132727 ms
+[0;32mI (133196) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      132728 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.198 V
+Ring Voltage = 0.197 V
+Pinky Voltage = 0.129 V
+Touch Raw: Index=460, Middle=209, Thumb=316
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      134252 ms
+[Timestamp] Gesture Interpreted Time:      134257 ms
+[0;32mI (134726) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      134258 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.155 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.192 V
+Pinky Voltage = 0.099 V
+Touch Raw: Index=460, Middle=209, Thumb=315
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      135782 ms
+[Timestamp] Gesture Interpreted Time:      135787 ms
+[0;32mI (136256) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      135788 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.204 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.224 V
+Pinky Voltage = 0.089 V
+Touch Raw: Index=459, Middle=212, Thumb=317
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      137312 ms
+[Timestamp] Gesture Interpreted Time:      137317 ms
+[0;32mI (137786) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      137318 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.142 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.208 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.106 V
+Touch Raw: Index=460, Middle=214, Thumb=320
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      138842 ms
+[Timestamp] Gesture Interpreted Time:      138847 ms
+[0;32mI (139316) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      138848 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.146 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.222 V
+Ring Voltage = 0.221 V
+Pinky Voltage = 0.114 V
+Touch Raw: Index=460, Middle=210, Thumb=334
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      140372 ms
+[Timestamp] Gesture Interpreted Time:      140377 ms
+[0;32mI (140846) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      140378 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.134 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.155 V
+Ring Voltage = 0.235 V
+Pinky Voltage = 0.114 V
+Touch Raw: Index=449, Middle=196, Thumb=294
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      141902 ms
+[Timestamp] Gesture Interpreted Time:      141907 ms
+[0;32mI (142376) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      141908 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.163 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.245 V
+Ring Voltage = 0.178 V
+Pinky Voltage = 0.141 V
+Touch Raw: Index=448, Middle=202, Thumb=309
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      143432 ms
+[Timestamp] Gesture Interpreted Time:      143438 ms
+[0;32mI (143906) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      143438 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.185 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.237 V
+Ring Voltage = 0.193 V
+Pinky Voltage = 0.169 V
+Touch Raw: Index=448, Middle=203, Thumb=308
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      144962 ms
+[Timestamp] Gesture Interpreted Time:      144967 ms
+[0;32mI (145436) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      144968 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.233 V
+Ring Voltage = 0.236 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=447, Middle=202, Thumb=310
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      146492 ms
+[Timestamp] Gesture Interpreted Time:      146497 ms
+[0;32mI (146966) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      146498 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.113 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.218 V
+Ring Voltage = 0.228 V
+Pinky Voltage = 0.125 V
+Touch Raw: Index=447, Middle=202, Thumb=306
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      148022 ms
+[Timestamp] Gesture Interpreted Time:      148028 ms
+[0;32mI (148496) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      148029 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.096 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.228 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.157 V
+Touch Raw: Index=448, Middle=203, Thumb=305
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      149552 ms
+[Timestamp] Gesture Interpreted Time:      149557 ms
+[0;32mI (150026) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      149558 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.127 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.246 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.160 V
+Touch Raw: Index=447, Middle=203, Thumb=308
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      151082 ms
+[Timestamp] Gesture Interpreted Time:      151087 ms
+[0;32mI (151556) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      151088 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.125 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.209 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.128 V
+Touch Raw: Index=447, Middle=203, Thumb=311
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      152612 ms
+[Timestamp] Gesture Interpreted Time:      152618 ms
+[0;32mI (153086) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      152619 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.139 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.223 V
+Ring Voltage = 0.218 V
+Pinky Voltage = 0.098 V
+Touch Raw: Index=446, Middle=202, Thumb=308
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      154142 ms
+[Timestamp] Gesture Interpreted Time:      154148 ms
+[0;32mI (154616) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      154149 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.143 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.218 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=447, Middle=203, Thumb=309
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      155672 ms
+[Timestamp] Gesture Interpreted Time:      155677 ms
+[0;32mI (156146) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      155678 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.255 V
+Ring Voltage = 0.232 V
+Pinky Voltage = 0.131 V
+Touch Raw: Index=447, Middle=203, Thumb=308
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      157202 ms
+[Timestamp] Gesture Interpreted Time:      157207 ms
+[0;32mI (157676) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      157208 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.150 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.185 V
+Ring Voltage = 0.181 V
+Pinky Voltage = 0.185 V
+Touch Raw: Index=457, Middle=268, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      158732 ms
+[Timestamp] Gesture Interpreted Time:      158737 ms
+[0;32mI (159206) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      158738 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.320 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.550 V
+Ring Voltage = 0.502 V
+Pinky Voltage = 0.466 V
+Touch Raw: Index=457, Middle=390, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      160262 ms
+[Timestamp] Gesture Interpreted Time:      160268 ms
+[0;32mI (160736) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      160269 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.323 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.560 V
+Ring Voltage = 0.543 V
+Pinky Voltage = 0.499 V
+Touch Raw: Index=457, Middle=391, Thumb=392
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      161792 ms
+[Timestamp] Gesture Interpreted Time:      161797 ms
+[0;32mI (162266) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      161798 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.529 V
+Ring Voltage = 0.503 V
+Pinky Voltage = 0.399 V
+Touch Raw: Index=456, Middle=392, Thumb=391
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      163322 ms
+[Timestamp] Gesture Interpreted Time:      163328 ms
+[0;32mI (163796) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      163329 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.255 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.526 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.430 V
+Touch Raw: Index=457, Middle=394, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      164852 ms
+[Timestamp] Gesture Interpreted Time:      164857 ms
+[0;32mI (165326) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      164858 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.318 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.528 V
+Ring Voltage = 0.451 V
+Pinky Voltage = 0.450 V
+Touch Raw: Index=456, Middle=393, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      166382 ms
+[Timestamp] Gesture Interpreted Time:      166387 ms
+[0;32mI (166856) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      166388 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.269 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.500 V
+Ring Voltage = 0.467 V
+Pinky Voltage = 0.411 V
+Touch Raw: Index=455, Middle=388, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      167912 ms
+[Timestamp] Gesture Interpreted Time:      167917 ms
+[0;32mI (168386) BLE: Sent gesture: E[0m
+[Timestamp] BLE Transmission Sent Time:      167918 ms
+Predicted gesture: E
+Predicted gesture: 4
+
+Flex Sensor Readings:
+Thumb Voltage = 0.309 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.558 V
+Ring Voltage = 0.500 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=456, Middle=393, Thumb=388
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      169442 ms
+[Timestamp] Gesture Interpreted Time:      169447 ms
+[0;32mI (169916) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      169448 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.524 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.400 V
+Touch Raw: Index=455, Middle=391, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      170972 ms
+[Timestamp] Gesture Interpreted Time:      170977 ms
+[0;32mI (171446) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      170978 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.301 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.532 V
+Ring Voltage = 0.495 V
+Pinky Voltage = 0.449 V
+Touch Raw: Index=452, Middle=391, Thumb=384
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      172502 ms
+[Timestamp] Gesture Interpreted Time:      172507 ms
+[0;32mI (172976) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      172508 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.369 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.503 V
+Ring Voltage = 0.442 V
+Pinky Voltage = 0.389 V
+Touch Raw: Index=450, Middle=392, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      174032 ms
+[Timestamp] Gesture Interpreted Time:      174038 ms
+[0;32mI (174506) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      174039 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.364 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.539 V
+Ring Voltage = 0.518 V
+Pinky Voltage = 0.472 V
+Touch Raw: Index=447, Middle=481, Thumb=391
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      175562 ms
+[Timestamp] Gesture Interpreted Time:      175567 ms
+[0;32mI (176036) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      175568 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.362 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.577 V
+Ring Voltage = 0.504 V
+Pinky Voltage = 0.395 V
+Touch Raw: Index=447, Middle=387, Thumb=391
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      177092 ms
+[Timestamp] Gesture Interpreted Time:      177097 ms
+[0;32mI (177566) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      177098 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.312 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.554 V
+Ring Voltage = 0.473 V
+Pinky Voltage = 0.396 V
+Touch Raw: Index=447, Middle=395, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      178622 ms
+[Timestamp] Gesture Interpreted Time:      178627 ms
+[0;32mI (179096) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      178628 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.346 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.554 V
+Ring Voltage = 0.488 V
+Pinky Voltage = 0.411 V
+Touch Raw: Index=448, Middle=394, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      180152 ms
+[Timestamp] Gesture Interpreted Time:      180157 ms
+[0;32mI (180626) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      180158 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.338 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.548 V
+Ring Voltage = 0.452 V
+Pinky Voltage = 0.409 V
+Touch Raw: Index=448, Middle=514, Thumb=392
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      181682 ms
+[Timestamp] Gesture Interpreted Time:      181687 ms
+[0;32mI (182156) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      181688 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.363 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.598 V
+Ring Voltage = 0.494 V
+Pinky Voltage = 0.402 V
+Touch Raw: Index=447, Middle=513, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      183212 ms
+[Timestamp] Gesture Interpreted Time:      183218 ms
+[0;32mI (183686) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      183218 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.341 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.504 V
+Ring Voltage = 0.491 V
+Pinky Voltage = 0.412 V
+Touch Raw: Index=447, Middle=512, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      184742 ms
+[Timestamp] Gesture Interpreted Time:      184747 ms
+[0;32mI (185216) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      184748 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.334 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.518 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.388 V
+Touch Raw: Index=447, Middle=513, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      186272 ms
+[Timestamp] Gesture Interpreted Time:      186277 ms
+[0;32mI (186746) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      186278 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.384 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.580 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.465 V
+Touch Raw: Index=446, Middle=513, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      187802 ms
+[Timestamp] Gesture Interpreted Time:      187808 ms
+[0;32mI (188276) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      187808 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.370 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.539 V
+Ring Voltage = 0.517 V
+Pinky Voltage = 0.392 V
+Touch Raw: Index=447, Middle=513, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      189332 ms
+[Timestamp] Gesture Interpreted Time:      189337 ms
+[0;32mI (189806) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      189338 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.540 V
+Ring Voltage = 0.483 V
+Pinky Voltage = 0.412 V
+Touch Raw: Index=446, Middle=513, Thumb=392
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      190862 ms
+[Timestamp] Gesture Interpreted Time:      190867 ms
+[0;32mI (191336) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      190868 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.373 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.601 V
+Ring Voltage = 0.463 V
+Pinky Voltage = 0.428 V
+Touch Raw: Index=447, Middle=513, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      192392 ms
+[Timestamp] Gesture Interpreted Time:      192397 ms
+[0;32mI (192866) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      192398 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.374 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.573 V
+Ring Voltage = 0.508 V
+Pinky Voltage = 0.444 V
+Touch Raw: Index=447, Middle=514, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      193922 ms
+[Timestamp] Gesture Interpreted Time:      193928 ms
+[0;32mI (194396) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      193928 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.404 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.599 V
+Ring Voltage = 0.451 V
+Pinky Voltage = 0.405 V
+Touch Raw: Index=447, Middle=513, Thumb=388
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      195452 ms
+[Timestamp] Gesture Interpreted Time:      195457 ms
+[0;32mI (195926) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      195458 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.361 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.568 V
+Ring Voltage = 0.496 V
+Pinky Voltage = 0.434 V
+Touch Raw: Index=447, Middle=512, Thumb=388
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      196982 ms
+[Timestamp] Gesture Interpreted Time:      196987 ms
+[0;32mI (197456) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      196988 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.344 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.575 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.430 V
+Touch Raw: Index=446, Middle=512, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      198512 ms
+[Timestamp] Gesture Interpreted Time:      198517 ms
+[0;32mI (198986) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      198518 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.402 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.528 V
+Ring Voltage = 0.477 V
+Pinky Voltage = 0.421 V
+Touch Raw: Index=446, Middle=512, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      200042 ms
+[Timestamp] Gesture Interpreted Time:      200047 ms
+[0;32mI (200516) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      200048 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.401 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.567 V
+Ring Voltage = 0.467 V
+Pinky Voltage = 0.392 V
+Touch Raw: Index=446, Middle=512, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      201572 ms
+[Timestamp] Gesture Interpreted Time:      201577 ms
+[0;32mI (202046) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      201578 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.538 V
+Ring Voltage = 0.534 V
+Pinky Voltage = 0.455 V
+Touch Raw: Index=446, Middle=512, Thumb=388
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      203102 ms
+[Timestamp] Gesture Interpreted Time:      203107 ms
+[0;32mI (203576) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      203108 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.566 V
+Ring Voltage = 0.424 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=447, Middle=513, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      204632 ms
+[Timestamp] Gesture Interpreted Time:      204638 ms
+[0;32mI (205106) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      204638 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.546 V
+Ring Voltage = 0.452 V
+Pinky Voltage = 0.408 V
+Touch Raw: Index=446, Middle=514, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      206162 ms
+[Timestamp] Gesture Interpreted Time:      206168 ms
+[0;32mI (206636) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      206169 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.356 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.556 V
+Ring Voltage = 0.485 V
+Pinky Voltage = 0.394 V
+Touch Raw: Index=447, Middle=512, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      207692 ms
+[Timestamp] Gesture Interpreted Time:      207697 ms
+[0;32mI (208166) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      207698 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.322 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.477 V
+Ring Voltage = 0.521 V
+Pinky Voltage = 0.323 V
+Touch Raw: Index=461, Middle=503, Thumb=394
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      209222 ms
+[Timestamp] Gesture Interpreted Time:      209228 ms
+[0;32mI (209696) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      209229 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.464 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.160 V
+Ring Voltage = 0.156 V
+Pinky Voltage = 0.349 V
+Touch Raw: Index=469, Middle=187, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      210752 ms
+[Timestamp] Gesture Interpreted Time:      210757 ms
+[0;32mI (211226) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      210758 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.100 V
+Index Voltage = 0.028 V
+Middle Voltage = 0.142 V
+Ring Voltage = 0.182 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=461, Middle=169, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      212282 ms
+[Timestamp] Gesture Interpreted Time:      212287 ms
+[0;32mI (212756) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      212288 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.103 V
+Index Voltage = 0.103 V
+Middle Voltage = 0.133 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.361 V
+Touch Raw: Index=463, Middle=167, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      213812 ms
+[Timestamp] Gesture Interpreted Time:      213817 ms
+[0;32mI (214286) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      213818 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.116 V
+Index Voltage = 0.054 V
+Middle Voltage = 0.176 V
+Ring Voltage = 0.173 V
+Pinky Voltage = 0.425 V
+Touch Raw: Index=461, Middle=169, Thumb=211
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      215342 ms
+[Timestamp] Gesture Interpreted Time:      215347 ms
+[0;32mI (215816) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      215348 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.124 V
+Index Voltage = 0.119 V
+Middle Voltage = 0.156 V
+Ring Voltage = 0.233 V
+Pinky Voltage = 0.359 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      216872 ms
+[Timestamp] Gesture Interpreted Time:      216877 ms
+[0;32mI (217346) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      216878 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.079 V
+Index Voltage = 0.090 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.171 V
+Pinky Voltage = 0.353 V
+Touch Raw: Index=465, Middle=170, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      218402 ms
+[Timestamp] Gesture Interpreted Time:      218407 ms
+[0;32mI (218876) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      218408 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.103 V
+Index Voltage = 0.048 V
+Middle Voltage = 0.193 V
+Ring Voltage = 0.185 V
+Pinky Voltage = 0.401 V
+Touch Raw: Index=465, Middle=171, Thumb=340
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      219932 ms
+[Timestamp] Gesture Interpreted Time:      219937 ms
+[0;32mI (220406) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      219938 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.134 V
+Index Voltage = 0.098 V
+Middle Voltage = 0.230 V
+Ring Voltage = 0.159 V
+Pinky Voltage = 0.399 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      221462 ms
+[Timestamp] Gesture Interpreted Time:      221467 ms
+[0;32mI (221936) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      221468 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.127 V
+Index Voltage = 0.079 V
+Middle Voltage = 0.186 V
+Ring Voltage = 0.205 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=465, Middle=171, Thumb=382
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      222992 ms
+[Timestamp] Gesture Interpreted Time:      222997 ms
+[0;32mI (223466) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      222998 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.159 V
+Index Voltage = 0.142 V
+Middle Voltage = 0.202 V
+Ring Voltage = 0.258 V
+Pinky Voltage = 0.381 V
+Touch Raw: Index=465, Middle=171, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      224522 ms
+[Timestamp] Gesture Interpreted Time:      224527 ms
+[0;32mI (224996) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      224528 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.139 V
+Index Voltage = 0.114 V
+Middle Voltage = 0.204 V
+Ring Voltage = 0.238 V
+Pinky Voltage = 0.410 V
+Touch Raw: Index=465, Middle=173, Thumb=394
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      226052 ms
+[Timestamp] Gesture Interpreted Time:      226057 ms
+[0;32mI (226526) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      226058 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.138 V
+Index Voltage = 0.170 V
+Middle Voltage = 0.214 V
+Ring Voltage = 0.272 V
+Pinky Voltage = 0.399 V
+Touch Raw: Index=466, Middle=170, Thumb=394
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      227582 ms
+[Timestamp] Gesture Interpreted Time:      227587 ms
+[0;32mI (228056) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      227588 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.139 V
+Index Voltage = 0.151 V
+Middle Voltage = 0.236 V
+Ring Voltage = 0.220 V
+Pinky Voltage = 0.412 V
+Touch Raw: Index=462, Middle=167, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      229112 ms
+[Timestamp] Gesture Interpreted Time:      229118 ms
+[0;32mI (229586) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      229118 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.152 V
+Index Voltage = 0.100 V
+Middle Voltage = 0.179 V
+Ring Voltage = 0.230 V
+Pinky Voltage = 0.360 V
+Touch Raw: Index=462, Middle=166, Thumb=394
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      230642 ms
+[Timestamp] Gesture Interpreted Time:      230647 ms
+[0;32mI (231116) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      230648 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.131 V
+Index Voltage = 0.065 V
+Middle Voltage = 0.236 V
+Ring Voltage = 0.195 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=462, Middle=167, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      232172 ms
+[Timestamp] Gesture Interpreted Time:      232177 ms
+[0;32mI (232646) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      232178 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.175 V
+Index Voltage = 0.138 V
+Middle Voltage = 0.220 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.404 V
+Touch Raw: Index=461, Middle=166, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      233702 ms
+[Timestamp] Gesture Interpreted Time:      233707 ms
+[0;32mI (234176) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      233708 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.137 V
+Index Voltage = 0.145 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.218 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=462, Middle=166, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      235232 ms
+[Timestamp] Gesture Interpreted Time:      235237 ms
+[0;32mI (235706) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      235238 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.128 V
+Index Voltage = 0.142 V
+Middle Voltage = 0.220 V
+Ring Voltage = 0.186 V
+Pinky Voltage = 0.425 V
+Touch Raw: Index=461, Middle=166, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      236762 ms
+[Timestamp] Gesture Interpreted Time:      236768 ms
+[0;32mI (237236) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      236768 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.170 V
+Index Voltage = 0.144 V
+Middle Voltage = 0.222 V
+Ring Voltage = 0.242 V
+Pinky Voltage = 0.388 V
+Touch Raw: Index=463, Middle=167, Thumb=392
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      238292 ms
+[Timestamp] Gesture Interpreted Time:      238298 ms
+[0;32mI (238766) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      238299 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.152 V
+Index Voltage = 0.201 V
+Middle Voltage = 0.189 V
+Ring Voltage = 0.226 V
+Pinky Voltage = 0.395 V
+Touch Raw: Index=462, Middle=166, Thumb=391
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      239822 ms
+[Timestamp] Gesture Interpreted Time:      239827 ms
+[0;32mI (240296) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      239828 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.149 V
+Index Voltage = 0.143 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.202 V
+Pinky Voltage = 0.408 V
+Touch Raw: Index=462, Middle=168, Thumb=392
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      241352 ms
+[Timestamp] Gesture Interpreted Time:      241357 ms
+[0;32mI (241826) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      241358 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.076 V
+Middle Voltage = 0.224 V
+Ring Voltage = 0.206 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=462, Middle=167, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      242882 ms
+[Timestamp] Gesture Interpreted Time:      242887 ms
+[0;32mI (243356) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      242888 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.125 V
+Middle Voltage = 0.247 V
+Ring Voltage = 0.244 V
+Pinky Voltage = 0.391 V
+Touch Raw: Index=463, Middle=169, Thumb=391
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      244412 ms
+[Timestamp] Gesture Interpreted Time:      244417 ms
+[0;32mI (244886) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      244418 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.173 V
+Index Voltage = 0.142 V
+Middle Voltage = 0.225 V
+Ring Voltage = 0.253 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=464, Middle=165, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      245942 ms
+[Timestamp] Gesture Interpreted Time:      245947 ms
+[0;32mI (246416) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      245948 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.181 V
+Index Voltage = 0.164 V
+Middle Voltage = 0.217 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.372 V
+Touch Raw: Index=463, Middle=166, Thumb=390
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      247472 ms
+[Timestamp] Gesture Interpreted Time:      247477 ms
+[0;32mI (247946) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      247478 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.193 V
+Index Voltage = 0.142 V
+Middle Voltage = 0.243 V
+Ring Voltage = 0.260 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=463, Middle=168, Thumb=388
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      249002 ms
+[Timestamp] Gesture Interpreted Time:      249007 ms
+[0;32mI (249476) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      249008 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.181 V
+Index Voltage = 0.153 V
+Middle Voltage = 0.235 V
+Ring Voltage = 0.222 V
+Pinky Voltage = 0.401 V
+Touch Raw: Index=463, Middle=166, Thumb=385
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      250532 ms
+[Timestamp] Gesture Interpreted Time:      250538 ms
+[0;32mI (251006) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      250538 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.160 V
+Index Voltage = 0.098 V
+Middle Voltage = 0.199 V
+Ring Voltage = 0.186 V
+Pinky Voltage = 0.375 V
+Touch Raw: Index=463, Middle=166, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      252062 ms
+[Timestamp] Gesture Interpreted Time:      252067 ms
+[0;32mI (252536) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      252068 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.160 V
+Index Voltage = 0.143 V
+Middle Voltage = 0.199 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=463, Middle=168, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      253592 ms
+[Timestamp] Gesture Interpreted Time:      253597 ms
+[0;32mI (254066) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      253598 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.201 V
+Index Voltage = 0.164 V
+Middle Voltage = 0.232 V
+Ring Voltage = 0.233 V
+Pinky Voltage = 0.424 V
+Touch Raw: Index=463, Middle=166, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      255122 ms
+[Timestamp] Gesture Interpreted Time:      255127 ms
+[0;32mI (255596) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      255128 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.154 V
+Index Voltage = 0.216 V
+Middle Voltage = 0.234 V
+Ring Voltage = 0.235 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=463, Middle=167, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      256652 ms
+[Timestamp] Gesture Interpreted Time:      256657 ms
+[0;32mI (257126) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      256658 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.163 V
+Index Voltage = 0.104 V
+Middle Voltage = 0.224 V
+Ring Voltage = 0.230 V
+Pinky Voltage = 0.362 V
+Touch Raw: Index=463, Middle=165, Thumb=385
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      258182 ms
+[Timestamp] Gesture Interpreted Time:      258187 ms
+[0;32mI (258656) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      258188 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.133 V
+Index Voltage = 0.104 V
+Middle Voltage = 0.237 V
+Ring Voltage = 0.220 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=464, Middle=170, Thumb=385
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      259712 ms
+[Timestamp] Gesture Interpreted Time:      259717 ms
+[0;32mI (260186) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      259718 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.189 V
+Index Voltage = 0.161 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.215 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=463, Middle=171, Thumb=385
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      261242 ms
+[Timestamp] Gesture Interpreted Time:      261247 ms
+[0;32mI (261716) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      261248 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.133 V
+Middle Voltage = 0.205 V
+Ring Voltage = 0.220 V
+Pinky Voltage = 0.411 V
+Touch Raw: Index=465, Middle=171, Thumb=387
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      262772 ms
+[Timestamp] Gesture Interpreted Time:      262777 ms
+[0;32mI (263246) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      262778 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.153 V
+Index Voltage = 0.138 V
+Middle Voltage = 0.262 V
+Ring Voltage = 0.202 V
+Pinky Voltage = 0.398 V
+Touch Raw: Index=465, Middle=170, Thumb=389
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      264303 ms
+[Timestamp] Gesture Interpreted Time:      264308 ms
+[0;32mI (264776) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      264308 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.155 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.233 V
+Pinky Voltage = 0.434 V
+Touch Raw: Index=465, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      265832 ms
+[Timestamp] Gesture Interpreted Time:      265837 ms
+[0;32mI (266306) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      265838 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.148 V
+Index Voltage = 0.170 V
+Middle Voltage = 0.230 V
+Ring Voltage = 0.232 V
+Pinky Voltage = 0.367 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      267362 ms
+[Timestamp] Gesture Interpreted Time:      267367 ms
+[0;32mI (267836) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      267368 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.182 V
+Index Voltage = 0.116 V
+Middle Voltage = 0.266 V
+Ring Voltage = 0.212 V
+Pinky Voltage = 0.412 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      268892 ms
+[Timestamp] Gesture Interpreted Time:      268897 ms
+[0;32mI (269366) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      268898 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.149 V
+Middle Voltage = 0.246 V
+Ring Voltage = 0.205 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=465, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      270422 ms
+[Timestamp] Gesture Interpreted Time:      270427 ms
+[0;32mI (270896) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      270428 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.131 V
+Index Voltage = 0.118 V
+Middle Voltage = 0.230 V
+Ring Voltage = 0.232 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=465, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      271952 ms
+[Timestamp] Gesture Interpreted Time:      271957 ms
+[0;32mI (272426) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      271958 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.171 V
+Middle Voltage = 0.201 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.360 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      273482 ms
+[Timestamp] Gesture Interpreted Time:      273487 ms
+[0;32mI (273956) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      273488 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.178 V
+Index Voltage = 0.144 V
+Middle Voltage = 0.259 V
+Ring Voltage = 0.227 V
+Pinky Voltage = 0.400 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      275012 ms
+[Timestamp] Gesture Interpreted Time:      275017 ms
+[0;32mI (275486) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      275018 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.150 V
+Index Voltage = 0.125 V
+Middle Voltage = 0.194 V
+Ring Voltage = 0.191 V
+Pinky Voltage = 0.385 V
+Touch Raw: Index=465, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      276542 ms
+[Timestamp] Gesture Interpreted Time:      276548 ms
+[0;32mI (277016) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      276549 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.161 V
+Index Voltage = 0.197 V
+Middle Voltage = 0.194 V
+Ring Voltage = 0.236 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      278072 ms
+[Timestamp] Gesture Interpreted Time:      278077 ms
+[0;32mI (278546) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      278078 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.182 V
+Index Voltage = 0.158 V
+Middle Voltage = 0.254 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=465, Middle=170, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      279602 ms
+[Timestamp] Gesture Interpreted Time:      279607 ms
+[0;32mI (280076) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      279608 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.153 V
+Index Voltage = 0.159 V
+Middle Voltage = 0.218 V
+Ring Voltage = 0.241 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=465, Middle=173, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      281132 ms
+[Timestamp] Gesture Interpreted Time:      281137 ms
+[0;32mI (281606) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      281138 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.159 V
+Index Voltage = 0.146 V
+Middle Voltage = 0.218 V
+Ring Voltage = 0.236 V
+Pinky Voltage = 0.392 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      282662 ms
+[Timestamp] Gesture Interpreted Time:      282667 ms
+[0;32mI (283136) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      282668 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.155 V
+Index Voltage = 0.154 V
+Middle Voltage = 0.247 V
+Ring Voltage = 0.239 V
+Pinky Voltage = 0.401 V
+Touch Raw: Index=465, Middle=170, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      284192 ms
+[Timestamp] Gesture Interpreted Time:      284198 ms
+[0;32mI (284666) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      284198 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.168 V
+Middle Voltage = 0.227 V
+Ring Voltage = 0.239 V
+Pinky Voltage = 0.376 V
+Touch Raw: Index=465, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      285722 ms
+[Timestamp] Gesture Interpreted Time:      285727 ms
+[0;32mI (286196) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      285728 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.172 V
+Index Voltage = 0.172 V
+Middle Voltage = 0.194 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.375 V
+Touch Raw: Index=465, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      287252 ms
+[Timestamp] Gesture Interpreted Time:      287257 ms
+[0;32mI (287726) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      287258 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.171 V
+Index Voltage = 0.146 V
+Middle Voltage = 0.249 V
+Ring Voltage = 0.178 V
+Pinky Voltage = 0.404 V
+Touch Raw: Index=466, Middle=172, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      288782 ms
+[Timestamp] Gesture Interpreted Time:      288787 ms
+[0;32mI (289256) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      288788 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.168 V
+Index Voltage = 0.137 V
+Middle Voltage = 0.258 V
+Ring Voltage = 0.201 V
+Pinky Voltage = 0.374 V
+Touch Raw: Index=464, Middle=171, Thumb=0
+Touch Interpreted: I=0 M=0 T=1
+[Timestamp] Gesture Start Time (Reading sensors):      290312 ms
+[Timestamp] Gesture Interpreted Time:      290317 ms
+[0;32mI (290786) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      290318 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.463 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.209 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.379 V
+Touch Raw: Index=468, Middle=249, Thumb=509
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      291842 ms
+[Timestamp] Gesture Interpreted Time:      291847 ms
+[0;32mI (292316) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      291848 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.460 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.262 V
+Ring Voltage = 0.296 V
+Pinky Voltage = 0.350 V
+Touch Raw: Index=470, Middle=199, Thumb=399
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      293372 ms
+[Timestamp] Gesture Interpreted Time:      293378 ms
+[0;32mI (293846) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      293379 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.388 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.297 V
+Ring Voltage = 0.234 V
+Pinky Voltage = 0.342 V
+Touch Raw: Index=472, Middle=196, Thumb=401
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      294902 ms
+[Timestamp] Gesture Interpreted Time:      294907 ms
+[0;32mI (295376) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      294908 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.402 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.215 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.309 V
+Touch Raw: Index=472, Middle=198, Thumb=401
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      296432 ms
+[Timestamp] Gesture Interpreted Time:      296437 ms
+[0;32mI (296906) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      296438 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.394 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.258 V
+Pinky Voltage = 0.272 V
+Touch Raw: Index=471, Middle=193, Thumb=403
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      297962 ms
+[Timestamp] Gesture Interpreted Time:      297967 ms
+[0;32mI (298436) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      297968 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.392 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.267 V
+Ring Voltage = 0.233 V
+Pinky Voltage = 0.329 V
+Touch Raw: Index=472, Middle=194, Thumb=409
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      299492 ms
+[Timestamp] Gesture Interpreted Time:      299497 ms
+[0;32mI (299966) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      299498 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.411 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.284 V
+Ring Voltage = 0.276 V
+Pinky Voltage = 0.352 V
+Touch Raw: Index=473, Middle=198, Thumb=405
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      301022 ms
+[Timestamp] Gesture Interpreted Time:      301027 ms
+[0;32mI (301496) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      301028 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.411 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.257 V
+Ring Voltage = 0.280 V
+Pinky Voltage = 0.321 V
+Touch Raw: Index=474, Middle=200, Thumb=405
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      302552 ms
+[Timestamp] Gesture Interpreted Time:      302557 ms
+[0;32mI (303026) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      302558 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.392 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.271 V
+Ring Voltage = 0.282 V
+Pinky Voltage = 0.321 V
+Touch Raw: Index=474, Middle=199, Thumb=410
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      304082 ms
+[Timestamp] Gesture Interpreted Time:      304087 ms
+[0;32mI (304556) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      304088 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.389 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.260 V
+Ring Voltage = 0.288 V
+Pinky Voltage = 0.403 V
+Touch Raw: Index=474, Middle=195, Thumb=407
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      305612 ms
+[Timestamp] Gesture Interpreted Time:      305617 ms
+[0;32mI (306086) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      305618 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.428 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.247 V
+Ring Voltage = 0.322 V
+Pinky Voltage = 0.363 V
+Touch Raw: Index=475, Middle=198, Thumb=407
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      307142 ms
+[Timestamp] Gesture Interpreted Time:      307147 ms
+[0;32mI (307616) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      307148 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.386 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.264 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.334 V
+Touch Raw: Index=464, Middle=164, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      308672 ms
+[Timestamp] Gesture Interpreted Time:      308678 ms
+[0;32mI (309146) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      308678 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.387 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.249 V
+Ring Voltage = 0.255 V
+Pinky Voltage = 0.348 V
+Touch Raw: Index=467, Middle=196, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      310202 ms
+[Timestamp] Gesture Interpreted Time:      310207 ms
+[0;32mI (310676) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      310208 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.394 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.271 V
+Ring Voltage = 0.223 V
+Pinky Voltage = 0.338 V
+Touch Raw: Index=473, Middle=198, Thumb=404
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      311732 ms
+[Timestamp] Gesture Interpreted Time:      311737 ms
+[0;32mI (312206) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      311738 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.374 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.310 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.300 V
+Touch Raw: Index=467, Middle=198, Thumb=404
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      313262 ms
+[Timestamp] Gesture Interpreted Time:      313268 ms
+[0;32mI (313736) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      313269 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.356 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.338 V
+Ring Voltage = 0.365 V
+Pinky Voltage = 0.297 V
+Touch Raw: Index=463, Middle=283, Thumb=397
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      314792 ms
+[Timestamp] Gesture Interpreted Time:      314797 ms
+[0;32mI (315266) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      314798 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.405 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.222 V
+Ring Voltage = 0.194 V
+Pinky Voltage = 0.354 V
+Touch Raw: Index=462, Middle=144, Thumb=394
+Touch Interpreted: I=0 M=1 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      316322 ms
+[Timestamp] Gesture Interpreted Time:      316327 ms
+[0;32mI (316796) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      316328 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.410 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.241 V
+Ring Voltage = 0.239 V
+Pinky Voltage = 0.336 V
+Touch Raw: Index=458, Middle=161, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      317852 ms
+[Timestamp] Gesture Interpreted Time:      317858 ms
+[0;32mI (318326) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      317858 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.430 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.257 V
+Ring Voltage = 0.278 V
+Pinky Voltage = 0.380 V
+Touch Raw: Index=460, Middle=190, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      319382 ms
+[Timestamp] Gesture Interpreted Time:      319387 ms
+[0;32mI (319856) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      319388 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.461 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.293 V
+Ring Voltage = 0.292 V
+Pinky Voltage = 0.341 V
+Touch Raw: Index=463, Middle=198, Thumb=400
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      320912 ms
+[Timestamp] Gesture Interpreted Time:      320917 ms
+[0;32mI (321386) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      320918 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.433 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.273 V
+Ring Voltage = 0.284 V
+Pinky Voltage = 0.372 V
+Touch Raw: Index=464, Middle=200, Thumb=398
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      322442 ms
+[Timestamp] Gesture Interpreted Time:      322447 ms
+[0;32mI (322916) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      322448 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.401 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.291 V
+Ring Voltage = 0.308 V
+Pinky Voltage = 0.348 V
+Touch Raw: Index=463, Middle=201, Thumb=401
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      323972 ms
+[Timestamp] Gesture Interpreted Time:      323978 ms
+[0;32mI (324446) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      323979 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.399 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.302 V
+Ring Voltage = 0.314 V
+Pinky Voltage = 0.324 V
+Touch Raw: Index=463, Middle=199, Thumb=397
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      325502 ms
+[Timestamp] Gesture Interpreted Time:      325507 ms
+[0;32mI (325976) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      325508 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.394 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.296 V
+Ring Voltage = 0.307 V
+Pinky Voltage = 0.309 V
+Touch Raw: Index=464, Middle=198, Thumb=399
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      327032 ms
+[Timestamp] Gesture Interpreted Time:      327037 ms
+[0;32mI (327506) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      327038 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.410 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.304 V
+Ring Voltage = 0.301 V
+Pinky Voltage = 0.344 V
+Touch Raw: Index=464, Middle=196, Thumb=396
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      328563 ms
+[Timestamp] Gesture Interpreted Time:      328568 ms
+[0;32mI (329036) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      328569 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.423 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.293 V
+Ring Voltage = 0.283 V
+Pinky Voltage = 0.378 V
+Touch Raw: Index=465, Middle=195, Thumb=401
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      330092 ms
+[Timestamp] Gesture Interpreted Time:      330097 ms
+[0;32mI (330566) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      330098 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.444 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.309 V
+Ring Voltage = 0.288 V
+Pinky Voltage = 0.361 V
+Touch Raw: Index=465, Middle=195, Thumb=401
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      331622 ms
+[Timestamp] Gesture Interpreted Time:      331627 ms
+[0;32mI (332096) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      331628 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.429 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.256 V
+Ring Voltage = 0.328 V
+Pinky Voltage = 0.400 V
+Touch Raw: Index=467, Middle=202, Thumb=422
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      333152 ms
+[Timestamp] Gesture Interpreted Time:      333157 ms
+[0;32mI (333626) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      333158 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.389 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.280 V
+Ring Voltage = 0.313 V
+Pinky Voltage = 0.349 V
+Touch Raw: Index=468, Middle=202, Thumb=424
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      334682 ms
+[Timestamp] Gesture Interpreted Time:      334687 ms
+[0;32mI (335156) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      334688 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.389 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.258 V
+Ring Voltage = 0.303 V
+Pinky Voltage = 0.345 V
+Touch Raw: Index=468, Middle=202, Thumb=425
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      336212 ms
+[Timestamp] Gesture Interpreted Time:      336217 ms
+[0;32mI (336686) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      336218 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.425 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.247 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.331 V
+Touch Raw: Index=469, Middle=203, Thumb=429
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      337742 ms
+[Timestamp] Gesture Interpreted Time:      337747 ms
+[0;32mI (338216) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      337748 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.431 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.245 V
+Ring Voltage = 0.280 V
+Pinky Voltage = 0.327 V
+Touch Raw: Index=468, Middle=203, Thumb=422
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      339272 ms
+[Timestamp] Gesture Interpreted Time:      339277 ms
+[0;32mI (339746) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      339278 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.388 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.272 V
+Ring Voltage = 0.245 V
+Pinky Voltage = 0.324 V
+Touch Raw: Index=469, Middle=203, Thumb=423
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      340802 ms
+[Timestamp] Gesture Interpreted Time:      340807 ms
+[0;32mI (341276) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      340808 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.333 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.366 V
+Ring Voltage = 0.279 V
+Pinky Voltage = 0.160 V
+Touch Raw: Index=460, Middle=333, Thumb=422
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      342332 ms
+[Timestamp] Gesture Interpreted Time:      342337 ms
+[0;32mI (342806) BLE: Sent gesture: I[0m
+[Timestamp] BLE Transmission Sent Time:      342338 ms
+Predicted gesture: I
+Predicted gesture: 8
+
+Flex Sensor Readings:
+Thumb Voltage = 0.355 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.359 V
+Ring Voltage = 0.285 V
+Pinky Voltage = 0.116 V
+Touch Raw: Index=459, Middle=311, Thumb=488
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      343862 ms
+[Timestamp] Gesture Interpreted Time:      343867 ms
+[0;32mI (344336) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      343868 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.374 V
+Ring Voltage = 0.312 V
+Pinky Voltage = 0.206 V
+Touch Raw: Index=461, Middle=157, Thumb=159
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      345392 ms
+[Timestamp] Gesture Interpreted Time:      345398 ms
+[0;32mI (345866) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      345399 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.390 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.320 V
+Ring Voltage = 0.319 V
+Pinky Voltage = 0.136 V
+Touch Raw: Index=463, Middle=154, Thumb=155
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      346922 ms
+[Timestamp] Gesture Interpreted Time:      346927 ms
+[0;32mI (347396) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      346928 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.347 V
+Ring Voltage = 0.312 V
+Pinky Voltage = 0.223 V
+Touch Raw: Index=463, Middle=155, Thumb=153
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      348452 ms
+[Timestamp] Gesture Interpreted Time:      348457 ms
+[0;32mI (348926) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      348458 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.352 V
+Ring Voltage = 0.309 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=463, Middle=157, Thumb=155
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      349982 ms
+[Timestamp] Gesture Interpreted Time:      349987 ms
+[0;32mI (350456) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      349988 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.384 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.353 V
+Ring Voltage = 0.300 V
+Pinky Voltage = 0.159 V
+Touch Raw: Index=463, Middle=156, Thumb=156
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      351512 ms
+[Timestamp] Gesture Interpreted Time:      351518 ms
+[0;32mI (351986) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      351518 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.451 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.305 V
+Ring Voltage = 0.326 V
+Pinky Voltage = 0.172 V
+Touch Raw: Index=463, Middle=154, Thumb=154
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      353042 ms
+[Timestamp] Gesture Interpreted Time:      353047 ms
+[0;32mI (353516) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      353048 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.384 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.223 V
+Touch Raw: Index=464, Middle=154, Thumb=154
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      354572 ms
+[Timestamp] Gesture Interpreted Time:      354578 ms
+[0;32mI (355046) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      354578 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.348 V
+Ring Voltage = 0.313 V
+Pinky Voltage = 0.178 V
+Touch Raw: Index=464, Middle=156, Thumb=154
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      356102 ms
+[Timestamp] Gesture Interpreted Time:      356107 ms
+[0;32mI (356576) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      356108 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.434 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.322 V
+Ring Voltage = 0.271 V
+Pinky Voltage = 0.206 V
+Touch Raw: Index=464, Middle=158, Thumb=155
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      357632 ms
+[Timestamp] Gesture Interpreted Time:      357637 ms
+[0;32mI (358106) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      357638 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.446 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.340 V
+Ring Voltage = 0.311 V
+Pinky Voltage = 0.223 V
+Touch Raw: Index=463, Middle=156, Thumb=156
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      359162 ms
+[Timestamp] Gesture Interpreted Time:      359167 ms
+[0;32mI (359636) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      359168 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.395 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.368 V
+Ring Voltage = 0.308 V
+Pinky Voltage = 0.228 V
+Touch Raw: Index=463, Middle=154, Thumb=157
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      360692 ms
+[Timestamp] Gesture Interpreted Time:      360698 ms
+[0;32mI (361166) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      360699 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.499 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.304 V
+Ring Voltage = 0.346 V
+Pinky Voltage = 0.186 V
+Touch Raw: Index=464, Middle=155, Thumb=154
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      362222 ms
+[Timestamp] Gesture Interpreted Time:      362227 ms
+[0;32mI (362696) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      362228 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.460 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.385 V
+Ring Voltage = 0.288 V
+Pinky Voltage = 0.232 V
+Touch Raw: Index=464, Middle=157, Thumb=154
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      363752 ms
+[Timestamp] Gesture Interpreted Time:      363758 ms
+[0;32mI (364226) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      363758 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.409 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.295 V
+Ring Voltage = 0.333 V
+Pinky Voltage = 0.159 V
+Touch Raw: Index=464, Middle=157, Thumb=156
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      365282 ms
+[Timestamp] Gesture Interpreted Time:      365287 ms
+[0;32mI (365756) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      365288 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.400 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.359 V
+Ring Voltage = 0.263 V
+Pinky Voltage = 0.211 V
+Touch Raw: Index=464, Middle=154, Thumb=157
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      366812 ms
+[Timestamp] Gesture Interpreted Time:      366818 ms
+[0;32mI (367286) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      366819 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.429 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.349 V
+Ring Voltage = 0.318 V
+Pinky Voltage = 0.193 V
+Touch Raw: Index=464, Middle=154, Thumb=155
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      368342 ms
+[Timestamp] Gesture Interpreted Time:      368347 ms
+[0;32mI (368816) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      368348 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.451 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.352 V
+Ring Voltage = 0.311 V
+Pinky Voltage = 0.202 V
+Touch Raw: Index=464, Middle=156, Thumb=153
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      369872 ms
+[Timestamp] Gesture Interpreted Time:      369877 ms
+[0;32mI (370346) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      369878 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.389 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.318 V
+Ring Voltage = 0.326 V
+Pinky Voltage = 0.214 V
+Touch Raw: Index=465, Middle=159, Thumb=156
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      371402 ms
+[Timestamp] Gesture Interpreted Time:      371407 ms
+[0;32mI (371876) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      371408 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.409 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.328 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.198 V
+Touch Raw: Index=463, Middle=205, Thumb=393
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      372932 ms
+[Timestamp] Gesture Interpreted Time:      372937 ms
+[0;32mI (373406) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      372938 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.446 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.201 V
+Ring Voltage = 0.156 V
+Pinky Voltage = 0.065 V
+Touch Raw: Index=458, Middle=219, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      374462 ms
+[Timestamp] Gesture Interpreted Time:      374467 ms
+[0;32mI (374936) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      374468 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.466 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.187 V
+Ring Voltage = 0.168 V
+Pinky Voltage = 0.112 V
+Touch Raw: Index=458, Middle=181, Thumb=386
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      375992 ms
+[Timestamp] Gesture Interpreted Time:      375997 ms
+[0;32mI (376466) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      375998 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.427 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.093 V
+Touch Raw: Index=458, Middle=183, Thumb=381
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      377522 ms
+[Timestamp] Gesture Interpreted Time:      377527 ms
+[0;32mI (377996) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      377528 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.442 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.245 V
+Ring Voltage = 0.179 V
+Pinky Voltage = 0.107 V
+Touch Raw: Index=458, Middle=183, Thumb=383
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      379052 ms
+[Timestamp] Gesture Interpreted Time:      379057 ms
+[0;32mI (379526) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      379058 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.403 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.230 V
+Ring Voltage = 0.213 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=458, Middle=182, Thumb=382
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      380582 ms
+[Timestamp] Gesture Interpreted Time:      380588 ms
+[0;32mI (381056) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      380589 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.452 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.249 V
+Ring Voltage = 0.210 V
+Pinky Voltage = 0.103 V
+Touch Raw: Index=458, Middle=180, Thumb=378
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      382112 ms
+[Timestamp] Gesture Interpreted Time:      382117 ms
+[0;32mI (382586) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      382118 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.430 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.258 V
+Ring Voltage = 0.259 V
+Pinky Voltage = 0.116 V
+Touch Raw: Index=458, Middle=182, Thumb=378
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      383642 ms
+[Timestamp] Gesture Interpreted Time:      383647 ms
+[0;32mI (384116) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      383648 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.432 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.374 V
+Ring Voltage = 0.258 V
+Pinky Voltage = 0.193 V
+Touch Raw: Index=460, Middle=297, Thumb=423
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      385172 ms
+[Timestamp] Gesture Interpreted Time:      385177 ms
+[0;32mI (385646) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      385178 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.409 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.367 V
+Ring Voltage = 0.394 V
+Pinky Voltage = 0.302 V
+Touch Raw: Index=461, Middle=330, Thumb=431
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      386702 ms
+[Timestamp] Gesture Interpreted Time:      386707 ms
+[0;32mI (387176) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      386708 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.368 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.372 V
+Ring Voltage = 0.425 V
+Pinky Voltage = 0.297 V
+Touch Raw: Index=461, Middle=326, Thumb=430
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      388232 ms
+[Timestamp] Gesture Interpreted Time:      388237 ms
+[0;32mI (388706) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      388238 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.359 V
+Ring Voltage = 0.377 V
+Pinky Voltage = 0.302 V
+Touch Raw: Index=461, Middle=327, Thumb=429
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      389762 ms
+[Timestamp] Gesture Interpreted Time:      389768 ms
+[0;32mI (390236) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      389768 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.401 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.322 V
+Ring Voltage = 0.297 V
+Pinky Voltage = 0.282 V
+Touch Raw: Index=461, Middle=328, Thumb=425
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      391292 ms
+[Timestamp] Gesture Interpreted Time:      391297 ms
+[0;32mI (391766) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      391298 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.410 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.350 V
+Ring Voltage = 0.339 V
+Pinky Voltage = 0.265 V
+Touch Raw: Index=461, Middle=326, Thumb=425
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      392822 ms
+[Timestamp] Gesture Interpreted Time:      392828 ms
+[0;32mI (393296) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      392829 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.398 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.338 V
+Ring Voltage = 0.396 V
+Pinky Voltage = 0.296 V
+Touch Raw: Index=462, Middle=326, Thumb=428
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      394352 ms
+[Timestamp] Gesture Interpreted Time:      394357 ms
+[0;32mI (394826) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      394358 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.376 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.278 V
+Ring Voltage = 0.205 V
+Pinky Voltage = 0.066 V
+Touch Raw: Index=466, Middle=449, Thumb=434
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      395882 ms
+[Timestamp] Gesture Interpreted Time:      395887 ms
+[0;32mI (396356) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      395888 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.404 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.405 V
+Ring Voltage = 0.425 V
+Pinky Voltage = 0.322 V
+Touch Raw: Index=464, Middle=339, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      397412 ms
+[Timestamp] Gesture Interpreted Time:      397417 ms
+[0;32mI (397886) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      397418 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.477 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.425 V
+Ring Voltage = 0.424 V
+Pinky Voltage = 0.362 V
+Touch Raw: Index=468, Middle=230, Thumb=479
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      398942 ms
+[Timestamp] Gesture Interpreted Time:      398947 ms
+[0;32mI (399416) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      398948 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.399 V
+Ring Voltage = 0.441 V
+Pinky Voltage = 0.363 V
+Touch Raw: Index=468, Middle=230, Thumb=403
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      400472 ms
+[Timestamp] Gesture Interpreted Time:      400477 ms
+[0;32mI (400946) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      400478 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.405 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.405 V
+Ring Voltage = 0.447 V
+Pinky Voltage = 0.384 V
+Touch Raw: Index=466, Middle=229, Thumb=397
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      402002 ms
+[Timestamp] Gesture Interpreted Time:      402008 ms
+[0;32mI (402476) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      402009 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.356 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.343 V
+Ring Voltage = 0.449 V
+Pinky Voltage = 0.334 V
+Touch Raw: Index=466, Middle=228, Thumb=398
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      403532 ms
+[Timestamp] Gesture Interpreted Time:      403538 ms
+[0;32mI (404006) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      403539 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.332 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.388 V
+Ring Voltage = 0.401 V
+Pinky Voltage = 0.288 V
+Touch Raw: Index=466, Middle=228, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      405062 ms
+[Timestamp] Gesture Interpreted Time:      405067 ms
+[0;32mI (405536) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      405068 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.376 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.436 V
+Ring Voltage = 0.386 V
+Pinky Voltage = 0.304 V
+Touch Raw: Index=465, Middle=229, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      406592 ms
+[Timestamp] Gesture Interpreted Time:      406598 ms
+[0;32mI (407066) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      406599 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.385 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.405 V
+Ring Voltage = 0.430 V
+Pinky Voltage = 0.324 V
+Touch Raw: Index=466, Middle=232, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      408122 ms
+[Timestamp] Gesture Interpreted Time:      408127 ms
+[0;32mI (408596) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      408128 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.387 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.369 V
+Ring Voltage = 0.384 V
+Pinky Voltage = 0.330 V
+Touch Raw: Index=465, Middle=229, Thumb=396
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      409652 ms
+[Timestamp] Gesture Interpreted Time:      409657 ms
+[0;32mI (410126) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      409658 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.327 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.361 V
+Ring Voltage = 0.349 V
+Pinky Voltage = 0.301 V
+Touch Raw: Index=464, Middle=317, Thumb=396
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      411182 ms
+[Timestamp] Gesture Interpreted Time:      411187 ms
+[0;32mI (411656) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      411188 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.356 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.422 V
+Ring Voltage = 0.422 V
+Pinky Voltage = 0.361 V
+Touch Raw: Index=462, Middle=354, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      412712 ms
+[Timestamp] Gesture Interpreted Time:      412718 ms
+[0;32mI (413186) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      412718 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.350 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.396 V
+Ring Voltage = 0.477 V
+Pinky Voltage = 0.353 V
+Touch Raw: Index=461, Middle=350, Thumb=483
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      414242 ms
+[Timestamp] Gesture Interpreted Time:      414248 ms
+[0;32mI (414716) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      414249 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.446 V
+Ring Voltage = 0.449 V
+Pinky Voltage = 0.322 V
+Touch Raw: Index=460, Middle=353, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      415772 ms
+[Timestamp] Gesture Interpreted Time:      415777 ms
+[0;32mI (416246) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      415778 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.348 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.452 V
+Ring Voltage = 0.446 V
+Pinky Voltage = 0.348 V
+Touch Raw: Index=460, Middle=355, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      417302 ms
+[Timestamp] Gesture Interpreted Time:      417307 ms
+[0;32mI (417776) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      417308 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.399 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.455 V
+Ring Voltage = 0.475 V
+Pinky Voltage = 0.293 V
+Touch Raw: Index=460, Middle=456, Thumb=482
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      418832 ms
+[Timestamp] Gesture Interpreted Time:      418837 ms
+[0;32mI (419306) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      418838 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.347 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.485 V
+Ring Voltage = 0.483 V
+Pinky Voltage = 0.336 V
+Touch Raw: Index=464, Middle=356, Thumb=487
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      420362 ms
+[Timestamp] Gesture Interpreted Time:      420367 ms
+[0;32mI (420836) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      420368 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.305 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.505 V
+Ring Voltage = 0.457 V
+Pinky Voltage = 0.323 V
+Touch Raw: Index=464, Middle=358, Thumb=484
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      421892 ms
+[Timestamp] Gesture Interpreted Time:      421897 ms
+[0;32mI (422366) BLE: Sent gesture: A[0m
+[Timestamp] BLE Transmission Sent Time:      421898 ms
+Predicted gesture: A
+Predicted gesture: 0
+
+Flex Sensor Readings:
+Thumb Voltage = 0.320 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.488 V
+Ring Voltage = 0.501 V
+Pinky Voltage = 0.383 V
+Touch Raw: Index=464, Middle=358, Thumb=395
+Touch Interpreted: I=0 M=0 T=0
+[Timestamp] Gesture Start Time (Reading sensors):      423422 ms
+[Timestamp] Gesture Interpreted Time:      423427 ms
+[0;32mI (423896) BLE: Sent gesture: F[0m
+[Timestamp] BLE Transmission Sent Time:      423428 ms
+Predicted gesture: F
+Predicted gesture: 5
+
+Flex Sensor Readings:
+Thumb Voltage = 0.325 V
+Index Voltage = 0.000 V
+Middle Voltage = 0.412 V
+Ring Voltage = 0.513 V
+Pinky Voltage = 0.378 V
+Touch Raw: Index=457, Middle=478, Thumb=487
+Touch Interpreted: I=0 M=0 T=0

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/zzmmk/VerbaGlove-DataCollection
+# Install script for directory: C:/ECE4982/VerbaGlove-DataCollection
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/cmake_install.cmake")
+  include("C:/ECE4982/VerbaGlove-DataCollection/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/zzmmk/VerbaGlove-DataCollection/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/ECE4982/VerbaGlove-DataCollection/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

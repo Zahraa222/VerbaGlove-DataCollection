@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/tmp"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/src"
-  "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/tmp"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/src"
+  "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/zzmmk/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/ECE4982/VerbaGlove-DataCollection/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()
