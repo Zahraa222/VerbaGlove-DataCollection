@@ -1840,7 +1840,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_main_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Espressif\tools\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SC:\ECE4982\VerbaGlove-DataCollection -BC:\ECE4982\VerbaGlove-DataCollection\build
+  command = C:\Espressif\tools\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SC:\Users\zzmmk\VerbaGlove-DataCollection -BC:\Users\zzmmk\VerbaGlove-DataCollection\build
   description = Re-running CMake...
   generator = 1
 
