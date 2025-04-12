@@ -56,11 +56,12 @@ static int buffer_index = 0; // Circular buffer index
 #define BUF_SIZE 1024
 
 //Machine Learning Model constants
-#define NUM_MODELS 9 //Number of letters
+#define NUM_MODELS 21 //Number of letters
 #define NUM_FEATURES (5 + NUM_TOUCH_INPUTS) //Number of inputs
 #define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
 float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
 float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
+char label_mapping[NUM_MODELS] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y'}; //Mapping of model index to letter
 
 
 //Model parameters
@@ -68,7 +69,7 @@ float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
-#define GAMMA 0.12499999999999997f //RBF kernel parameter
+#define GAMMA 0.12500000000000003f //RBF kernel parameter
 
 
 
@@ -166,7 +167,7 @@ float rbf_kernel(float *x1, float *x2, int len, float gamma){
 
 //CLASSIFICATION: one-vs-rest strategy
 //Returns index of class with the highest decision score
-int predict(float *x){
+char predict(float *x){
     float max_score = -INFINITY;
     int best_class = -1;
     //iterate over each binary classifier
@@ -183,7 +184,7 @@ int predict(float *x){
             best_class = i;
         }
     }
-    return best_class;
+    return label_mapping[best_class]; //return the predicted class (letter)
 }
 
 
@@ -353,7 +354,7 @@ void app_main(){
         //     int64_t interpreted_time = esp_timer_get_time();
         //     printf("[Timestamp] Gesture Interpreted Time: %11lld ms\n",interpreted_time /1000);
 
-        //     send_gesture('A' + gesture); //send gesture to BLE server
+        //     send_gesture(gesture); //send gesture to BLE server
         //     int64_t transmission_time = esp_timer_get_time();
         //     printf("[Timestamp] BLE Transmission Sent Time: %11lld ms\n", transmission_time/1000);
 
