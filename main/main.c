@@ -36,9 +36,9 @@ extern void send_gesture(char letter);
 #define FLEX_PIN_3 ADC1_CHANNEL_4   // GPIO32, Middle
 #define FLEX_PIN_4 ADC1_CHANNEL_7   // GPIO35, Ring
 #define FLEX_PIN_5 ADC1_CHANNEL_6   // GPIO34, Pinky
-#define INDEX_TOUCH_PIN    TOUCH_PAD_NUM0 // GPIO4, Index touch sensor
+#define INDEX_TOUCH_PIN    TOUCH_PAD_NUM8 // GPI33, Index touch sensor
 #define MIDDLE_TOUCH_PIN   TOUCH_PAD_NUM7 // GPIO27, Middle touch sensor
-#define THUMB_TOUCH_PIN    TOUCH_PAD_NUM8 // GPIO33, Thumb touch sensor
+#define THUMB_TOUCH_PIN    TOUCH_PAD_NUM0 // GPIO04, Thumb touch sensor
 #define TOUCH_THRESHOLD    150 // Threshold for touch detection
 #define NUM_TOUCH_INPUTS   3
 
@@ -197,7 +197,7 @@ float calculate_running_average(float *buffer, int size) {
     return sum / size;
 }
 
-void read_flex_sensors() {
+float *read_flex_sensors() {
     static int buffer_count = 0;
     static float reading[NUM_FEATURES];
     int flexValue1 = adc1_get_raw(FLEX_PIN_1);
@@ -212,7 +212,6 @@ void read_flex_sensors() {
     touch_pad_read(THUMB_TOUCH_PIN, &ThumbTouch);
 
 
-
     //ADC to Voltage calculation
     float Thumb = flexValue1 * (3.3 / 4095.0);
     float Index = flexValue2 * (3.3 / 4095.0);
@@ -220,32 +219,38 @@ void read_flex_sensors() {
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    // // Update buffers
-    // thumb_buffer[buffer_index] = Thumb;
-    // index_buffer[buffer_index] = Index;
-    // middle_buffer[buffer_index] = Middle;
-    // ring_buffer[buffer_index] = Ring;
-    // pinky_buffer[buffer_index] = Pinky;
+    // reading[0] = Thumb;
+    // reading[1] = Index;
+    // reading[2] = Middle;
+    // reading[3] = Ring;
+    // reading[4] = Pinky;
+
+    // Update buffers
+    thumb_buffer[buffer_index] = Thumb;
+    index_buffer[buffer_index] = Index;
+    middle_buffer[buffer_index] = Middle;
+    ring_buffer[buffer_index] = Ring;
+    pinky_buffer[buffer_index] = Pinky;
 
 
-    // // printf("Raw ADC: Thumb=%d, Index=%d, Middle=%d, Ring=%d, Pinky=%d\n", flexValue1, flexValue2, flexValue3, flexValue4, flexValue5);
+    // printf("Raw ADC: Thumb=%d, Index=%d, Middle=%d, Ring=%d, Pinky=%d\n", flexValue1, flexValue2, flexValue3, flexValue4, flexValue5);
 
-    // // Update buffer index (circular buffer)
-    // buffer_index = (buffer_index + 1) % BUFFER_SIZE;
+    // Update buffer index (circular buffer)
+    buffer_index = (buffer_index + 1) % BUFFER_SIZE;
 
-    // buffer_count++;
+    buffer_count++;
 
-    // // Only calculate and return average every 20 samples
-    // if (buffer_count < BUFFER_SIZE) {
-    //     return NULL;
-    // }
+    // Only calculate and return average every 20 samples
+    if (buffer_count < BUFFER_SIZE) {
+        return NULL;
+    }
 
-    // // Calculate running averages
-    // reading[0] = calculate_running_average(thumb_buffer, BUFFER_SIZE);
-    // reading[1] = calculate_running_average(index_buffer, BUFFER_SIZE);
-    // reading[2] = calculate_running_average(middle_buffer, BUFFER_SIZE);
-    // reading[3] = calculate_running_average(ring_buffer, BUFFER_SIZE);
-    // reading[4] = calculate_running_average(pinky_buffer, BUFFER_SIZE);
+    // Calculate running averages
+    reading[0] = calculate_running_average(thumb_buffer, BUFFER_SIZE);
+    reading[1] = calculate_running_average(index_buffer, BUFFER_SIZE);
+    reading[2] = calculate_running_average(middle_buffer, BUFFER_SIZE);
+    reading[3] = calculate_running_average(ring_buffer, BUFFER_SIZE);
+    reading[4] = calculate_running_average(pinky_buffer, BUFFER_SIZE);
 
     // Capacitive touch readings (inverted logic: lower = touched)
     reading[5] = (IndexTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Index touch sensor
@@ -253,7 +258,7 @@ void read_flex_sensors() {
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
 
 
-    printf("K,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
+    // //printf("Letters:,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
     // printf("\nFlex Sensor Readings:\n");
     // printf("Thumb Voltage = %.3f V\n", Thumb);
     // printf("Index Voltage = %.3f V\n", Index);
@@ -262,13 +267,14 @@ void read_flex_sensors() {
     // printf("Pinky Voltage = %.3f V\n", Pinky);
     // printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
     // printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
-    //return reading;
+    vTaskDelay(pdMS_TO_TICKS(1000)); // Delay to avoid flooding the console
+    return reading;
 }
 
 
 
-void app_main(){
-    // Configure ADC for each channel
+void app_main() {
+    // Initial setup remains the same...
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_config_channel_atten(FLEX_PIN_1, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_2, ADC_ATTEN_DB_12);
@@ -276,13 +282,11 @@ void app_main(){
     adc1_config_channel_atten(FLEX_PIN_4, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_5, ADC_ATTEN_DB_12);
 
-    //configure touch sensors
     touch_pad_init();
     touch_pad_config(INDEX_TOUCH_PIN, 0);
     touch_pad_config(MIDDLE_TOUCH_PIN, 0);
     touch_pad_config(THUMB_TOUCH_PIN, 0);
 
-    // Configure UART for reading input
     uart_config_t uart_config = {
         .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
@@ -293,12 +297,8 @@ void app_main(){
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
-
-    // Start BLE server
     ble_server_start();
 
-
-    //Initialize littleFS
     esp_vfs_littlefs_conf_t conf = {
         .base_path = "/littlefs",
         .partition_label = "littlefs",
@@ -306,63 +306,46 @@ void app_main(){
         .dont_mount = false,
     };
 
-
     esp_err_t err = esp_vfs_littlefs_register(&conf);
-
-
     if (err != ESP_OK) {
-        if (err == ESP_FAIL) {
-            printf("Failed to mount or format filesystem\n");
-        } else if (err == ESP_ERR_NOT_FOUND) {
-            printf("Failed to find LittleFS partition\n");
-        } else {
-            printf("Failed to initialize LittleFS (%s)\n", esp_err_to_name(err));
-        }
+        printf("LittleFS init failed: %s\n", esp_err_to_name(err));
         return;
     }
-    size_t total = 0, used = 0;
-    err = esp_littlefs_info("littlefs", &total, &used);
-    if (err != ESP_OK) {
-        printf("Failed to get LittleFS partition information (%s)\n", esp_err_to_name(err));
-    } else {
-        printf("Partition size: total: %d, used: %d\n", total, used);
-    }
 
-
-    //load parameters
     load_scalers();
     load_model_parameters();
-    printf("System ready. Press space to read flex sensors and classify a gesture\n");
-    printf("\nLetter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch\n");
-    
-    uint8_t keypress;
+
+    // Print CSV header
+    printf("StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture\n");
+
     while (1) {
-        // Read UART input
-        int len = uart_read_bytes(UART_NUM, &keypress, 1, pdMS_TO_TICKS(10));
-        if (len > 0 && keypress == ' ') {
-            read_flex_sensors();
+        float *sensor_ptr = read_flex_sensors();
+        if (sensor_ptr == NULL) {
+            continue;
         }
 
-        // int64_t gesture_start_time = esp_timer_get_time(); //us
-        // printf("[Timestamp] Gesture Start Time (Reading sensors): %11lld ms\n",gesture_start_time / 1000);
+        int64_t t_start = esp_timer_get_time() / 1000;
 
-        // if (x != NULL){
+        float input[NUM_FEATURES];
+        for (int i = 0; i < NUM_FEATURES; i++) {
+            input[i] = sensor_ptr[i];
+        }
 
-        //     scale_input(x);
-        //     int gesture = predict(x);
+        scale_input(input);
+        char gesture = predict(input);
 
-        //     int64_t interpreted_time = esp_timer_get_time();
-        //     printf("[Timestamp] Gesture Interpreted Time: %11lld ms\n",interpreted_time /1000);
+        int64_t t_end = esp_timer_get_time() / 1000;
 
-        //     send_gesture(gesture); //send gesture to BLE server
-        //     int64_t transmission_time = esp_timer_get_time();
-        //     printf("[Timestamp] BLE Transmission Sent Time: %11lld ms\n", transmission_time/1000);
+        // Log CSV line
+        printf("%lld,%lld,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,%c\n",
+               t_start, t_end,
+               sensor_ptr[0], sensor_ptr[1], sensor_ptr[2],
+               sensor_ptr[3], sensor_ptr[4],
+               sensor_ptr[5], sensor_ptr[6], sensor_ptr[7],
+               gesture);
 
-        //     printf("Predicted gesture: %c\n", 'A' + gesture);
-        //     printf("Predicted gesture: %d\n", gesture); //for debugging
+        send_gesture(gesture);
 
-        // }
-        
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(1000));  // one prediction per second
     }
 }
