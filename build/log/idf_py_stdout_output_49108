@@ -1,0 +1,125 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr 11 2025 13:58:34[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot:  3 littlefs         Unknown data     01 83 00210000 00100000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1a6c8h (108232) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002a6f0 vaddr=3ffbdb60 size=04c6ch ( 19564) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=0002f364 vaddr=40080000 size=00cb4h (  3252) load[0m
+[0;32mI (158) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=652ach (414380) map[0m
+[0;32mI (305) esp_image: segment 4: paddr=000952d4 vaddr=40080cb4 size=177c4h ( 96196) load[0m
+[0;32mI (355) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (356) boot: Disabling RNG early entropy source...[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (376) cpu_start: Pro cpu start user code[0m
+[0;32mI (376) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (376) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     VerbaGlove-DataCollection[0m
+[0;32mI (385) app_init: App version:      31ebf8ca-dirty[0m
+[0;32mI (391) app_init: Compile time:     Apr 12 2025 14:58:20[0m
+[0;32mI (397) app_init: ELF file SHA256:  dc4cbda9b...[0m
+[0;32mI (402) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (407) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (412) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (417) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (422) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (429) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 3FFCBC58 len 000143A8 (80 KiB): DRAM[0m
+[0;32mI (453) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (459) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (466) heap_init: At 40098478 len 00007B88 (30 KiB): IRAM[0m
+[0;32mI (474) spi_flash: detected chip: generic[0m
+[0;32mI (477) spi_flash: flash io: dio[0m
+[0;33mW (481) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (490) coexist: coex firmware version: 4482466[0m
+[0;32mI (495) main_task[0;32mI (515) BTDM_INIT: BT controller compile version [b022216][0m
+[0;32mI (515) BTDM_INIT: Bluetooth MAC: 2c:bc:bb:92:5b:32[0m
+[0;32mI (525) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (875) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (875) NimBLE: disc_mode=2[0m
+[0;32mI (875) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (885) NimBLE: 
+[0m
+[0;32mI (895) BLE: BLE NimBLE server initialized and advertising[0m
+StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture
+2952,2963,0.167,0.383,0.453,0.155,0.473,1,0,1,R
+[0;32mI (3435) BLE: Sent gesture: R[0m
+4972,4983,0.167,0.382,0.454,0.154,0.474,1,0,1,R
+[0;32mI (5455) BLE: Sent gesture: R[0m
+6992,7003,0.166,0.382,0.454,0.154,0.472,1,0,1,R
+[0;32mI (7475) BLE: Sent gesture: R[0m
+9012,9023,0.165,0.381,0.454,0.155,0.473,1,0,1,R
+[0;32mI (9495) BLE: Sent gesture: R[0m
+11032,11043,0.166,0.379,0.454,0.154,0.472,1,0,1,R
+[0;32mI (11515) BLE: Sent gesture: R[0m
+13052,13063,0.165,0.378,0.455,0.153,0.472,1,0,1,R
+[0;32mI (13535) BLE: Sent gesture: R[0m
+15072,15083,0.165,0.379,0.456,0.160,0.462,1,0,1,R
+[0;32mI (15555) BLE: Sent gesture: R[0m
+17092,17104,0.166,0.380,0.457,0.166,0.451,1,0,1,R
+[0;32mI (17575) BLE: Sent gesture: R[0m
+19112,19123,0.165,0.379,0.457,0.165,0.451,1,0,1,R
+[0;32mI (19595) BLE: Sent gesture: R[0m
+21132,21143,0.166,0.379,0.457,0.170,0.440,1,0,1,R
+[0;32mI (21615) BLE: Sent gesture: R[0m
+23152,23163,0.166,0.380,0.458,0.171,0.439,1,0,1,R
+[0;32mI (23635) BLE: Sent gesture: R[0m
+25172,25183,0.166,0.380,0.457,0.171,0.437,1,0,1,R
+[0;32mI (25655) BLE: Sent gesture: R[0m
+27192,27203,0.165,0.381,0.459,0.179,0.425,1,0,1,R
+[0;32mI (27675) BLE: Sent gesture: R[0m
+29212,29223,0.166,0.379,0.459,0.184,0.416,1,0,1,R
+[0;32mI (29695) BLE: Sent gesture: R[0m
+31232,31243,0.167,0.380,0.459,0.191,0.406,1,0,1,R
+[0;32mI (31715) BLE: Sent gesture: R[0m
+33252,33264,0.167,0.380,0.461,0.196,0.394,1,0,1,R
+[0;32mI (33735) BLE: Sent gesture: R[0m
+35272,35283,0.167,0.380,0.461,0.201,0.383,1,0,1,R
+[0;32mI (35755) BLE: Sent gesture: R[0m
+37292,37305,0.168,0.381,0.463,0.205,0.372,1,0,1,R
+[0;32mI (37775) BLE: Sent gesture: R[0m
+39312,39324,0.170,0.381,0.463,0.211,0.359,1,0,1,R
+[0;32mI (39795) BLE: Sent gesture: R[0m
+41332,41345,0.170,0.383,0.463,0.217,0.347,1,0,1,R
+[0;32mI (41815) BLE: Sent gesture: R[0m
+43352,43364,0.171,0.384,0.465,0.224,0.336,1,0,1,R
+[0;32mI (43835) BLE: Sent gesture: R[0m
+45372,45383,0.173,0.383,0.464,0.230,0.323,1,0,1,R
+[0;32mI (45855) BLE: Sent gesture: R[0m
+47392,47404,0.173,0.383,0.465,0.235,0.313,1,0,1,R
+[0;32mI (47875) BLE: Sent gesture: R[0m
+49412,49423,0.174,0.385,0.466,0.241,0.301,1,0,1,F
+[0;32mI (49895) BLE: Sent gesture: F[0m
+51432,51444,0.174,0.384,0.466,0.248,0.289,1,0,1,F
+[0;32mI (51915) BLE: Sent gesture: F[0m
+53452,53463,0.175,0.385,0.466,0.255,0.278,1,0,1,F
+[0;32mI (53935) BLE: Sent gesture: F[0m
+55472,55483,0.176,0.384,0.465,0.248,0.290,1,0,1,F
+[0;32mI (55955) BLE: Sent gesture: F[0m
+57492,57503,0.176,0.382,0.465,0.241,0.300,1,0,1,F
+[0;32mI (57975) BLE: Sent gesture: F[0m
+�����

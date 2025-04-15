@@ -818,6 +818,13 @@ C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMak
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/local.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/joltwallet__littlefs/CMakeFiles/install/strip.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/__idf_h2zero__esp-nimble-cpp.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/edit_cache.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/rebuild_cache.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/list_install_components.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/install.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/install/local.dir
+C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/h2zero__esp-nimble-cpp/CMakeFiles/install/strip.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/__idf_main.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/edit_cache.dir
 C:/Users/zzmmk/VerbaGlove-DataCollection/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

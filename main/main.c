@@ -1,3 +1,14 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void ble_server_start(void);
+void send_gesture(char letter);
+
+#ifdef __cplusplus
+}
+#endif
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdarg.h>
@@ -13,6 +24,7 @@
 #include "math.h"
 #include "esp_littlefs.h"
 #include "driver/touch_pad.h"
+#include "esp_timer.h"
 
 extern void ble_server_start(void);
 extern void send_gesture(char letter);
@@ -24,9 +36,9 @@ extern void send_gesture(char letter);
 #define FLEX_PIN_3 ADC1_CHANNEL_4   // GPIO32, Middle
 #define FLEX_PIN_4 ADC1_CHANNEL_7   // GPIO35, Ring
 #define FLEX_PIN_5 ADC1_CHANNEL_6   // GPIO34, Pinky
-#define INDEX_TOUCH_PIN    TOUCH_PAD_NUM0 // GPIO4, Index touch sensor
+#define INDEX_TOUCH_PIN    TOUCH_PAD_NUM8 // GPI33, Index touch sensor
 #define MIDDLE_TOUCH_PIN   TOUCH_PAD_NUM7 // GPIO27, Middle touch sensor
-#define THUMB_TOUCH_PIN    TOUCH_PAD_NUM8 // GPIO33, Thumb touch sensor
+#define THUMB_TOUCH_PIN    TOUCH_PAD_NUM0 // GPIO04, Thumb touch sensor
 #define TOUCH_THRESHOLD    150 // Threshold for touch detection
 #define NUM_TOUCH_INPUTS   3
 
@@ -44,11 +56,12 @@ static int buffer_index = 0; // Circular buffer index
 #define BUF_SIZE 1024
 
 //Machine Learning Model constants
-#define NUM_MODELS 9 //Number of letters
+#define NUM_MODELS 21 //Number of letters
 #define NUM_FEATURES (5 + NUM_TOUCH_INPUTS) //Number of inputs
 #define NUM_SUPPORT_VECTORS 33 //max number of support vectors across all models
 float scaler_mean[NUM_FEATURES]; //mean  value per feature from training
 float scaler_std[NUM_FEATURES]; // Standard deviation per feature from training
+char label_mapping[NUM_MODELS] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y'}; //Mapping of model index to letter
 
 
 //Model parameters
@@ -56,7 +69,7 @@ float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
-#define GAMMA 0.12499999999999997f //RBF kernel parameter
+#define GAMMA 0.125f //RBF kernel parameter
 
 
 
@@ -154,7 +167,7 @@ float rbf_kernel(float *x1, float *x2, int len, float gamma){
 
 //CLASSIFICATION: one-vs-rest strategy
 //Returns index of class with the highest decision score
-int predict(float *x){
+char predict(float *x){
     float max_score = -INFINITY;
     int best_class = -1;
     //iterate over each binary classifier
@@ -171,7 +184,7 @@ int predict(float *x){
             best_class = i;
         }
     }
-    return best_class;
+    return label_mapping[best_class]; //return the predicted class (letter)
 }
 
 
@@ -199,13 +212,18 @@ float *read_flex_sensors() {
     touch_pad_read(THUMB_TOUCH_PIN, &ThumbTouch);
 
 
-
     //ADC to Voltage calculation
     float Thumb = flexValue1 * (3.3 / 4095.0);
     float Index = flexValue2 * (3.3 / 4095.0);
     float Middle = flexValue3 * (3.3 / 4095.0);
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
+
+    // reading[0] = Thumb;
+    // reading[1] = Index;
+    // reading[2] = Middle;
+    // reading[3] = Ring;
+    // reading[4] = Pinky;
 
     // Update buffers
     thumb_buffer[buffer_index] = Thumb;
@@ -240,23 +258,23 @@ float *read_flex_sensors() {
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
 
 
-    // printf("K,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
-    printf("\nFlex Sensor Readings:\n");
-    printf("Thumb Voltage = %.3f V\n", Thumb);
-    printf("Index Voltage = %.3f V\n", Index);
-    printf("Middle Voltage = %.3f V\n", Middle);
-    printf("Ring Voltage = %.3f V\n", Ring);
-    printf("Pinky Voltage = %.3f V\n", Pinky);
-    printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
-    printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
-    vTaskDelay(pdMS_TO_TICKS(500));
+    // //printf("Letters:,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
+    // printf("\nFlex Sensor Readings:\n");
+    // printf("Thumb Voltage = %.3f V\n", Thumb);
+    // printf("Index Voltage = %.3f V\n", Index);
+    // printf("Middle Voltage = %.3f V\n", Middle);
+    // printf("Ring Voltage = %.3f V\n", Ring);
+    // printf("Pinky Voltage = %.3f V\n", Pinky);
+    // printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
+    // printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay to avoid flooding the console
     return reading;
 }
 
 
 
-void app_main(){
-    // Configure ADC for each channel
+void app_main() {
+    // Initial setup remains the same...
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_config_channel_atten(FLEX_PIN_1, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_2, ADC_ATTEN_DB_12);
@@ -264,13 +282,11 @@ void app_main(){
     adc1_config_channel_atten(FLEX_PIN_4, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_5, ADC_ATTEN_DB_12);
 
-    //configure touch sensors
     touch_pad_init();
     touch_pad_config(INDEX_TOUCH_PIN, 0);
     touch_pad_config(MIDDLE_TOUCH_PIN, 0);
     touch_pad_config(THUMB_TOUCH_PIN, 0);
 
-    // Configure UART for reading input
     uart_config_t uart_config = {
         .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
@@ -281,12 +297,8 @@ void app_main(){
     uart_param_config(UART_NUM, &uart_config);
     uart_driver_install(UART_NUM, BUF_SIZE, 0, 0, NULL, 0);
 
-
-    // Start BLE server
     ble_server_start();
 
-
-    //Initialize littleFS
     esp_vfs_littlefs_conf_t conf = {
         .base_path = "/littlefs",
         .partition_label = "littlefs",
@@ -294,48 +306,46 @@ void app_main(){
         .dont_mount = false,
     };
 
-
     esp_err_t err = esp_vfs_littlefs_register(&conf);
-
-
     if (err != ESP_OK) {
-        if (err == ESP_FAIL) {
-            printf("Failed to mount or format filesystem\n");
-        } else if (err == ESP_ERR_NOT_FOUND) {
-            printf("Failed to find LittleFS partition\n");
-        } else {
-            printf("Failed to initialize LittleFS (%s)\n", esp_err_to_name(err));
-        }
+        printf("LittleFS init failed: %s\n", esp_err_to_name(err));
         return;
     }
-    size_t total = 0, used = 0;
-    err = esp_littlefs_info("littlefs", &total, &used);
-    if (err != ESP_OK) {
-        printf("Failed to get LittleFS partition information (%s)\n", esp_err_to_name(err));
-    } else {
-        printf("Partition size: total: %d, used: %d\n", total, used);
-    }
 
-
-    //load parameters
     load_scalers();
     load_model_parameters();
-    printf("System ready. Press space to read flex sensors and classify a gesture\n");
-    printf("\nLetter,Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch\n");
 
-    uint8_t keypress;
+    // Print CSV header
+    printf("StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture\n");
+
     while (1) {
-        // Read UART input
-        float *x= read_flex_sensors();
-
-        if (x != NULL){
-            scale_input(x);
-            int gesture = predict(x);
-            send_gesture('A' + gesture); //send gesture to BLE server
-            printf("Predicted gesture: %c\n", 'A' + gesture);
-            printf("Predicted gesture: %d\n", gesture); //for debugging
+        float *sensor_ptr = read_flex_sensors();
+        if (sensor_ptr == NULL) {
+            continue;
         }
-        
-        vTaskDelay(pdMS_TO_TICKS(100));
+
+        int64_t t_start = esp_timer_get_time() / 1000;
+
+        float input[NUM_FEATURES];
+        for (int i = 0; i < NUM_FEATURES; i++) {
+            input[i] = sensor_ptr[i];
+        }
+
+        scale_input(input);
+        char gesture = predict(input);
+
+        int64_t t_end = esp_timer_get_time() / 1000;
+
+        // Log CSV line
+        printf("%lld,%lld,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,%c\n",
+               t_start, t_end,
+               sensor_ptr[0], sensor_ptr[1], sensor_ptr[2],
+               sensor_ptr[3], sensor_ptr[4],
+               sensor_ptr[5], sensor_ptr[6], sensor_ptr[7],
+               gesture);
+
+        send_gesture(gesture);
+
+        vTaskDelay(pdMS_TO_TICKS(200));  // one prediction per second
     }
 }

@@ -1,0 +1,352 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr 11 2025 13:58:34[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot:  3 littlefs         Unknown data     01 83 00210000 00100000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1a7b8h (108472) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002a7e0 vaddr=3ffbdb60 size=04c6ch ( 19564) load[0m
+[0;32mI (157) esp_image: segment 2: paddr=0002f454 vaddr=40080000 size=00bc4h (  3012) load[0m
+[0;32mI (158) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=65390h (414608) map[0m
+[0;32mI (305) esp_image: segment 4: paddr=000953b8 vaddr=40080bc4 size=178b4h ( 96436) load[0m
+[0;32mI (356) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (356) boot: Disabling RNG early entropy source...[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (376) cpu_start: Pro cpu start user code[0m
+[0;32mI (376) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (376) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     VerbaGlove-DataCollection[0m
+[0;32mI (386) app_init: App version:      31ebf8ca-dirty[0m
+[0;32mI (391) app_init: Compile time:     Apr 12 2025 14:58:20[0m
+[0;32mI (397) app_init: ELF file SHA256:  030a70819...[0m
+[0;32mI (402) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (407) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (412) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (417) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (422) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (429) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 3FFCBC58 len 000143A8 (80 KiB): DRAM[0m
+[0;32mI (453) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (460) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (466) heap_init: At 40098478 len 00007B88 (30 KiB): IRAM[0m
+[0;32mI (474) spi_flash: detected chip: generic[0m
+[0;32mI (477) spi_flash: flash io: dio[0m
+[0;33mW (481) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (490) coexist: coex firmware version: 4482466[0m
+[0;32mI (495) main_task: [0;32mI (515) BTDM_INIT: BT controller compile version [b022216][0m
+[0;32mI (515) BTDM_INIT: Bluetooth MAC: 2c:bc:bb:92:5b:32[0m
+[0;32mI (525) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (885) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (885) NimBLE: disc_mode=2[0m
+[0;32mI (885) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (885) NimBLE: 
+[0m
+[0;32mI (895) BLE: BLE NimBLE server initialized and advertising[0m
+StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture
+
+Flex Sensor Readings:
+Thumb Voltage = 0.508 V
+Index Voltage = 0.171 V
+Middle Voltage = 0.171 V
+Ring Voltage = 0.230 V
+Pinky Voltage = 0.116 V
+Touch Raw: Index=329, Middle=974, Thumb=246
+Touch Interpreted: I=0 M=0 T=0
+2972,2983,0.481,0.154,0.182,0.235,0.124,0,0,0,U
+[0;32mI (3455) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.479 V
+Index Voltage = 0.146 V
+Middle Voltage = 0.189 V
+Ring Voltage = 0.220 V
+Pinky Voltage = 0.147 V
+Touch Raw: Index=329, Middle=974, Thumb=248
+Touch Interpreted: I=0 M=0 T=0
+5002,5013,0.482,0.153,0.181,0.236,0.125,0,0,0,U
+[0;32mI (5485) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.508 V
+Index Voltage = 0.165 V
+Middle Voltage = 0.168 V
+Ring Voltage = 0.214 V
+Pinky Voltage = 0.146 V
+Touch Raw: Index=329, Middle=974, Thumb=248
+Touch Interpreted: I=0 M=0 T=0
+7032,7043,0.484,0.152,0.180,0.235,0.126,0,0,0,U
+[0;32mI (7515) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.507 V
+Index Voltage = 0.157 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.136 V
+Touch Raw: Index=329, Middle=974, Thumb=249
+Touch Interpreted: I=0 M=0 T=0
+9062,9074,0.484,0.154,0.181,0.234,0.127,0,0,0,U
+[0;32mI (9545) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.491 V
+Index Voltage = 0.133 V
+Middle Voltage = 0.223 V
+Ring Voltage = 0.219 V
+Pinky Voltage = 0.143 V
+Touch Raw: Index=328, Middle=974, Thumb=249
+Touch Interpreted: I=0 M=0 T=0
+11092,11103,0.484,0.152,0.185,0.234,0.127,0,0,0,U
+[0;32mI (11575) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.499 V
+Index Voltage = 0.127 V
+Middle Voltage = 0.206 V
+Ring Voltage = 0.235 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=328, Middle=974, Thumb=249
+Touch Interpreted: I=0 M=0 T=0
+13122,13133,0.485,0.152,0.185,0.234,0.128,0,0,0,U
+[0;32mI (13605) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.482 V
+Index Voltage = 0.165 V
+Middle Voltage = 0.179 V
+Ring Voltage = 0.258 V
+Pinky Voltage = 0.155 V
+Touch Raw: Index=328, Middle=974, Thumb=250
+Touch Interpreted: I=0 M=0 T=0
+15152,15163,0.487,0.153,0.185,0.234,0.131,0,0,0,U
+[0;32mI (15635) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.504 V
+Index Voltage = 0.139 V
+Middle Voltage = 0.219 V
+Ring Voltage = 0.232 V
+Pinky Voltage = 0.152 V
+Touch Raw: Index=329, Middle=974, Thumb=250
+Touch Interpreted: I=0 M=0 T=0
+17183,17194,0.487,0.152,0.187,0.234,0.132,0,0,0,U
+[0;32mI (17665) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.453 V
+Index Voltage = 0.170 V
+Middle Voltage = 0.197 V
+Ring Voltage = 0.240 V
+Pinky Voltage = 0.160 V
+Touch Raw: Index=332, Middle=974, Thumb=262
+Touch Interpreted: I=0 M=0 T=0
+19212,19223,0.486,0.151,0.188,0.235,0.134,0,0,0,U
+[0;32mI (19695) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.446 V
+Index Voltage = 0.070 V
+Middle Voltage = 0.135 V
+Ring Voltage = 0.137 V
+Pinky Voltage = 0.091 V
+Touch Raw: Index=329, Middle=974, Thumb=249
+Touch Interpreted: I=0 M=0 T=0
+21242,21253,0.485,0.147,0.185,0.229,0.132,0,0,0,U
+[0;32mI (21725) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.464 V
+Index Voltage = 0.048 V
+Middle Voltage = 0.170 V
+Ring Voltage = 0.168 V
+Pinky Voltage = 0.114 V
+Touch Raw: Index=316, Middle=972, Thumb=414
+Touch Interpreted: I=0 M=0 T=0
+23272,23283,0.484,0.141,0.183,0.227,0.131,0,0,0,U
+[0;32mI (23755) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.430 V
+Index Voltage = 0.126 V
+Middle Voltage = 0.072 V
+Ring Voltage = 0.155 V
+Pinky Voltage = 0.147 V
+Touch Raw: Index=307, Middle=964, Thumb=515
+Touch Interpreted: I=0 M=0 T=0
+25302,25313,0.481,0.139,0.178,0.222,0.133,0,0,0,U
+[0;32mI (25785) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.388 V
+Index Voltage = 0.117 V
+Middle Voltage = 0.149 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.143 V
+Touch Raw: Index=309, Middle=966, Thumb=526
+Touch Interpreted: I=0 M=0 T=0
+27332,27343,0.476,0.137,0.176,0.221,0.134,0,0,0,U
+[0;32mI (27815) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.466 V
+Index Voltage = 0.089 V
+Middle Voltage = 0.150 V
+Ring Voltage = 0.160 V
+Pinky Voltage = 0.127 V
+Touch Raw: Index=328, Middle=972, Thumb=41
+Touch Interpreted: I=0 M=0 T=1
+29362,29373,0.475,0.135,0.176,0.216,0.135,0,0,1,U
+[0;32mI (29845) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.451 V
+Index Voltage = 0.096 V
+Middle Voltage = 0.143 V
+Ring Voltage = 0.202 V
+Pinky Voltage = 0.148 V
+Touch Raw: Index=328, Middle=968, Thumb=39
+Touch Interpreted: I=0 M=0 T=1
+31392,31403,0.474,0.133,0.173,0.214,0.136,0,0,1,U
+[0;32mI (31875) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.425 V
+Index Voltage = 0.107 V
+Middle Voltage = 0.159 V
+Ring Voltage = 0.191 V
+Pinky Voltage = 0.142 V
+Touch Raw: Index=329, Middle=968, Thumb=39
+Touch Interpreted: I=0 M=0 T=1
+33422,33434,0.472,0.132,0.172,0.212,0.137,0,0,1,U
+[0;32mI (33905) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.392 V
+Index Voltage = 0.096 V
+Middle Voltage = 0.153 V
+Ring Voltage = 0.178 V
+Pinky Voltage = 0.118 V
+Touch Raw: Index=327, Middle=968, Thumb=41
+Touch Interpreted: I=0 M=0 T=1
+35452,35464,0.467,0.129,0.171,0.208,0.137,0,0,1,U
+[0;32mI (35935) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.375 V
+Index Voltage = 0.127 V
+Middle Voltage = 0.155 V
+Ring Voltage = 0.167 V
+Pinky Voltage = 0.143 V
+Touch Raw: Index=328, Middle=968, Thumb=40
+Touch Interpreted: I=0 M=0 T=1
+37482,37493,0.462,0.127,0.171,0.205,0.138,0,0,1,U
+[0;32mI (37965) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.400 V
+Index Voltage = 0.090 V
+Middle Voltage = 0.168 V
+Ring Voltage = 0.196 V
+Pinky Voltage = 0.136 V
+Touch Raw: Index=326, Middle=968, Thumb=40
+Touch Interpreted: I=0 M=0 T=1
+39512,39523,0.458,0.124,0.169,0.203,0.138,0,0,1,U
+[0;32mI (39995) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.422 V
+Index Voltage = 0.103 V
+Middle Voltage = 0.193 V
+Ring Voltage = 0.201 V
+Pinky Voltage = 0.147 V
+Touch Raw: Index=326, Middle=969, Thumb=39
+Touch Interpreted: I=0 M=0 T=1
+41542,41553,0.454,0.122,0.170,0.201,0.138,0,0,1,U
+[0;32mI (42025) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.440 V
+Index Voltage = 0.110 V
+Middle Voltage = 0.166 V
+Ring Voltage = 0.189 V
+Pinky Voltage = 0.142 V
+Touch Raw: Index=305, Middle=968, Thumb=38
+Touch Interpreted: I=0 M=0 T=1
+43572,43583,0.451,0.119,0.170,0.199,0.139,0,0,1,U
+[0;32mI (44055) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.124 V
+Middle Voltage = 0.163 V
+Ring Voltage = 0.193 V
+Pinky Voltage = 0.131 V
+Touch Raw: Index=303, Middle=968, Thumb=40
+Touch Interpreted: I=0 M=0 T=1
+45602,45613,0.448,0.118,0.169,0.197,0.139,0,0,1,U
+[0;32mI (46085) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.412 V
+Index Voltage = 0.101 V
+Middle Voltage = 0.151 V
+Ring Voltage = 0.205 V
+Pinky Voltage = 0.125 V
+Touch Raw: Index=304, Middle=969, Thumb=40
+Touch Interpreted: I=0 M=0 T=1
+47632,47643,0.443,0.115,0.168,0.197,0.138,0,0,1,U
+[0;32mI (48115) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.427 V
+Index Voltage = 0.103 V
+Middle Voltage = 0.141 V
+Ring Voltage = 0.201 V
+Pinky Voltage = 0.143 V
+Touch Raw: Index=303, Middle=973, Thumb=40
+Touch Interpreted: I=0 M=0 T=1
+49662,49673,0.439,0.112,0.165,0.196,0.138,0,0,1,U
+[0;32mI (50145) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.451 V
+Index Voltage = 0.129 V
+Middle Voltage = 0.166 V
+Ring Voltage = 0.185 V
+Pinky Voltage = 0.168 V
+Touch Raw: Index=231, Middle=973, Thumb=250
+Touch Interpreted: I=0 M=0 T=0
+51692,51704,0.437,0.112,0.162,0.194,0.139,0,0,0,U
+[0;32mI (52175) BLE: Sent gesture: U[0m
+
+Flex Sensor Readings:
+Thumb Voltage = 0.457 V
+Index Voltage = 0.122 V
+Middle Voltage = 0.157 V
+Ring Voltage = 0.212 V
+Pinky Voltage = 0.154 V
+Touch Raw: Index=324, Middle=974, Thumb=255
+Touch Interpreted: I=0 M=0 T=0
