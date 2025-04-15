@@ -1,0 +1,125 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr 11 2025 13:58:34[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot:  3 littlefs         Unknown data     01 83 00210000 00100000[0m
+[0;32mI (99) boot: End of partition table[0m
+[0;32mI (103) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1a6a8h (108200) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002a6d0 vaddr=3ffbdb60 size=04c6ch ( 19564) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=0002f344 vaddr=40080000 size=00cd4h (  3284) load[0m
+[0;32mI (158) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=65280h (414336) map[0m
+[0;32mI (305) esp_image: segment 4: paddr=000952a8 vaddr=40080cd4 size=177a4h ( 96164) load[0m
+[0;32mI (355) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (355) boot: Disabling RNG early entropy source...[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (376) cpu_start: Pro cpu start user code[0m
+[0;32mI (376) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (376) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     VerbaGlove-DataCollection[0m
+[0;32mI (385) app_init: App version:      7c577e47-dirty[0m
+[0;32mI (391) app_init: Compile time:     Apr 14 2025 19:43:01[0m
+[0;32mI (397) app_init: ELF file SHA256:  9461f61a2...[0m
+[0;32mI (402) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (407) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (412) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (417) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (422) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (429) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 3FFCBC58 len 000143A8 (80 KiB): DRAM[0m
+[0;32mI (453) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (459) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (466) heap_init: At 40098478 len 00007B88 (30 KiB): IRAM[0m
+[0;32mI (474) spi_flash: detected chip: generic[0m
+[0;32mI (477) spi_flash: flash io: dio[0m
+[0;33mW (481) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (490) coexist: coex firmware version: 4482466[0m
+[0;32mI (495) main_task[0;32mI (515) BTDM_INIT: BT controller compile version [b022216][0m
+[0;32mI (515) BTDM_INIT: Bluetooth MAC: 2c:bc:bb:92:5b:32[0m
+[0;32mI (515) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (885) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (895) NimBLE: disc_mode=2[0m
+[0;32mI (895) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0[0m
+[0;32mI (895) NimBLE: 
+[0m
+[0;32mI (905) BLE: BLE NimBLE server initialized and advertising[0m
+StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture
+1973,1983,0.156,0.143,0.159,0.253,0.126,0,0,1,X
+2745,2755,0.156,0.142,0.157,0.253,0.126,0,0,1,X
+3515,3526,0.152,0.143,0.156,0.253,0.126,0,0,1,X
+4285,4296,0.155,0.143,0.157,0.251,0.125,0,0,1,X
+5055,5065,0.156,0.143,0.155,0.249,0.125,0,0,0,E
+5825,5835,0.159,0.144,0.151,0.246,0.124,0,0,0,E
+6595,6605,0.164,0.142,0.152,0.244,0.123,0,0,0,E
+7365,7375,0.170,0.138,0.152,0.246,0.122,0,0,0,E
+8135,8147,0.178,0.137,0.152,0.243,0.122,0,0,0,E
+8905,8915,0.186,0.137,0.153,0.241,0.121,0,0,0,E
+9675,9685,0.193,0.138,0.152,0.239,0.120,0,0,0,E
+10445,10455,0.205,0.148,0.152,0.240,0.118,0,0,0,E
+11215,11225,0.217,0.162,0.151,0.236,0.118,0,0,0,R
+11985,11995,0.227,0.162,0.152,0.237,0.120,0,0,0,R
+12755,12765,0.234,0.159,0.153,0.232,0.122,0,0,0,R
+13525,13536,0.244,0.156,0.150,0.229,0.122,0,0,0,R
+14295,14305,0.252,0.152,0.147,0.227,0.121,0,0,0,R
+15065,15075,0.262,0.148,0.145,0.226,0.122,1,0,0,S
+15835,15845,0.271,0.142,0.143,0.226,0.120,0,0,0,R
+16605,16615,0.282,0.138,0.143,0.225,0.120,0,0,0,R
+17375,17385,0.289,0.136,0.142,0.222,0.120,0,0,0,R
+18145,18156,0.297,0.133,0.143,0.220,0.118,0,0,0,R
+18915,18925,0.311,0.130,0.144,0.220,0.118,0,0,0,R
+19685,19695,0.318,0.128,0.143,0.220,0.118,0,0,0,R
+20455,20465,0.327,0.126,0.142,0.223,0.118,0,0,0,R
+21225,21236,0.332,0.122,0.144,0.223,0.119,0,0,0,R
+21995,22006,0.335,0.122,0.145,0.223,0.121,0,0,0,R
+22765,22777,0.340,0.123,0.145,0.223,0.122,0,0,0,R
+23535,23546,0.342,0.122,0.145,0.226,0.120,0,0,0,R
+24305,24315,0.343,0.120,0.145,0.228,0.122,0,0,0,R
+25075,25085,0.344,0.117,0.145,0.230,0.122,0,0,0,R
+25845,25855,0.341,0.104,0.146,0.231,0.124,0,0,0,R
+26615,26626,0.337,0.088,0.148,0.234,0.123,1,0,0,R
+27385,27396,0.334,0.085,0.144,0.232,0.121,1,0,0,R
+28155,28165,0.335,0.083,0.144,0.236,0.119,1,1,0,E
+28925,28935,0.333,0.085,0.144,0.238,0.120,1,1,0,E
+29695,29705,0.335,0.085,0.147,0.238,0.120,0,0,0,R
+30465,30475,0.332,0.086,0.150,0.237,0.120,0,0,0,R
+31235,31245,0.330,0.089,0.153,0.237,0.119,0,0,0,R
+32005,32015,0.328,0.090,0.154,0.239,0.119,0,0,0,R
+32775,32785,0.327,0.088,0.156,0.242,0.120,0,0,0,R
+33545,33555,0.329,0.089,0.155,0.243,0.121,0,0,0,R
+34315,34325,0.327,0.088,0.156,0.243,0.120,0,0,0,R
+35085,35095,0.328,0.087,0.156,0.245,0.120,0,0,0,R
+35855,35865,0.328,0.087,0.157,0.243,0.119,0,0,1,U
+36625,36636,0.330,0.089,0.159,0.244,0.118,0,0,0,R
+37395,37405,0.329,0.089,0.158,0.246,0.118,0,0,0,R
+38165,38175,0.327,0.088,0.158,0.245,0.117,1,1,0,R
+38935,38945,0.328,0.088,0.158,0.242,0.119,1,1,0,R
+39705,39715,0.329,0.088,0.158,0.240,0.118,0,0,0,R
+40475,40485,0.329,0.089,0.160,0.240,0.119,0,0,0,R
+41245,41255,0.332,0.090,0.159,0.240,0.117,0,0,0,R
+42015,42025,0.334,0.089,0.158,0.239,0.117,0,0,0,R
+42785,42795,0.336,0.090,0.160,0.241,0.116,0,0,0,R
+43555,43565,0.337,0.092,0.161,0.241,0.115,0,0,0,R
+44325,44335,0.339,0.090,0.161,0.241,0.114,0,0,0,R
+45095,45105,0.340,0.091,0.159,0.241,0.114,1,1,0,R

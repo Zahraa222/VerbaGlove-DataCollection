@@ -69,7 +69,7 @@ float support_vectors[NUM_MODELS][NUM_SUPPORT_VECTORS][NUM_FEATURES];
 float dual_coef[NUM_MODELS][NUM_SUPPORT_VECTORS]; //dual coefficients (alphas) for each support vector
 float intercept[NUM_MODELS];
 int num_sv[NUM_MODELS]; //number of support vectors for each model
-#define GAMMA 0.12500000000000003f //RBF kernel parameter
+#define GAMMA 0.125f //RBF kernel parameter
 
 
 
@@ -267,7 +267,7 @@ float *read_flex_sensors() {
     // printf("Pinky Voltage = %.3f V\n", Pinky);
     // printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
     // printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
-    vTaskDelay(pdMS_TO_TICKS(1000)); // Delay to avoid flooding the console
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay to avoid flooding the console
     return reading;
 }
 
@@ -346,6 +346,6 @@ void app_main() {
 
         send_gesture(gesture);
 
-        vTaskDelay(pdMS_TO_TICKS(1000));  // one prediction per second
+        vTaskDelay(pdMS_TO_TICKS(200));  // one prediction per second
     }
 }
