@@ -219,11 +219,6 @@ float *read_flex_sensors() {
     float Ring = flexValue4 * (3.3 / 4095.0);
     float Pinky = flexValue5 * (3.3 / 4095.0);
 
-    // reading[0] = Thumb;
-    // reading[1] = Index;
-    // reading[2] = Middle;
-    // reading[3] = Ring;
-    // reading[4] = Pinky;
 
     // Update buffers
     thumb_buffer[buffer_index] = Thumb;
@@ -232,8 +227,6 @@ float *read_flex_sensors() {
     ring_buffer[buffer_index] = Ring;
     pinky_buffer[buffer_index] = Pinky;
 
-
-    // printf("Raw ADC: Thumb=%d, Index=%d, Middle=%d, Ring=%d, Pinky=%d\n", flexValue1, flexValue2, flexValue3, flexValue4, flexValue5);
 
     // Update buffer index (circular buffer)
     buffer_index = (buffer_index + 1) % BUFFER_SIZE;
@@ -252,29 +245,16 @@ float *read_flex_sensors() {
     reading[3] = calculate_running_average(ring_buffer, BUFFER_SIZE);
     reading[4] = calculate_running_average(pinky_buffer, BUFFER_SIZE);
 
-    // Capacitive touch readings (inverted logic: lower = touched)
+    // Capacitive touch readings (logic: high = touched)
     reading[5] = (IndexTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Index touch sensor
     reading[6] = (MiddleTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Middle touch sensor
     reading[7] = (ThumbTouch < TOUCH_THRESHOLD) ? 1.0 : 0.0; // Thumb touch sensor
-
-
-    // //printf("Letters:,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f\n", Thumb, Index, Middle, Ring, Pinky, reading[5], reading[6], reading[7]);
-    // printf("\nFlex Sensor Readings:\n");
-    // printf("Thumb Voltage = %.3f V\n", Thumb);
-    // printf("Index Voltage = %.3f V\n", Index);
-    // printf("Middle Voltage = %.3f V\n", Middle);
-    // printf("Ring Voltage = %.3f V\n", Ring);
-    // printf("Pinky Voltage = %.3f V\n", Pinky);
-    // printf("Touch Raw: Index=%d, Middle=%d, Thumb=%d\n", IndexTouch, MiddleTouch, ThumbTouch);
-    // printf("Touch Interpreted: I=%.0f M=%.0f T=%.0f\n", reading[5], reading[6], reading[7]);
-    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay to avoid flooding the console
     return reading;
 }
 
 
 
 void app_main() {
-    // Initial setup remains the same...
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_config_channel_atten(FLEX_PIN_1, ADC_ATTEN_DB_12);
     adc1_config_channel_atten(FLEX_PIN_2, ADC_ATTEN_DB_12);
@@ -315,37 +295,15 @@ void app_main() {
     load_scalers();
     load_model_parameters();
 
-    // Print CSV header
-    printf("StartTime(ms),EndTime(ms),Thumb,Index,Middle,Ring,Pinky,IndexTouch,MiddleTouch,ThumbTouch,Gesture\n");
-
     while (1) {
-        float *sensor_ptr = read_flex_sensors();
-        if (sensor_ptr == NULL) {
+        float *x = read_flex_sensors();
+        if (x == NULL) {
             continue;
         }
 
-        int64_t t_start = esp_timer_get_time() / 1000;
-
-        float input[NUM_FEATURES];
-        for (int i = 0; i < NUM_FEATURES; i++) {
-            input[i] = sensor_ptr[i];
-        }
-
-        scale_input(input);
-        char gesture = predict(input);
-
-        int64_t t_end = esp_timer_get_time() / 1000;
-
-        // Log CSV line
-        printf("%lld,%lld,%.3f,%.3f,%.3f,%.3f,%.3f,%.0f,%.0f,%.0f,%c\n",
-               t_start, t_end,
-               sensor_ptr[0], sensor_ptr[1], sensor_ptr[2],
-               sensor_ptr[3], sensor_ptr[4],
-               sensor_ptr[5], sensor_ptr[6], sensor_ptr[7],
-               gesture);
-
+        scale_input(x);
+        char gesture = predict(x);
         send_gesture(gesture);
-
         vTaskDelay(pdMS_TO_TICKS(200));  // one prediction per second
     }
 }
